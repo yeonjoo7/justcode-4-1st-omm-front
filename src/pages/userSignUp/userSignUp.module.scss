@@ -6,7 +6,7 @@
 .title {
   text-align: center;
   margin-bottom: 2.5rem;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 2.125rem;
   line-height: normal;
   letter-spacing: normal;
@@ -51,8 +51,16 @@
   border-radius: 4px;
 }
 
+.inputValue:focus {
+  box-shadow: 0 0 0.2rem 0.1rem #00c7ae;
+}
+
 .invalid {
   border: 1px solid #ff2323;
+}
+
+.invalid:focus {
+  box-shadow: 0 0 0.2rem 0.1rem #fc5050;
 }
 
 .inputValue::placeholder {
@@ -129,13 +137,13 @@
   font-size: 1rem;
   background: #00c7ae;
   color: #fff;
-  font-weight: 500;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .gosuSignUp {
   margin-top: 1.75rem;
   text-align: center;
-  font-weight: 500;
+  font-weight: bold;
   cursor: pointer;
 }

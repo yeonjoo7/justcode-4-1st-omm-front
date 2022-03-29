@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './userSignUp.module.scss';
+import styles from './UserSignUp.module.scss';
 
-function SignUpUser() {
+function UserSignUp() {
   // api로 보내기
   useEffect(() => {
     fetch('일반 고객 가입 api url', {
@@ -101,7 +101,7 @@ function SignUpUser() {
                 className={`${styles.pwType}`}
                 value="표시"
                 onClick={e => {
-                  e.preventDefault();
+                  //e.preventDefault();
                   if (e.target.childNodes[0].data === '표시') {
                     setPwVisible('text');
                     e.target.childNodes[0].data = '숨김';
@@ -132,12 +132,9 @@ function SignUpUser() {
               name="personalInfo"
               value="personalInto"
               checked={agreeCheck}
-              onClick={() => setAgreeCheck(prev => !prev)}
+              onChange={() => setAgreeCheck(prev => !prev)}
             />
-            <label
-              onClick={e => console.log(e.target.parentNode.parentNode)}
-              htmlFor="checkbox1"
-            >
+            <label htmlFor="checkbox1">
               <span className={styles.checkInner}>✔</span>
             </label>
             이용약관, 개인정보 수집 및 이용 동의 (필수)
@@ -159,7 +156,7 @@ function SignUpUser() {
               name="age-check"
               value="age-agreement"
               checked={ageCheck}
-              onClick={() => setAgeCheck(prev => !prev)}
+              onChange={() => setAgeCheck(prev => !prev)}
             />
             <label htmlFor="checkbox2">
               <span className={styles.checkInner}>✔</span>
@@ -187,7 +184,7 @@ function SignUpUser() {
                 ? false
                 : true
             }
-            onClick={() => navigate('/request/sent')}
+            onClick={() => navigate('/')}
           >
             회원가입
           </button>
@@ -201,4 +198,4 @@ function SignUpUser() {
   );
 }
 
-export default SignUpUser;
+export default UserSignUp;
