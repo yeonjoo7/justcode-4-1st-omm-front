@@ -1,6 +1,7 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
+import './styles/reset.scss';
+import './styles/common.scss';
 
 function App() {
   return (
