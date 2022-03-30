@@ -1,0 +1,145 @@
+.header__box {
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  margin: 0px auto;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+}
+
+.headerLogo {
+  cursor: pointer;
+}
+
+.headerSearchBox {
+  position: relative;
+}
+
+.header__search {
+  display: none;
+  width: 300px;
+  margin: auto;
+  margin-left: 20px;
+  padding: 14px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  color: lightgray;
+  font-size: 90%;
+  text-indent: 30px;
+}
+
+.header__search:focus {
+  outline: 2px solid #03c7ae;
+  border: 1px solid white;
+}
+
+.search_icon {
+  display: none;
+  position: absolute;
+  top: 12px;
+  left: 34px;
+  color: lightgray;
+  font-size: large;
+}
+
+.header__btn {
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+  list-style: none;
+  letter-spacing: 2px;
+}
+
+.header__btn li {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.marcketNew {
+  margin-left: 2px;
+  padding: 3px;
+  border-radius: 4px;
+  color: #ff5861;
+  background-color: #fff0f1;
+  font-size: small;
+}
+
+.master_signup {
+  padding: 14px;
+  border: 0px solid white;
+  border-radius: 8px;
+  color: white;
+  background-color: #03c7ae;
+  font-weight: 600;
+}
+
+.menuBtn {
+  position: absolute;
+}
+
+.searchBtn {
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 990px) {
+  .header {
+    width: 100vw;
+    margin: 0;
+    justify-content: space-around;
+  }
+
+  .header__box {
+    margin: 0;
+    padding: 10px;
+  }
+
+  .header__title {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header__search {
+    display: none;
+    position: relative;
+    margin: 0 auto;
+    width: 90vw;
+    padding: 14px;
+    border: 0;
+    outline: 2px solid #03c7ae;
+  }
+
+  .search_icon {
+    display: none;
+    position: absolute;
+    top: 12px;
+    left: 10px;
+  }
+
+  .menuBtn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: large;
+    cursor: pointer;
+  }
+
+  .searchBtn {
+    display: none;
+  }
+}
