@@ -4,21 +4,29 @@ import styles from './UserSignUp.module.scss';
 
 function UserSignUp() {
   // api로 보내기
-  useEffect(() => {
-    fetch('일반 고객 가입 api url', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: emailValue,
-        username: nameValue,
-        password: pwValue,
-      }),
+
+  // 로그인 api 완성 이후 에러 핸들링 고칠 것
+  const sendUserSignUp = () => {
+  fetch('일반 고객 가입 api url', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: emailValue,
+      username: nameValue,
+      password: pwValue,
+      termAgreed: true, // 개인정보 동의 - 칼럼명에 따라 변경 필요
+      ageAgreed: true // 나이 동의 - 칼럼명에 따라 변경 필요
+    }),
+  })
+    .then(response => response.json())
+    .then(res => {
+      if(res.status.startsWith(''))
+
     })
-      .then()
-      .then();
-  }, []);
+    .catch((err) => {alert(err.)})
+}
 
   const navigate = useNavigate();
   const [nameValue, setNameValue] = useState('');
