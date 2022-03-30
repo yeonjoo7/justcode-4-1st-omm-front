@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpNext.module.scss';
+import MasterSignUpFooter from '../../components/master-signup/MasterSignUpFooter';
 
-function Question({ value }) {
+function QuestionTitle() {}
+
+function QuestionForm({ value }) {
   return (
     <div className={styles.questionBox}>
       <input type="checkbox" name={value} value={value} />
@@ -48,12 +51,15 @@ function MasterSignUpNext() {
       <div className={styles.container}>
         <div className={styles.progressbar}>{/* {추가구현?} */}</div>
         {/* <h2>{props로 내려준다.}</h2> */}
+        {/* 1 : 어떤 서비스를 제공할 수 있나요? */}
+        {/* 2 : 구체적으로 어떤 서비스를 제공할 수 있나요? */}
+        {/* 3 : 지역 정보 */}
         <h2 className={styles.formTitle}>어떤 서비스를 제공할 수 있나요?</h2>
         <form className={styles.formBox}>
           {/* {props로 내려준다.} */}
           {questions.data1.map(data => {
             return (
-              <Question
+              <QuestionForm
                 name={data}
                 value={data}
                 content={data}
@@ -63,6 +69,7 @@ function MasterSignUpNext() {
           })}
         </form>
       </div>
+      <MasterSignUpFooter />
     </section>
   );
 }

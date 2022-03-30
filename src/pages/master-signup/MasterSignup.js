@@ -3,7 +3,7 @@ import styles from './MasterSignUp.module.scss';
 // import Header from '../../components/header/Header';
 // import CategoryNav from '../../components';
 
-function SignUpGoso() {
+function MasterSignUp() {
   // infoStage에서 글자 줄바꿈으로 인해 생기는 이미지 높낮이 차이 해결할 것
 
   const [statistic, setStatistic] = useState([]);
@@ -82,7 +82,7 @@ function SignUpGoso() {
           <li className={styles.infoCaption}>
             <img
               className={styles.infoImg}
-              src="/images/1-logo.png"
+              src="/images/master-signup/1-logo.png"
               alt="first-step"
             />
             <h4 className={styles.infoStageH4}>고객의 요청을 받아보세요.</h4>
@@ -94,7 +94,7 @@ function SignUpGoso() {
           <li className={styles.infoCaption}>
             <img
               className={styles.infoImg}
-              src="/images/2-logo.png"
+              src="/images/master-signup/2-logo.png"
               alt="first-step"
             />
             <h4 className={styles.infoStageH4}>맞춤 견적을 보내세요</h4>
@@ -106,7 +106,7 @@ function SignUpGoso() {
           <li className={styles.infoCaption}>
             <img
               className={styles.infoImg}
-              src="/images/3-logo.png"
+              src="/images/master-signup/3-logo.png"
               alt="first-step"
             />
             <h4 className={styles.infoStageH4}>상담 후 거래하세요</h4>
@@ -121,4 +121,4 @@ function SignUpGoso() {
   );
 }
 
-export default SignUpGoso;
+export default MasterSignUp;

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
-import UserSignUp from './pages/UserSignUp/UserSignUp';
-import MasterSignUp from './pages/MasterSignUp/MasterSignUp';
-import MasterSignUpNext from './pages/MasterSignUp/MasterSignUpNext';
+// import UserSignUp from './pages/UserSignUp/UserSignUp';
+import MasterSignUp from './pages/master-signup/MasterSignUp';
+import MasterSignUpNext from './pages/master-signup/MasterSignUpNext';
 import './styles/reset.scss';
 import './styles/common.scss';
 
@@ -11,9 +11,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/signup" element={<UserSignUp />} />
+        {/* <Route path="/signup" element={<UserSignUp />} /> */}
         <Route path="/pro" element={<MasterSignUp />} />
-        <Route path="/pro/1" element={<MasterSignUpNext />} />
+        <Route path="/pro/:id" element={<MasterSignUpNext />} />
       </Routes>
     </BrowserRouter>
   );
