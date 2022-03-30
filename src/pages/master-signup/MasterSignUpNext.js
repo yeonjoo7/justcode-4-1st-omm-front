@@ -8,7 +8,12 @@ function QuestionTitle() {}
 function QuestionForm({ value }) {
   return (
     <div className={styles.questionBox}>
-      <input type="checkbox" name={value} value={value} />
+      <input
+        className={styles.question}
+        type="checkbox"
+        name={value}
+        value={value}
+      />
       {value}
     </div>
   );
@@ -49,7 +54,7 @@ function MasterSignUpNext() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.progressbar}>{/* {추가구현?} */}</div>
+        <div className={styles.progressbar}>{/* {추가구현?} */} 0%</div>
         {/* <h2>{props로 내려준다.}</h2> */}
         {/* 1 : 어떤 서비스를 제공할 수 있나요? */}
         {/* 2 : 구체적으로 어떤 서비스를 제공할 수 있나요? */}

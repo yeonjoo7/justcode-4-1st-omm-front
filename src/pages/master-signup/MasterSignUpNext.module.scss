@@ -4,10 +4,21 @@
   width: 100%;
   min-height: 1.5rem;
   color: rgb(77, 77, 77);
-  background: rgb(255, 255, 255);
-  border-color: rgb(242, 242, 242);
+  border: 1px solid #fafafa;
   padding: 0.75rem 1rem;
-  padding-left: 0px;
+}
+
+.question {
+  display: none;
+  padding: 0.625rem 0;
+  //padding-right: 5rem;
+  position: relative;
+
+  font-size: 1rem;
+  text-indent: 2.25rem;
+
+  cursor: pointer;
+  font-weight: 500;
 }
 
 // MasterSignUpNext main
@@ -20,10 +31,10 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
   max-width: 37.5rem;
   margin: 3.125rem auto 7.6875rem;
   padding: 2.5rem;
@@ -32,10 +43,16 @@
   background: rgb(255, 255, 255);
 }
 
+.progressbar {
+  display: block;
+  width: 30rem;
+  border: 1px solid black;
+}
+
 .formTitle {
+  margin: 4.5rem 0;
   font-size: 1.5rem;
   text-align: center;
   color: rgb(53, 27, 27);
   line-height: normal;
-  margin-bottom: 4.5rem;
 }

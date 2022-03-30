@@ -1,3 +1,5 @@
+@import '/src/styles/common.scss';
+
 .FooterContainer {
   position: fixed;
   bottom: 0;
@@ -23,7 +25,7 @@
 .btnPrev,
 .btnNext {
   all: unset;
-  margin: 0.375rem 1rem;
+  margin: 0.375rem 0.5rem;
   padding: 1rem 3rem;
   border: 0.0625rem solid #e1e1e1;
   border-radius: 0.25rem;
@@ -33,17 +35,20 @@
 }
 
 .btnPrev {
-  color: tomato;
+  color: $sign-color;
 }
 
 .btnPrev:hover {
-  color: tomato;
+  color: #fff;
+  background: $sign-color;
+  opacity: 0.5;
 }
 
 .btnNext {
-  background: tomato;
+  background: $sign-color;
+  color: #fff;
 }
 
 .btnNext:hover {
-  background: tomato;
+  filter: brightness(80%);
 }
