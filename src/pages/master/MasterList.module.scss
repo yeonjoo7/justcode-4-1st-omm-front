@@ -1,0 +1,22 @@
+@media (max-width: 691px) {
+  .MasterList {
+    width: 460px;
+  }
+}
+
+@media (min-width: 691px) and (max-width: 890px) {
+  .MasterList {
+    width: 600px;
+  }
+}
+
+@media (min-width: 891px) {
+  .MasterList {
+    width: 840px;
+  }
+}
+
+.MasterList {
+  height: 100vh;
+  margin: auto;
+}

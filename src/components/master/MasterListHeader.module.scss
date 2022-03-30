@@ -1,0 +1,80 @@
+.MasterListHeader {
+  .HeaderNav {
+    margin: 20px 0px;
+    h2 {
+      margin-bottom: 0px;
+    }
+    span {
+      font-size: 13px;
+      color: #949494;
+    }
+  }
+  .HeaderCategory {
+    margin: 20px 0px;
+    .CategoryBtn {
+      border: 0px;
+      width: 200px;
+      padding: 8px;
+      text-align: left;
+      border-radius: 6px;
+      color: #656565;
+      cursor: pointer;
+      .GridIcon {
+        margin-right: 6px;
+      }
+    }
+  }
+  .HeaderSort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0px;
+    .MasterCounterWapper {
+      span:nth-child(1) {
+        font-weight: bolder;
+      }
+      span:nth-child(2) {
+        color: #656565;
+      }
+    }
+    .DropDownWrapper {
+      position: relative;
+      display: inline-block;
+      &:hover {
+        .DropDownContent {
+          display: block;
+        }
+      }
+      .DropDownBtn {
+        border: 0px;
+        background-color: #ffff;
+        cursor: pointer;
+        &:hover {
+          font-weight: 600;
+        }
+      }
+      .DropDownContent {
+        display: none;
+        position: absolute;
+        min-width: 140px;
+        border: 1px solid #e2e2e2;
+        z-index: 1;
+        right: 0px;
+        span {
+          padding: 6px 20px;
+          text-decoration: none;
+          display: block;
+          &:hover {
+            cursor: pointer;
+            background-color: #f5f5f594;
+          }
+          &:active {
+            background-color: #03c7ae;
+            color: #ffff;
+          }
+        }
+      }
+    }
+  }
+}
