@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpFooter.module.scss';
 
-function MasterSignUpFooter({
-  changeTitle,
-  titleLength,
-  changeForm,
-  formLength,
-}) {
+function MasterSignUpFooter({ setFormRender, renderLength, pageNumber }) {
+  const [next, setNext] = useState('다음');
+  const navigate = useNavigate();
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.btnWrapper}>
         <button
           className={styles.btnPrev}
-          onClick={() => changeTitle(prev => (prev === 0 ? prev : prev - 1))}
+          onClick={() => setFormRender(prev => (prev === 0 ? prev : prev - 1))}
         >
           이전
         </button>
         <button
           className={styles.btnNext}
-          onClick={() =>
-            changeTitle(prev => (prev === titleLength ? prev : prev + 1))
-          }
+          onClick={() => {
+            setFormRender(prev => (prev === renderLength ? prev : prev + 1));
+          }}
         >
-          다음
+          {pageNumber === renderLength ? '가입하기' : next}
         </button>
       </div>
     </div>

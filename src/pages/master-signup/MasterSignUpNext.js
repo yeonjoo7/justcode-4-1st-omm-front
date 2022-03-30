@@ -55,6 +55,7 @@ function MasterSignUpNext() {
   const [questions, setQuestions] = useState({ data1: [] });
 
   let questionKey = 0;
+  let formComponentKey = 0;
 
   useEffect(() => {
     fetch('http://localhost:3000/data/tekwoolee/master-signup/question.json', {
@@ -81,28 +82,40 @@ function MasterSignUpNext() {
       .then();
   }, []);
 
+  // 설문 답안 data 저장 state
+  const [answer, setAnswer] = useState({
+    child_category: [],
+    username: '',
+    email: '',
+    phone_number: '',
+    gender: '',
+    termAgree: true,
+    ageAgree: true,
+  });
+
+  setAnswer({});
+
   const [formPage, setFormRender] = useState(0);
   const formRender = [
     <FormBox
       questions={questions}
       questionKey={questionKey}
-      key={questionKey}
+      key={formComponentKey}
     />,
-    <FormInfo />,
+    <FormInfo key={formComponentKey} />,
   ];
 
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.progressbar}>{/* {추가구현?} */} 0%</div>
-        {/* <h2>{props로 내려준다.}</h2> */}
-        {/* 1 : 어떤 서비스를 제공할 수 있나요? */}
-        {/* 2 : 구체적으로 어떤 서비스를 제공할 수 있나요? */}
-        {/* 3 : 지역 정보 */}
-
-        <form className={styles.formBox}>{formRender[1]}</form>
+        <form className={styles.formBox}>{formRender[formPage]}</form>
       </div>
-      <MasterSignUpFooter />
+      <MasterSignUpFooter
+        setFormRender={setFormRender}
+        renderLength={formRender.length - 1}
+        pageNumber={formPage}
+      />
     </section>
   );
 }

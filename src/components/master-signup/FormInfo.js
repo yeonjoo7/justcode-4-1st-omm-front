@@ -6,14 +6,16 @@ function FormInfo() {
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [pwValue, setPwValue] = useState('');
+  const [phoneValue, setPhoneValue] = useState('');
   const [visiblePW, setPwVisible] = useState('password');
-  const [gender, setGender] = useState([]);
+  const [gender, setGender] = useState('');
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
+  const phoneReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
   return (
     <>
@@ -47,32 +49,41 @@ function FormInfo() {
           <div className={styles.genderBtnWrapper}>
             <input
               className={styles.genderRadio}
+              id="male"
               type="radio"
               value="male"
               name="male"
               checked={gender === 'male'}
               onChange={() => {
                 setGender('male');
-                console.log('male checked');
               }}
             />{' '}
-            <label>남자</label>
+            <label htmlFor="male">남자</label>
           </div>
           <div className={styles.genderBtnWrapper}>
             <input
               className={styles.genderRadio}
+              id="female"
               type="radio"
               value="female"
               name="female"
               checked={gender === 'female'}
               onChange={() => {
                 setGender('female');
-                console.log('female checked');
               }}
-            />{' '}
-            <label>여자</label>
+            />
+            <label htmlFor="female">여자</label>
           </div>
         </div>
+        <p
+          className={
+            gender
+              ? `${styles.invalidInput} ${styles.Off}`
+              : `${styles.invalidInput}`
+          }
+        >
+          성별을 선택해주세요.
+        </p>
       </div>
       <div className={styles.inputBox}>
         <p className={styles.inputName}>이메일</p>
@@ -136,6 +147,30 @@ function FormInfo() {
           }
         >
           비밀번호를 입력해주세요.
+        </div>
+      </div>
+
+      <div className={styles.inputBox}>
+        <p className={styles.inputName}>핸드폰 번호</p>
+        <input
+          className={
+            phoneReg.test(phoneValue) || !phoneValue
+              ? styles.inputValue
+              : `${styles.inputValue} ${styles.invalid}`
+          }
+          type="text"
+          value={phoneValue}
+          placeholder="핸드폰 번호를 입력해주세요"
+          onChange={e => setPhoneValue(e.target.value)}
+        />
+        <div
+          className={
+            phoneReg.test(phoneValue) || !phoneValue
+              ? `${styles.invalidInput} ${styles.Off}`
+              : `${styles.invalidInput}`
+          }
+        >
+          핸드폰 번호를 입력해주세요.
         </div>
       </div>
       <div className={styles.checkBox}>

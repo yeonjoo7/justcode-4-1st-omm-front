@@ -37,7 +37,7 @@
 
 .genderRadio + label {
   display: block;
-  padding: 0.75rem;
+  padding: 1rem;
   border: 0.0625rem solid #e1e1e1;
   border-radius: 0.25rem;
   font-size: 1rem;
@@ -47,6 +47,7 @@
 
 .genderRadio:checked + label {
   background: $sign-color;
+  color: #fff;
 }
 
 .inputValue {
