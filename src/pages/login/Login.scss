@@ -1,0 +1,76 @@
+.text {
+  text-align: center;
+  margin: 30px 10px;
+  font-size: 35px;
+  margin-top: 100px;
+  border: 1px solid black;
+}
+.section {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.id1,
+.pw1 {
+  width: 325px;
+  height: 45px;
+  padding-left: 15px;
+  border: 1px solid rgb(165, 161, 161);
+  border-radius: 4px;
+  margin: 10px 5px;
+}
+.email,
+.password {
+  text-align: left;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+.findpw {
+  display: block;
+  text-align: left;
+  margin-top: 3px;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  font-size: 15px;
+  color: rgb(85, 78, 78);
+}
+.loginbtn,
+.Kakaobtn,
+.facebookbtn {
+  display: inline-block;
+  width: 340px;
+  height: 45px;
+  margin: auto;
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.loginbtn {
+  color: white;
+  background-color: #03c7ae;
+  border: white;
+}
+.Kakaobtn {
+  background-color: #fee500;
+  border: white;
+  display: none;
+}
+.facebookbtn {
+  color: white;
+  background-color: #1876f1;
+  border: white;
+}
+.gotosignup {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: rgb(85, 78, 78);
+}
