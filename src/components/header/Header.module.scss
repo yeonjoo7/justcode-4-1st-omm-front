@@ -1,4 +1,4 @@
-.header__box {
+.headerBox {
   position: fixed;
   top: 0;
   width: 100%;
@@ -13,7 +13,7 @@
   margin: 0px auto;
 }
 
-.header__title {
+.headerTitle {
   display: flex;
   align-items: center;
 }
@@ -26,7 +26,7 @@
   position: relative;
 }
 
-.header__search {
+.headerSearch {
   display: none;
   width: 300px;
   margin: auto;
@@ -39,12 +39,12 @@
   text-indent: 30px;
 }
 
-.header__search:focus {
+.headerSearch:focus {
   outline: 2px solid #03c7ae;
   border: 1px solid white;
 }
 
-.search_icon {
+.searchIcon {
   display: none;
   position: absolute;
   top: 12px;
@@ -53,7 +53,7 @@
   font-size: large;
 }
 
-.header__btn {
+.headerBtn {
   display: flex;
   align-items: center;
   padding-right: 20px;
@@ -61,12 +61,12 @@
   letter-spacing: 2px;
 }
 
-.header__btn li {
+.headerBtn li {
   margin-left: 20px;
   cursor: pointer;
 }
 
-.marcketNew {
+.marketNew {
   margin-left: 2px;
   padding: 3px;
   border-radius: 4px;
@@ -75,7 +75,7 @@
   font-size: small;
 }
 
-.master_signup {
+.masterSignup {
   padding: 14px;
   border: 0px solid white;
   border-radius: 8px;
@@ -103,18 +103,18 @@
     justify-content: space-around;
   }
 
-  .header__box {
+  .headerBox {
     margin: 0;
     padding: 10px;
   }
 
-  .header__title {
+  .headerTitle {
     display: none;
     flex-direction: column;
     align-items: center;
   }
 
-  .header__search {
+  .headerSearch {
     display: none;
     position: relative;
     margin: 0 auto;
@@ -124,7 +124,7 @@
     outline: 2px solid #03c7ae;
   }
 
-  .search_icon {
+  .searchIcon {
     display: none;
     position: absolute;
     top: 12px;
