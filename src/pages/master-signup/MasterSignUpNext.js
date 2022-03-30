@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpNext.module.scss';
 import MasterSignUpFooter from '../../components/master-signup/MasterSignUpFooter';
+import FormInfo from '../../components/master-signup/FormInfo';
 
 function FormBox({ questions, questionKey }) {
   return (
@@ -23,10 +24,6 @@ function FormBox({ questions, questionKey }) {
       })}
     </>
   );
-}
-
-function FormInfo() {
-  return <></>;
 }
 
 function QuestionForm({ value }) {
@@ -103,22 +100,7 @@ function MasterSignUpNext() {
         {/* 2 : 구체적으로 어떤 서비스를 제공할 수 있나요? */}
         {/* 3 : 지역 정보 */}
 
-        <form className={styles.formBox}>
-          {/* <h2 className={styles.formTitle}>
-            {questionTitleArr[questionTitle]}
-          </h2>
-          {questions.data1.map(data => {
-            return (
-              <QuestionForm
-                name={data}
-                value={data}
-                content={data}
-                key={questionKey++}
-              />
-            );
-          })} */}
-          {formRender[formPage]}
-        </form>
+        <form className={styles.formBox}>{formRender[1]}</form>
       </div>
       <MasterSignUpFooter />
     </section>

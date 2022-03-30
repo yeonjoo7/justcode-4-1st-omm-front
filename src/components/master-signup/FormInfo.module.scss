@@ -1,0 +1,139 @@
+@import '/src/styles/common.scss';
+
+.formTitle {
+  margin: 4.5rem 0;
+  font-size: 1.5rem;
+  text-align: center;
+  color: rgb(53, 27, 27);
+  line-height: normal;
+}
+
+.inputBox {
+  margin-bottom: 1rem;
+}
+
+.inputName {
+  font-size: 1rem;
+  padding-bottom: 0.375rem;
+}
+
+.gender {
+  display: flex;
+  justify-content: space-around;
+  margin: 0.5rem 0;
+  padding: 0.75rem 0 0.75rem 0.5rem;
+}
+
+.genderRadio {
+  display: none;
+}
+
+.genderBtnWrapper {
+  width: 100%;
+  text-align: center;
+  padding: 0.3125rem;
+  flex-basis: 50%;
+}
+
+.genderRadio + label {
+  display: block;
+  padding: 0.75rem;
+  border: 0.0625rem solid #e1e1e1;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.genderRadio:checked + label {
+  background: $sign-color;
+}
+
+.inputValue {
+  all: unset;
+  width: 100%;
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.75rem 0 0.75rem 0.5rem;
+  box-sizing: border-box;
+  border: 0.0625rem solid #e1e1e1;
+  border-radius: 4px;
+}
+
+.inputValue:focus {
+  box-shadow: 0 0 0.2rem 0.1rem $sign-color;
+}
+
+.invalid {
+  border: 1px solid #ff2323;
+}
+
+.invalid:focus {
+  box-shadow: 0 0 0.2rem 0.1rem #fc5050;
+}
+
+.inputValue::placeholder {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #c6c6c6;
+}
+
+.pwBox {
+  position: relative;
+}
+
+.pwType {
+  all: unset;
+  position: absolute;
+  top: 0.2rem;
+  right: 0;
+  padding: 1rem;
+  font-size: 0.7rem;
+  color: $sign-color;
+  cursor: pointer;
+}
+
+.invalidInput {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #ff2323;
+}
+
+.Off {
+  display: none;
+}
+
+.checkBox {
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+.checkBox:last-of-type {
+  margin-bottom: 1.75rem;
+}
+
+.checkBox input {
+  display: none;
+}
+
+.checkboxCSS + label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: text-top;
+  background: #e1e1e1;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkBox input:checked + label {
+  background: $sign-color;
+}
+
+.checkInner {
+  color: white;
+  position: absolute;
+  left: 0.3rem;
+  top: 0.1rem;
+}
