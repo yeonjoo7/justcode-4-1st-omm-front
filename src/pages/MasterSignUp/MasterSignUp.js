@@ -4,6 +4,8 @@ import styles from './MasterSignUp.module.scss';
 // import CategoryNav from '../../components';
 
 function SignUpGoso() {
+  // infoStage에서 글자 줄바꿈으로 인해 생기는 이미지 높낮이 차이 해결할 것
+
   const [statistic, setStatistic] = useState([]);
   // 누적 요청서, 등록된 고수, 평균 리뷰별점을 어떻게 select하여 가져오는 지에 따라 다른 형태 - 3 항목의 갯수만 가져오면됨.
 
@@ -78,19 +80,40 @@ function SignUpGoso() {
         <h2 className={styles.infoH2}>숭고는 어떻게 운영되나요?</h2>
         <ul className={styles.infoStage}>
           <li className={styles.infoCaption}>
+            <img
+              className={styles.infoImg}
+              src="/images/1-logo.png"
+              alt="first-step"
+            />
             <h4 className={styles.infoStageH4}>고객의 요청을 받아보세요.</h4>
-            고객이 필요한 서비스의 요청서를 작성하면 숨고가 검토 후 고수님께
-            무료로 보내드려요.
+            <p>
+              고객이 필요한 서비스의 요청서를 작성하면 숨고가 검토 후 고수님께
+              무료로 보내드려요.
+            </p>
           </li>
           <li className={styles.infoCaption}>
+            <img
+              className={styles.infoImg}
+              src="/images/2-logo.png"
+              alt="first-step"
+            />
             <h4 className={styles.infoStageH4}>맞춤 견적을 보내세요</h4>
-            요청서 확인 후 간단히 견적금액만 입력하면 프로필과 함께 고객에게
-            메시지로 전송돼요.
+            <p>
+              요청서 확인 후 간단히 견적금액만 입력하면 프로필과 함께 고객에게
+              메시지로 전송돼요.
+            </p>
           </li>
           <li className={styles.infoCaption}>
+            <img
+              className={styles.infoImg}
+              src="/images/3-logo.png"
+              alt="first-step"
+            />
             <h4 className={styles.infoStageH4}>상담 후 거래하세요</h4>
-            원하는 고객과 채팅 및 전화(안심번호)로 자세한 사항을 협의하고
-            거래하세요.
+            <p>
+              원하는 고객과 채팅 및 전화(안심번호)로 자세한 사항을 협의하고
+              거래하세요.
+            </p>
           </li>
         </ul>
       </div>
