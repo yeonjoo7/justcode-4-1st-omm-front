@@ -20,12 +20,15 @@ function UserSignUp() {
       ageAgreed: true // 나이 동의 - 칼럼명에 따라 변경 필요
     }),
   })
-    .then(response => response.json())
-    .then(res => {
-      if(res.status.startsWith(''))
-
-    })
-    .catch((err) => {alert(err.)})
+    .then(response => 
+      if(!response.ok)
+      {
+        alert("회원가입이 불가능합니다.")
+      }
+      //navigate('/메인페이지')
+      response.json()) 
+    // 에러핸들링 수정 필요
+    .catch((err) => {alert(err.message)})
 }
 
   const navigate = useNavigate();
