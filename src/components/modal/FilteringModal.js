@@ -60,12 +60,12 @@ const FilteringModal = props => {
         <div className={styles.modalHeader}>
           {isAdressType ? (
             <>
-              <GoLocation size="32px" />
+              <GoLocation size="24px" />
               <h4>지역 선택</h4>
             </>
           ) : (
             <>
-              <BsList size="32px" />
+              <BsList size="24px" />
               <h4>서비스 선택</h4>
             </>
           )}
