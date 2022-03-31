@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
 import ThemaCategoryList from './pages/category/ThemaCategoryList';
+// import MasterList from './pages/master/MasterList';
 import './styles/reset.scss';
 import './styles/common.scss';
+// import 'antd/dist/antd.min.css';
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/health" element={<ThemaCategoryList />} />
         <Route path="/part_time" element={<ThemaCategoryList />} />
         <Route path="/etc" element={<ThemaCategoryList />} />
+        {/* <Route path="/master/list" element={<MasterList />} /> */}
       </Routes>
     </BrowserRouter>
   );
