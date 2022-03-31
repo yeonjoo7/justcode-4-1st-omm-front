@@ -1,16 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
+import MasterList from './pages/master/MasterList';
 import ThemaCategoryList from './pages/category/ThemaCategoryList';
-// import MasterList from './pages/master/MasterList';
 import './styles/reset.scss';
 import './styles/common.scss';
-// import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.min.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/master/list" element={<MasterList />} />
         <Route path="/lesson" element={<ThemaCategoryList />} />
         <Route path="/home" element={<ThemaCategoryList />} />
         <Route path="/event" element={<ThemaCategoryList />} />
@@ -19,7 +20,7 @@ function App() {
         <Route path="/health" element={<ThemaCategoryList />} />
         <Route path="/part_time" element={<ThemaCategoryList />} />
         <Route path="/etc" element={<ThemaCategoryList />} />
-        {/* <Route path="/master/list" element={<MasterList />} /> */}
+        <Route path="/master/list" element={<MasterList />} />
       </Routes>
     </BrowserRouter>
   );
