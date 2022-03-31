@@ -34,7 +34,7 @@ function Login() {
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
 
   return (
-    <div classname={styles.loginPage}>
+    <div classname={styles.page}>
       <div>
         <div className={styles.loginText}>로그인</div>
         <section className={styles.section}>

@@ -5,7 +5,6 @@ import './styles/reset.scss';
 import './styles/common.scss';
 import MasterList from './pages/master/MasterList';
 import ThemaCategoryList from './pages/category/ThemaCategoryList';
-import 'antd/dist/antd.min.css';
 
 function App() {
   return (
