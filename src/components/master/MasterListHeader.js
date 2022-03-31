@@ -1,44 +1,96 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './MasterListHeader.module.scss';
-import { Modal } from 'antd';
 import { BsGrid } from 'react-icons/bs';
-import { RiArrowDropDownLine } from 'react-icons/ri';
+import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
+import { GoLocation } from 'react-icons/go';
 
-const MasterListHeader = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [sort, setSort] = useState('리뷰순');
+import FilteringModal from '../modal/FilteringModal';
+
+const MasterListHeader = props => {
+  const {
+    masterNumber,
+    useSort,
+    setUseSort,
+    useCategory,
+    setUseCategory,
+    useAdress,
+    setUseAdress,
+  } = props;
+  const [isModalVisible, setIsModalVisible] = useState({
+    type: '',
+    visible: false,
+  });
+  const [categories, setCategories] = useState([]);
+  const [adress, setAdress] = useState([]);
+
+  useEffect(() => {
+    const adress = new Promise((resolve, reject) => {
+      fetch('../data/seonghoson/adress.json')
+        .then(response => response.json())
+        .then(data => {
+          resolve(data);
+        });
+    });
+    const categories = new Promise((resolve, reject) => {
+      fetch('../data/seonghoson/categories.json')
+        .then(response => response.json())
+        .then(data => {
+          resolve(data);
+        });
+    });
+
+    Promise.all([adress, categories]).then(value => {
+      setAdress(value[0]);
+      setCategories(value[1]);
+    });
+  }, []);
 
   function handleChangeSort(text) {
-    setSort(text);
+    setUseSort(text);
   }
+
+  function handleOpenModal(type) {
+    setIsModalVisible({ type, visible: true });
+  }
+
   return (
     <>
-      <header className={styles.MasterListHeader}>
-        <div className={styles.HeaderNav}>
+      <header className={styles.masterListHeader}>
+        <div className={styles.headerNav}>
           <h2>고수찾기</h2>
           <span>
-            숨고 {'>'} {'카테고리'}
+            숭고 <IoIosArrowForward size="10px" />{' '}
+            {!useAdress ? '지역' : useAdress.name}
+            {', '}
+            {!useCategory ? '카테고리' : useCategory.name}
           </span>
         </div>
-        <div className={styles.HeaderCategory}>
+        <div className={styles.headerCategory}>
           <button
-            className={styles.CategoryBtn}
-            onClick={() => setIsModalVisible(!isModalVisible)}
+            className={styles.adressBtn}
+            onClick={() => handleOpenModal('adress')}
           >
-            <BsGrid className={styles.GridIcon} size="12px" />
-            서비스 전체
+            <GoLocation className={styles.icon} size="12px" />
+            {!useAdress ? '전국' : useAdress.name}
+          </button>
+          <button
+            className={styles.categoryBtn}
+            onClick={() => handleOpenModal('category')}
+          >
+            <BsGrid className={styles.icon} size="12px" />
+            {!useCategory ? '서비스 전체' : useCategory.name}
           </button>
         </div>
-        <div className={styles.HeaderSort}>
-          <div className={styles.MasterCounterWapper}>
-            <span>{'102,320'}</span>
+        <div className={styles.headerSort}>
+          <div className={styles.masterCounterWapper}>
+            <span>{masterNumber}</span>
             <span> 명의 고수</span>
           </div>
-          <div className={styles.DropDownWrapper}>
-            <button className={styles.DropDownBtn}>
-              {sort} <RiArrowDropDownLine />
+          <div className={styles.dropDownWrapper}>
+            <button className={styles.dropDownBtn}>
+              {useSort} <IoIosArrowDown />
             </button>
-            <div className={styles.DropDownContent}>
+            <div className={styles.dropDownContent}>
               <span onClick={e => handleChangeSort(e.target.innerText)}>
                 리뷰순
               </span>
@@ -49,12 +101,13 @@ const MasterListHeader = () => {
           </div>
         </div>
       </header>
-      <Modal
-        title="서비스 선택"
-        visible={isModalVisible}
-        onOk={() => setIsModalVisible(false)}
-        onCancel={() => setIsModalVisible(false)}
-        footer={false}
+      <FilteringModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        datas={isModalVisible.type === 'adress' ? adress : categories}
+        setUseFilter={
+          isModalVisible.type === 'adress' ? setUseAdress : setUseCategory
+        }
       />
     </>
   );
