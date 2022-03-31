@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MasterSignUp.module.scss';
+import MasterCategory from '../../components/master-signup/MasterCategory';
 // import Header from '../../components/header/Header';
 // import CategoryNav from '../../components';
 
@@ -45,8 +46,9 @@ function MasterSignUp() {
         </p>
       </div>
       <div className={styles.categories}>
-        고수로 가입하실 분야를 선택하세요 / 컴포넌트 받기
+        고수로 가입하실 분야를 선택하세요
         {/* <CategoryNav /> */}
+        <MasterCategory />
       </div>
       <div className={styles.statisticContainer}>
         <div className={styles.statisticCaption}>

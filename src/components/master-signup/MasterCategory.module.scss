@@ -1,0 +1,81 @@
+.container {
+  width: 1000px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box {
+  text-align: center;
+}
+
+img {
+  cursor: pointer;
+}
+.lesson {
+  width: 5rem;
+}
+.lesson:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.business {
+  width: 5rem;
+}
+.business:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.etc {
+  width: 5rem;
+}
+.etc:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.event {
+  width: 5rem;
+}
+.event:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.health {
+  width: 5rem;
+}
+.health:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.home {
+  width: 5rem;
+}
+.home:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.partTime {
+  width: 5rem;
+}
+.partTime:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.design {
+  width: 5rem;
+}
+.design:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
