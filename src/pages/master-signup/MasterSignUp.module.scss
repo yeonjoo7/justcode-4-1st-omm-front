@@ -20,14 +20,13 @@ p {
 
 // 미디어 쿼리 3단 변화
 // 0 - 고정 크기
-// 1 - 1000px, flex 변화, 중앙 정렬
+// 1 - 1000px, flex 변화, 중앙 정렬 -> infoCaption 줄바꿈 문제 이 부분에서 해결
 // 2 - 700px 이하 , 1줄 컬럼 적용
 
 .imageHeader {
   padding: 10rem 0;
   background-image: url('../../../public/images/master-signup/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg');
   background-size: cover;
-
   .imageHeaderH2,
   .imageHeaderP {
     margin-left: 3rem;
@@ -38,6 +37,15 @@ p {
   .imageHeaderH2 {
     margin-bottom: 1rem;
   }
+}
+
+.categories {
+  height: 9.5rem;
+  background: #fafafa;
+}
+
+.categorytitle {
+  text-align: center;
 }
 
 .statisticContainer {

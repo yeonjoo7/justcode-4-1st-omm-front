@@ -22,15 +22,6 @@ function MasterSignUp() {
       .then(data => setStatistic(data));
   }, []);
 
-  useEffect(() => {
-    fetch('고수의 프로필 사진, child 카테고리, 고수 리뷰 get  API', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => setMaster(data));
-  }, []);
-
-  let masterComponentKey = 0;
   return (
     <section className={styles.section}>
       {/* <Header />/ */}
@@ -38,7 +29,7 @@ function MasterSignUp() {
         <h2 className={styles.imageHeaderH2}>
           고수로 등록하고,
           <br />
-          숨고에서 고객을 만나보세요!
+          숭고에서 고객을 만나보세요!
         </h2>
         <p className={styles.imageHeaderP}>
           숭고는 국내 최대 규모의 생활서비스 플랫폼입니다. <br />
@@ -46,8 +37,6 @@ function MasterSignUp() {
         </p>
       </div>
       <div className={styles.categories}>
-        고수로 가입하실 분야를 선택하세요
-        {/* <CategoryNav /> */}
         <MasterCategory />
       </div>
       <div className={styles.statisticContainer}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './MasterSignUpNext.module.scss';
 import MasterSignUpFooter from '../../components/master-signup/MasterSignUpFooter';
 import FormInfo from '../../components/master-signup/FormInfo';
@@ -70,9 +70,11 @@ function MasterSignUpNext() {
   // Parent-Category, Child-Category의 데이터 형태를 백엔드에서 어떻게 넘길 지 알아야함.
   // 고수 가입 상세 기입은 2페이지로 구성. 하위 카테고리 -> 고수 개인 정보
 
+  const params = useParams();
+  // 하단의 "data1"을 "params로 교체"
+  // const [questions, setQuestions] = useState({ `${params}`: [] });
   const [questions, setQuestions] = useState({ data1: [] });
   const lessonCategory = useRef([]);
-  // 이부분 수정
   const masterInfo = useRef({
     lesson_categories: lessonCategory.current,
     name: '',
@@ -85,7 +87,11 @@ function MasterSignUpNext() {
   let questionKey = 0;
   let formComponentKey = 0;
 
+  // 하단 부분을 params로 교체
   useEffect(() => {
+    // fetch(`http://localhost:8000/lesson_categories/${params}.json`, {
+    //   method: 'GET',
+    // })
     fetch('http://localhost:3000/data/tekwoolee/master-signup/question.json', {
       method: 'GET',
     })
@@ -101,6 +107,12 @@ function MasterSignUpNext() {
   // 현재는 자식 컴포넌트 footer바에서 이 함수를 실행시키고 있다.
   // 부모 컴포넌트에서 보내는 것이 맞을까?
 
+  // 나이, 개인정보 공유 동의
+  const [agreeCheck, setAgreeCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
+
+  const visibleInvalid = useRef('');
+
   const [formPage, setFormRender] = useState(0);
   const formRender = [
     <FormBox
@@ -109,7 +121,14 @@ function MasterSignUpNext() {
       key={formComponentKey}
       lessonCategory={lessonCategory.current}
     />,
-    <FormInfo key={formComponentKey} masterInfo={masterInfo.current} />,
+    <FormInfo
+      key={formComponentKey}
+      masterInfo={masterInfo.current}
+      ageCheck={ageCheck}
+      agreeCheck={agreeCheck}
+      setAgeCheck={setAgeCheck}
+      setAgreeCheck={setAgreeCheck}
+    />,
   ];
 
   return (
@@ -137,6 +156,8 @@ function MasterSignUpNext() {
         pageNumber={formPage}
         allData={masterInfo.current}
         checkLesson={lessonCategory.current}
+        agreeCheck={agreeCheck}
+        ageCheck={agreeCheck}
       />
     </section>
   );

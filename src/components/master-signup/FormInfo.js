@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import styles from './FormInfo.module.scss';
 
-function FormInfo({ masterInfo }) {
+function FormInfo({
+  masterInfo,
+  ageCheck,
+  agreeCheck,
+  setAgeCheck,
+  setAgreeCheck,
+  agreeCheckLast,
+  ageCheckLast,
+}) {
   //리액트
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
@@ -9,8 +17,8 @@ function FormInfo({ masterInfo }) {
   const [phoneValue, setPhoneValue] = useState('');
   const [visiblePW, setPwVisible] = useState('password');
   const [gender, setGender] = useState('');
-  const [agreeCheck, setAgreeCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
+  // const [agreeCheck, setAgreeCheck] = useState(false);
+  // const [ageCheck, setAgeCheck] = useState(false);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -96,6 +104,39 @@ function FormInfo({ masterInfo }) {
           성별을 선택해주세요.
         </p>
       </div>
+      {/* 주소 선택창 구현 나중에 */}
+      {/* <div className={styles.inputBox}>
+        <p className={styles.inputName}>주소</p>
+        <div className={styles.gender}>
+          <div className={styles.genderBtnWrapper}>
+            <select className={styles.genderRadio} />{' '}
+            <label htmlFor="male">남자</label>
+          </div>
+          <div className={styles.genderBtnWrapper}>
+            <input
+              className={styles.genderRadio}
+              id="female"
+              type="radio"
+              value="female"
+              name="female"
+              checked={gender === 'female'}
+              onChange={() => {
+                setGender('female');
+              }}
+            />
+            <label htmlFor="female">여자</label>
+          </div>
+        </div>
+        <p
+          className={
+            gender
+              ? `${styles.invalidInput} ${styles.Off}`
+              : `${styles.invalidInput}`
+          }
+        >
+          성별을 선택해주세요.
+        </p>
+      </div> */}
       <div className={styles.inputBox}>
         <p className={styles.inputName}>이메일</p>
         <input

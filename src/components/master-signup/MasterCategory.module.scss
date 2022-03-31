@@ -1,22 +1,40 @@
 .container {
   width: 1000px;
-  margin: 0px auto;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 3%;
+  background: #fafafa;
+}
+
+.inner {
+  position: absolute;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
+  padding: 1.75rem 2.8125rem;
+  border-radius: 0.625rem;
+  left: 0;
+  right: 0;
+  top: 21.25rem;
+  box-shadow: 0 0 1.25rem 0 rgb(0 0 0 / 10%);
+  background: #fff;
+  text-align: center;
+  font-weight: 500;
+  h3 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+}
+.icons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .box {
   text-align: center;
-}
-
-img {
   cursor: pointer;
 }
-.lesson {
+img {
   width: 5rem;
+  height: 5rem;
 }
 .lesson:hover {
   background-color: #fafafa;

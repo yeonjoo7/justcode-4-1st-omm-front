@@ -8,6 +8,10 @@ function MasterSignUpFooter({
   pageNumber,
   allData,
   checkLesson,
+  ageCheck,
+  setAgeCheckLast,
+  agreeCheck,
+  setAgreeCheckLast,
 }) {
   // 입력 정보 유효성 검사
   const emailReg =
@@ -29,12 +33,16 @@ function MasterSignUpFooter({
 
   // 구조분해 할당이 왜 안될까? 구조부해 할당 시 아예 값이 없는 것으로 나옴.
   // const { email, name, phone_number, password, ageAgree, termAgree } = allData;
+  const navigate = useNavigate();
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.btnWrapper}>
         <button
           className={styles.btnPrev}
           onClick={() => {
+            if (pageNumber === 0) {
+              navigate('/pro');
+            }
             setFormRender(prev => (prev === 0 ? prev : prev - 1));
           }}
         >
