@@ -46,7 +46,7 @@ const CarouselSlideItem = ({ pos, idx, activeIdx, _items }) => {
         <p>{item.goso.category}</p>
         <p className={styles.starfield}>
           <AiFillStar color="#FFCE21" size="1.2em" />
-          {item.goso.star}({item.goso.review_sum})
+          {item.goso.review.total_grade}({item.goso.review.review_number})
         </p>
       </div>
     </li>

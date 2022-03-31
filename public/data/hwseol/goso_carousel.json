@@ -3,70 +3,90 @@
     "name": "설혜원",
     "image": "/images/main_carousel/design.jpg",
     "category": "프론트 개발",
-    "star": 4.7,
-    "review_sum": 12
+    "review": {
+      "total_grade": 4,
+      "review_number": 12
+    }
   },
   {
     "name": "김연주",
     "image": "/images/main_carousel/design.jpg",
     "category": "백앤드 개발",
-    "star": 4.8,
-    "review_sum": 16
+    "review": {
+      "total_grade": 5,
+      "review_number": 22
+    }
   },
   {
     "name": "이택우",
     "image": "/images/main_carousel/design.jpg",
     "category": "하드웨어 개발",
-    "star": 4.8,
-    "review_sum": 20
+    "review": {
+      "total_grade": 5,
+      "review_number": 32
+    }
   },
   {
     "name": "손성호",
     "image": "/images/main_carousel/design.jpg",
     "category": "풀스택 개발",
-    "star": 4.8,
-    "review_sum": 14
+    "review": {
+      "total_grade": 5,
+      "review_number": 26
+    }
   },
   {
     "name": "마승우",
     "image": "/images/main_carousel/design.jpg",
     "category": "소프트웨어 개발",
-    "star": 4.5,
-    "review_sum": 8
+    "review": {
+      "total_grade": 5,
+      "review_number": 112
+    }
   },
   {
     "name": "홍길동",
     "image": "/images/main_carousel/design.jpg",
     "category": "집 인테리어",
-    "star": 3.2,
-    "review_sum": 120
+    "review": {
+      "total_grade": 3,
+      "review_number": 127
+    }
   },
   {
     "name": "김철수",
     "image": "/images/main_carousel/design.jpg",
     "category": "영어 과외",
-    "star": 3.6,
-    "review_sum": 260
+    "review": {
+      "total_grade": 2,
+      "review_number": 1200
+    }
   },
   {
     "name": "김민아",
     "image": "/images/main_carousel/design.jpg",
     "category": "핼스 트레이닝",
-    "star": 2.1,
-    "review_sum": 380
+    "review": {
+      "total_grade": 1,
+      "review_number": 12456
+    }
   },
   {
     "name": "백종원",
     "image": "/images/main_carousel/design.jpg",
     "category": "요리/제과",
-    "star": 4.0,
-    "review_sum": 1097
+    "review": {
+      "total_grade": 5,
+      "review_number": 22
+    }
   },
   {
     "name": "강동원",
     "image": "/images/main_carousel/design.jpg",
     "category": "방송댄스",
-    "star": 2.9,
-    "review_sum": 60
+    "review": {
+      "total_grade": 2,
+      "review_number": 325
+    }
   }
 ]
