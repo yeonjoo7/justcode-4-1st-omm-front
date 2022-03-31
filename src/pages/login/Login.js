@@ -5,7 +5,7 @@ import styles from './Login.module.scss';
 
 function Login() {
   useEffect(() => {
-    fetch('URL', {
+    fetch('http://localhost:8000/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,7 +14,11 @@ function Login() {
         email: id,
         password: pw,
       }),
-    }).then(response => response.json());
+    })
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem('access-token', res.access_token);
+      });
   });
 
   const navigate = useNavigate();
