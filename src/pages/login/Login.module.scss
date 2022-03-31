@@ -19,7 +19,7 @@
 }
 
 .section {
-  // border: 1px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   width: 400px;
   margin: auto;
@@ -35,6 +35,28 @@
   padding-left: 15px;
   margin: 10px 5px;
 }
+
+.invalidInput {
+  text-align: left;
+  padding-left: 29px;
+  font-size: 0.8rem;
+  color: #ff2323;
+}
+.off {
+  display: none;
+}
+
+.id:focus,
+.pw:focus {
+  outline: none !important;
+  border-color: #00c7ae;
+  box-shadow: 0 0 5px #00c7ae;
+}
+.invalid:focus {
+  outline: none !important;
+  border-color: #e9302a;
+  box-shadow: 0 0 5px #e9302a;
+}
 .email,
 .password {
   text-align: left;
@@ -43,44 +65,44 @@
   margin-left: 30px;
   margin-top: 20px;
 }
-.findpw {
+.findPw {
   display: block;
   text-align: left;
-  margin-top: 3px;
+  margin-top: 9px;
   margin-bottom: 20px;
   padding-left: 30px;
   font-size: 15px;
   color: rgb(85, 78, 78);
 }
-.loginbtn,
-.Kakaobtn,
-.facebookbtn {
+.loginBtn,
+.kakaoBtn,
+.facebookBtn {
   display: inline-block;
   border-radius: 4px;
-  width: 340px;
+  width: 330px;
   height: 45px;
   margin: auto;
   margin-top: 15px;
   font-size: 15px;
   font-weight: bold;
 }
-.loginbtn {
+.loginBtn {
   color: white;
   background-color: #00c7ae;
   border: white;
 }
-.Kakaobtn {
+.kakaoBtn {
   background-color: #fee500;
   border: white;
   display: none;
 }
-.facebookbtn {
+.facebookBtn {
   color: white;
   background-color: #1876f1;
   border: white;
   display: none;
 }
-.gotosignup {
+.goToSignUp {
   display: block;
   margin-top: 20px;
   text-decoration: none;
