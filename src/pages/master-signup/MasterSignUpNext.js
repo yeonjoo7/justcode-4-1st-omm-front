@@ -1,24 +1,28 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpNext.module.scss';
 import MasterSignUpFooter from '../../components/master-signup/MasterSignUpFooter';
 import FormInfo from '../../components/master-signup/FormInfo';
 
-function FormBox({ questions, questionKey }) {
+// 추가구현
+// 1. 118번째 줄, 프로그레스 바 페이지 연동
+
+function FormBox({ questions, questionKey, lessonCategory }) {
   return (
     <>
       <h2 className={styles.formTitle}>
-        {' '}
         구체적으로 어떤 서비스를 진행 할 수 있나요?
       </h2>
       {/* {props로 내려준다.} */}
       {questions.data1.map(data => {
+        // data1도 변수처리 해주어야함. {params.id} = theme_category 가져오기
         return (
           <QuestionForm
             name={data}
             value={data}
             content={data}
             key={questionKey++}
+            lessonCategory={lessonCategory}
           />
         );
       })}
@@ -26,8 +30,13 @@ function FormBox({ questions, questionKey }) {
   );
 }
 
-function QuestionForm({ value }) {
+function QuestionForm({ value, lessonCategory }) {
   const [check, setCheck] = useState(false);
+  useEffect(() => {
+    if (lessonCategory.includes(value)) {
+      setCheck(true);
+    }
+  }, [lessonCategory, value]);
   return (
     <div className={styles.questionBox}>
       <input
@@ -37,7 +46,16 @@ function QuestionForm({ value }) {
         name={value}
         value={value}
         checked={check}
-        onChange={() => setCheck(prev => !prev)}
+        onChange={e => {
+          if (e.target.checked && !lessonCategory.includes(e.target.value)) {
+            lessonCategory.push(e.target.value);
+          }
+
+          if (!e.target.checked) {
+            lessonCategory.splice(lessonCategory.indexOf(e.target.value), 1);
+          }
+          setCheck(prev => !prev);
+        }}
       />
       <label htmlFor={value}>
         <span className={styles.checkInner}>✔</span>
@@ -53,7 +71,17 @@ function MasterSignUpNext() {
   // 고수 가입 상세 기입은 2페이지로 구성. 하위 카테고리 -> 고수 개인 정보
 
   const [questions, setQuestions] = useState({ data1: [] });
-
+  const lessonCategory = useRef([]);
+  // 이부분 수정
+  const masterInfo = useRef({
+    lesson_categories: lessonCategory.current,
+    name: '',
+    email: '',
+    phone_number: '',
+    gender: '',
+    termAgree: false,
+    ageAgree: false,
+  });
   let questionKey = 0;
   let formComponentKey = 0;
 
@@ -70,30 +98,8 @@ function MasterSignUpNext() {
   }, []);
 
   // api로 설문 결과 보내기
-  useEffect(() => {
-    fetch('고수 고객 가입 api url', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    })
-      .then()
-      .then();
-  }, []);
-
-  // 설문 답안 data 저장 state
-  const [answer, setAnswer] = useState({
-    child_category: [],
-    username: '',
-    email: '',
-    phone_number: '',
-    gender: '',
-    termAgree: true,
-    ageAgree: true,
-  });
-
-  setAnswer({});
+  // 현재는 자식 컴포넌트 footer바에서 이 함수를 실행시키고 있다.
+  // 부모 컴포넌트에서 보내는 것이 맞을까?
 
   const [formPage, setFormRender] = useState(0);
   const formRender = [
@@ -101,20 +107,36 @@ function MasterSignUpNext() {
       questions={questions}
       questionKey={questionKey}
       key={formComponentKey}
+      lessonCategory={lessonCategory.current}
     />,
-    <FormInfo key={formComponentKey} />,
+    <FormInfo key={formComponentKey} masterInfo={masterInfo.current} />,
   ];
 
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.progressbar}>{/* {추가구현?} */} 0%</div>
+        <div className={styles.progressbarBox}>
+          <div className={styles.barContainer}>
+            <div
+              className={
+                formPage === 0
+                  ? styles.barProgress
+                  : `${styles.barProgress} ${styles.bar100}`
+              }
+            />
+          </div>
+          <p className={styles.progressNumber}>
+            {formPage === 0 ? '50%' : '100%'}
+          </p>
+        </div>
         <form className={styles.formBox}>{formRender[formPage]}</form>
       </div>
       <MasterSignUpFooter
         setFormRender={setFormRender}
         renderLength={formRender.length - 1}
         pageNumber={formPage}
+        allData={masterInfo.current}
+        checkLesson={lessonCategory.current}
       />
     </section>
   );

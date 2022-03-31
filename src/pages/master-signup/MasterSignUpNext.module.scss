@@ -11,15 +11,6 @@
 
 .question {
   display: none;
-  // padding: 0.625rem 0;
-  // //padding-right: 5rem;
-  // position: relative;
-
-  // font-size: 1rem;
-  // text-indent: 2.25rem;
-
-  // cursor: pointer;
-  // font-weight: 500;
 }
 
 .question + label {
@@ -54,10 +45,6 @@
 }
 
 .container {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   max-width: 37.5rem;
   margin: 3.125rem auto 7.6875rem;
   padding: 2.5rem;
@@ -66,10 +53,30 @@
   background: rgb(255, 255, 255);
 }
 
-.progressbar {
+.barContainer {
   display: block;
   width: 30rem;
-  border: 1px solid black;
+  height: 0.3rem;
+  border-radius: 15px;
+  background: #fafafa;
+}
+.barProgress {
+  height: 0.3rem;
+  border-radius: 15px;
+  width: 50%;
+  background: $sign-color;
+  text-align: center;
+  transition: width 1s;
+}
+.bar100 {
+  width: 100%;
+  transition: width 1s;
+}
+
+.progressNumber {
+  text-align: center;
+  margin: 0.75rem;
+  color: $sign-color;
 }
 
 .formTitle {

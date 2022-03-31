@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './FormInfo.module.scss';
 
-function FormInfo() {
+function FormInfo({ masterInfo }) {
   //리액트
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
@@ -16,6 +16,17 @@ function FormInfo() {
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
   const phoneReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+  masterInfo.name = nameValue;
+  masterInfo.email = emailValue;
+  masterInfo.password = pwValue;
+  masterInfo.phone_number = phoneValue;
+  masterInfo.termAgree = agreeCheck;
+  masterInfo.ageAgree = ageCheck;
+
+  // 성별 정보는 테이블에 없어서 전달 x
+  // 테이블 수정 시 추가
+  //masterInfo.gender = gender; 성별 정보는 전달할 필요 없어서 포함시키지 않음
 
   return (
     <>
@@ -96,7 +107,9 @@ function FormInfo() {
           type="text"
           value={emailValue}
           placeholder="example@soongo.com"
-          onChange={e => setEmailValue(e.target.value)}
+          onChange={e => {
+            setEmailValue(e.target.value);
+          }}
         />
         <div
           className={
@@ -161,7 +174,9 @@ function FormInfo() {
           type="text"
           value={phoneValue}
           placeholder="핸드폰 번호를 입력해주세요"
-          onChange={e => setPhoneValue(e.target.value)}
+          onChange={e => {
+            setPhoneValue(e.target.value);
+          }}
         />
         <div
           className={
@@ -181,7 +196,9 @@ function FormInfo() {
           name="personalInfo"
           value="personalInto"
           checked={agreeCheck}
-          onChange={() => setAgreeCheck(prev => !prev)}
+          onChange={() => {
+            setAgreeCheck(prev => !prev);
+          }}
         />
         <label htmlFor="checkbox1">
           <span className={styles.checkInner}>✔</span>
