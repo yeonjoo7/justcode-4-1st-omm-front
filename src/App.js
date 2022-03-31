@@ -1,16 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
-import MasterList from './pages/master/MasterList';
-import ThemaCategoryList from './pages/category/ThemaCategoryList';
+import Login from './pages/login/Login';
 import './styles/reset.scss';
 import './styles/common.scss';
-import 'antd/dist/antd.min.css';
+import MasterList from './pages/master/MasterList';
+import ThemaCategoryList from './pages/category/ThemaCategoryList';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/master/list" element={<MasterList />} />
         <Route path="/lesson" element={<ThemaCategoryList />} />
         <Route path="/home" element={<ThemaCategoryList />} />
