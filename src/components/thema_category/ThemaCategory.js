@@ -1,14 +1,17 @@
-import styles from './Category.module.scss';
+import styles from './ThemaCategory.module.scss';
+import { Link } from 'react-router-dom';
 
-function Category() {
+function ThemaCategory() {
   return (
     <div className={styles.container}>
       <div>
-        <img
-          src="/images/category/lesson.png"
-          className={styles.lesson}
-          alt="lesson"
-        />
+        <Link to="/lesson" state={{ category: 'lesson' }}>
+          <img
+            src="/images/category/lesson.png"
+            className={styles.lesson}
+            alt="lesson"
+          />
+        </Link>
       </div>
       <div>
         <img
@@ -32,11 +35,13 @@ function Category() {
         />
       </div>
       <div>
-        <img
-          src="/images/category/design.png"
-          className={styles.design}
-          alt="design"
-        />
+        <Link to="/design_develop" state={{ category: 'design_develop' }}>
+          <img
+            src="/images/category/design.png"
+            className={styles.design}
+            alt="design"
+          />
+        </Link>
       </div>
       <div>
         <img
@@ -58,4 +63,4 @@ function Category() {
     </div>
   );
 }
-export default Category;
+export default ThemaCategory;
