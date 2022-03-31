@@ -1,5 +1,14 @@
-.MasterListHeader {
-  .HeaderNav {
+$sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩니다.
+
+@media (max-width: 990px) {
+  .categoryBtn,
+  .adressBtn {
+    width: 100% !important;
+  }
+}
+
+.masterListHeader {
+  .headerNav {
     margin: 20px 0px;
     h2 {
       margin-bottom: 0px;
@@ -9,28 +18,35 @@
       color: #949494;
     }
   }
-  .HeaderCategory {
+  .headerCategory {
+    display: flex;
+    flex-direction: row;
     margin: 20px 0px;
-    .CategoryBtn {
+    button {
       border: 0px;
-      width: 200px;
+      width: 220px;
       padding: 8px;
       text-align: left;
       border-radius: 6px;
+      font-weight: 500;
+      font-size: 13px;
       color: #656565;
       cursor: pointer;
-      .GridIcon {
+      .icon {
         margin-right: 6px;
       }
     }
+    .adressBtn {
+      margin-right: 12px;
+    }
   }
-  .HeaderSort {
+  .headerSort {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin: 20px 0px;
-    .MasterCounterWapper {
+    .masterCounterWapper {
       span:nth-child(1) {
         font-weight: bolder;
       }
@@ -38,15 +54,15 @@
         color: #656565;
       }
     }
-    .DropDownWrapper {
+    .dropDownWrapper {
       position: relative;
       display: inline-block;
       &:hover {
-        .DropDownContent {
+        .dropDownContent {
           display: block;
         }
       }
-      .DropDownBtn {
+      .dropDownBtn {
         border: 0px;
         background-color: #ffff;
         cursor: pointer;
@@ -54,7 +70,7 @@
           font-weight: 600;
         }
       }
-      .DropDownContent {
+      .dropDownContent {
         display: none;
         position: absolute;
         min-width: 140px;
@@ -70,7 +86,7 @@
             background-color: #f5f5f594;
           }
           &:active {
-            background-color: #03c7ae;
+            background-color: $sign-color;
             color: #ffff;
           }
         }
