@@ -1,10 +1,33 @@
-import React from 'react';
+import { React, useState } from 'react';
 import styles from './Header.module.scss';
+import { FaRegBell } from 'react-icons/fa';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { faMagnifyingGlass, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 function Header() {
+  const [profileClick, setProfileClick] = useState(false);
+
+  // const [hide, setHide] = useState(false);
+  // const [pageY, setPageY] = useState(0);
+  // const documentRef = useRef(document);
+
+  // const handleScroll = () => {
+  //     const { pageYOffset } = window;
+  //     const deltaY = pageYOffset - pageY;
+  //     const hide = pageYOffset !== 0 && deltaY >= 0;
+  //     setHide(hide);
+  //     setPageY(pageYOffset);
+  // };
+
+  // const throttleScroll = throttle(handleScroll, 50);
+
+  // useEffect(() => {
+  //     documentRef.current.addEventListener('scroll', throttleScroll);
+  //     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
+  // }, [pageY]);
+
   return (
     <div className={styles.headerBox}>
       <nav className={styles.header}>
@@ -36,7 +59,6 @@ function Header() {
         <span className={`${styles.searchBtn} ${styles.hidden}`}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </span>
-
         <ul className={styles.headerBtn}>
           <li>
             <Link to="#" />
@@ -58,6 +80,19 @@ function Header() {
           <li className={styles.masterSignup}>
             <Link to="#" />
             고수가입
+          </li>
+          <li className={styles.hidden}>
+            <FaRegBell size="1.3em" />
+          </li>
+          <li>
+            <img
+              src="images\thump\carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
+              className={styles.profileImg}
+              alt="profile_image"
+            />
+          </li>
+          <li className={`${styles.grayColor} ${styles.hidden}`}>
+            {profileClick ? <IoIosArrowUp /> : <IoIosArrowDown />}
           </li>
         </ul>
       </nav>
