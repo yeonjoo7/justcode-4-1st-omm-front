@@ -1,0 +1,77 @@
+.container {
+  width: 1000px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 3%;
+}
+.lesson {
+  width: 80%;
+}
+.lesson:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.business {
+  width: 80%;
+  opacity: 0.2;
+}
+.business:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.etc {
+  width: 80%;
+  opacity: 0.2;
+}
+.etc:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.event {
+  width: 80%;
+  opacity: 0.2;
+}
+.event:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.health {
+  width: 80%;
+  opacity: 0.2;
+}
+.health:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.home {
+  width: 80%;
+  opacity: 0.2;
+}
+.home:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.partTime {
+  width: 80%;
+  opacity: 0.2;
+}
+.partTime:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
+.design {
+  width: 80%;
+}
+.design:hover {
+  background-color: #fafafa;
+  transform: translateY(-0.1in);
+  transition: all 0.4s;
+}
