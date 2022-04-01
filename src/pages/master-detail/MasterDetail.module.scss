@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+
+.detailContainer {
+}
+
+.pageNav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.masterInfoContainer {
+  display: flex;
+  justify-content: space-around;
+}
