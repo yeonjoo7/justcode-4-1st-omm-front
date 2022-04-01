@@ -40,7 +40,7 @@ function Header() {
         <span className={styles.headerTitle}>
           <span className={styles.headerLogo}>
             <img
-              src="images/loco/Soongo-logo.png"
+              src="http://localhost:3000/images/logo/Soongo-logo.png"
               width="120px"
               alt="soongo-logo"
             />
@@ -64,8 +64,7 @@ function Header() {
         </span>
         <ul className={styles.headerBtn}>
           <li>
-            <Link to="#" />
-            고수찾기
+            <Link to="master/list">고수찾기</Link>
           </li>
           <li>
             <Link to="#" />
@@ -97,7 +96,7 @@ function Header() {
               <li>
                 <div className={styles.flexRow}>
                   <img
-                    src="images\thump\carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
+                    src="http://localhost:3000/images\thump\carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
                     className={styles.profileImg}
                     alt="profile_image"
                     ref={profile}
