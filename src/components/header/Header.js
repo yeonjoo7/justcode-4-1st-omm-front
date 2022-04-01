@@ -64,8 +64,7 @@ function Header() {
         </span>
         <ul className={styles.headerBtn}>
           <li>
-            <Link to="#" />
-            고수찾기
+            <Link to="master/list">고수찾기</Link>
           </li>
           <li>
             <Link to="#" />
