@@ -11,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/master/list" element={<MasterList />} />
         {/* <Route path="/lesson" element={<ThemaCategoryList />} />
         <Route path="/home" element={<ThemaCategoryList />} />

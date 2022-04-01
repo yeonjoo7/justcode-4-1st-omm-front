@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MasterSignUp.module.scss';
-// import Header from '../../components/header/Header';
+import Header from '../../components/header/Header';
 // import CategoryNav from '../../components';
 
 function SignUpGoso() {
@@ -30,7 +30,7 @@ function SignUpGoso() {
   let masterComponentKey = 0;
   return (
     <section className={styles.section}>
-      {/* <Header />/ */}
+      <Header />/
       <div className={styles.imageHeader}>
         <h2 className={styles.imageHeaderH2}>
           고수로 등록하고,
