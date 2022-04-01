@@ -4,8 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 
 function Login() {
+  let [id, setId] = useState('');
+  let [pw, setPw] = useState('');
+
   useEffect(() => {
-    fetch('http://localhost:8000/user/login', {
+    fetch('로그인api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,22 +22,19 @@ function Login() {
       .then(res => {
         localStorage.setItem('access-token', res.access_token);
       });
-  });
+  }, []);
 
   const navigate = useNavigate();
   const gotomain = () => {
     navigate('/');
   };
-  let [id, setId] = useState('');
-  let [pw, setPw] = useState('');
-
   let abledButton = id.includes('@') && pw.length > 7;
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
 
   return (
-    <div classname={styles.page}>
+    <div className={styles.page}>
       <div>
         <div className={styles.loginText}>로그인</div>
         <section className={styles.section}>
