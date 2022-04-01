@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
+import Login from './pages/login/Login';
 import MasterList from './pages/master/MasterList';
-// import ThemaCategoryList from './pages/category/ThemaCategoryList';
-import MasterDetail from './pages/master-detail/MasterDetail';
+import ThemaCategoryList from './pages/category/ThemaCategoryList';
+
 import './styles/reset.scss';
 import './styles/common.scss';
 
@@ -12,16 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/master/list" element={<MasterList />} />
-        {/* <Route path="/lesson" element={<ThemaCategoryList />} />
-        <Route path="/home" element={<ThemaCategoryList />} />
-        <Route path="/event" element={<ThemaCategoryList />} />
-        <Route path="/business" element={<ThemaCategoryList />} />
-        <Route path="/design_develop" element={<ThemaCategoryList />} />
-        <Route path="/health" element={<ThemaCategoryList />} />
-        <Route path="/part_time" element={<ThemaCategoryList />} />
-        <Route path="/etc" element={<ThemaCategoryList />} /> */}
-        <Route path="profile/users/:id" element={<MasterDetail />} />
+        <Route path="/:lesson_name" element={<ThemaCategoryList />} />
         <Route path="/master/list" element={<MasterList />} />
       </Routes>
     </BrowserRouter>
