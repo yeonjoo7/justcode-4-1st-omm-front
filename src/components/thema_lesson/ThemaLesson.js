@@ -1,18 +1,36 @@
-import { useState, useEffect } from 'react';
+import styles from './ThemaLesson.module.scss';
 
-function ThemaLesson() {
-  const [lessons, setLessons] = useState();
-  /*
-  useEffect(() => {
-    fetch('http://localhost:3000/data/hwseol/thema_category_list.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {});
-
-  }, []);
-  */
-  return <div></div>;
+function ThemaLesson(lesson) {
+  // eslint-disable-next-line react/destructuring-assignment
+  const lecture = lesson.lesson;
+  return (
+    <div className={styles.wrap}>
+      <img
+        src={lecture.lessonImage}
+        alt="thema_img"
+        className={`${styles.cropping} ${styles.category_img}`}
+      />
+      <h4 className={styles.category_text}>{lecture.lessonName}</h4>
+    </div>
+  );
 }
 
-export default ThemaLesson;
+function ThemaLessons(lessons) {
+  // eslint-disable-next-line react/destructuring-assignment
+  const lectures = lessons.lesson;
+  return (
+    <div className={styles.container}>
+      <div className={styles.box}>
+        {lectures.length !== 0 && lectures.length !== undefined ? (
+          lectures.map((lesson, index) => (
+            <ThemaLesson lesson={lesson} key={index} />
+          ))
+        ) : (
+          <div>레슨이 없습니다.</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default ThemaLessons;

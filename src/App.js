@@ -11,16 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/master/list" element={<MasterList />} />
-        <Route path="/lesson" element={<ThemaCategoryList />} />
-        <Route path="/home" element={<ThemaCategoryList />} />
-        <Route path="/event" element={<ThemaCategoryList />} />
-        <Route path="/business" element={<ThemaCategoryList />} />
-        <Route path="/design_develop" element={<ThemaCategoryList />} />
-        <Route path="/health" element={<ThemaCategoryList />} />
-        <Route path="/part_time" element={<ThemaCategoryList />} />
-        <Route path="/etc" element={<ThemaCategoryList />} />
+        <Route path="/:lesson_name" element={<ThemaCategoryList />} />
         <Route path="/master/list" element={<MasterList />} />
       </Routes>
     </BrowserRouter>

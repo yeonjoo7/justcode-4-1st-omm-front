@@ -56,7 +56,6 @@ const CarouselSlideItem = ({ pos, idx, activeIdx, _items }) => {
 function CarouselGoso() {
   const [_items, _setItems] = useState([]);
   const [items, setItems] = useState([]);
-  let arr_keys = [];
   useEffect(() => {
     fetch('http://localhost:3000/data/hwseol/goso_carousel.json', {
       method: 'GET',
@@ -66,8 +65,7 @@ function CarouselGoso() {
         let _data = data;
         _data.push(...data);
         _setItems(_data);
-        arr_keys = Array.from(Array(_data.length).keys());
-        setItems(arr_keys);
+        setItems(Array.from(Array(_data.length).keys()));
       });
   }, []);
 
