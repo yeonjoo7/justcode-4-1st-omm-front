@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './MasterProfile.module.scss';
 
 function MasterProfile() {
-  return <div>MasterProfile</div>;
+  const [master, setMaster] = useState({});
+
+  return <div></div>;
 }
 
 export default MasterProfile;

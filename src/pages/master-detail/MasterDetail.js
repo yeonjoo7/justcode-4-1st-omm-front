@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './MasterDetail.module.scss';
-import MasterProfile from '../../components/master-detail/MasterProfile';
+import MasterProfile from 'src/components/master-detail/MasterProfile';
+import MasterDetailNav from 'src/components\master-detail\MasterDetailNav.js';
 import MasterRequest from '../../components/master-detail/MasterRequest';
 function MasterDetail() {
   const params = useParams();
+
+    const 
+
   //get master profile fetch
   useEffect(() => {
     //fetch(`http://localhost:8000/profile/users/${params}`, { method: 'GET' })
@@ -12,7 +16,6 @@ function MasterDetail() {
       .then(res => res.json())
       .then(res => console.log(res));
   }, []);
-  console.log(params);
   return (
     <div className={styles.container}>
       {/* <Header/> */}
