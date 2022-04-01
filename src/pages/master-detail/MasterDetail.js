@@ -1,59 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './MasterDetail.module.scss';
+import MasterRequest from 'src/components/master-detail/MasterRequest';
 import MasterProfile from 'src/components/master-detail/MasterProfile';
-import MasterDetailNav from 'src/components\master-detail\MasterDetailNav.js';
-import MasterRequest from '../../components/master-detail/MasterRequest';
+import MasterDetailNav from 'src/components/master-detail/MasterDetailNav';
+import MasterInfo from 'src/components/master-detail/MasterInfo';
+import MasterCategory from 'src/components/master-detail/MasterCategory';
+import MasterImage from 'src/components/master-detail/MasterImage';
+import MasterReview from 'src/components/master-detail/MasterReview';
+
 function MasterDetail() {
   const params = useParams();
-
-    const 
-
+  const [master, setMaster] = useState({});
   //get master profile fetch
   useEffect(() => {
     //fetch(`http://localhost:8000/profile/users/${params}`, { method: 'GET' })
-    fetch('...data/tekwoolee/master.json', { method: 'GET' })
+    fetch(`http://localhost:3000/data/tekwoolee/${params.id}.json`, {
+      method: 'GET',
+    })
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(data => {
+        console.log(data);
+        setMaster(data);
+      });
   }, []);
   return (
     <div className={styles.container}>
       {/* <Header/> */}
       <div className={styles.detailContainer}>
         <div className={styles.masterProfile}>
-          <MasterProfile />
+          <MasterProfile master={master} />
         </div>
         <div className={styles.pageNav}>
-          <div>고수 정보</div>
-          <div>사진/동영상</div>
-          <div>리뷰 </div>
-          <div>질문 답변</div>
+          <MasterDetailNav master={master} />
         </div>
         <div className={styles.masterIntro}>
           <h2>한줄소개</h2>
-          <div>{}</div>
+          <div>{master.intro}</div>
         </div>
         <div className={styles.masterInfoContainer}>
-          <div className={styles.basicInfo}>
-            <h2>기본정보</h2>
-            <div></div>
-          </div>
-          <div className={styles.moreInfo}>
-            <h2>추가정보</h2>
-            <div></div>
-          </div>
+          <MasterInfo master={master} />
         </div>
         <div className={styles.lessonCategory}>
-          <h2>제공 서비스</h2>
-          <div>{/* <MasterCategory/> */}</div>
+          <div>
+            <MasterCategory master={master} />
+          </div>
         </div>
         <div className={styles.masterImages}>
-          <h2>사진 및 동영상</h2>
-          <div>{/* <MasterImage/> */}</div>
+          <div>
+            <MasterImage master={master} />
+          </div>
         </div>
         <div className={styles.masterReview}>
-          <h2>리뷰</h2>
-          <div>{/* <MasterReview/> */}</div>
+          <div>
+            <MasterReview master={master} />
+          </div>
         </div>
       </div>
       <div className={styles.requestContainer}>

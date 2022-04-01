@@ -3,6 +3,7 @@ import Main from './pages/main/Main';
 import Login from './pages/login/Login';
 import MasterList from './pages/master/MasterList';
 import ThemaCategoryList from './pages/category/ThemaCategoryList';
+import MasterDetail from './pages/master-detail/MasterDetail';
 
 import './styles/reset.scss';
 import './styles/common.scss';
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/:lesson_name" element={<ThemaCategoryList />} />
         <Route path="/master/list" element={<MasterList />} />
+        <Route path="/profile/users/:id" element={<MasterDetail />} />
       </Routes>
     </BrowserRouter>
   );

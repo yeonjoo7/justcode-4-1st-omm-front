@@ -5,15 +5,36 @@
   margin: 0 auto;
 }
 
-.detailContainer {
+.masterProfile {
+  position: relative;
 }
-
 .pageNav {
-  display: flex;
-  justify-content: space-around;
+  position: sticky;
+  top: 4.5rem;
+  z-index: 2;
 }
 
-.masterInfoContainer {
-  display: flex;
-  justify-content: space-around;
+.detailContainer,
+.masterIntro,
+.masterInfoContainer,
+.lessonCategory,
+.masterImages,
+.masterReview {
+  //width: 100%;
+  padding: 1.5625rem 0;
+  font-size: 1rem;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.03125rem;
+    margin-bottom: 0.875rem;
+    color: #323232;
+  }
+
+  //text-size
+  letter-spacing: -0.01875rem;
+  color: #737373;
+  margin: 0;
+  font-size: 1rem;
 }
