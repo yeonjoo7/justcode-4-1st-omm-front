@@ -5,39 +5,35 @@ function ThemaCategory() {
   return (
     <div className={styles.container}>
       <div>
-        <Link to="/lesson" state={{ category: 'lesson' }}>
+        <Link to="/lesson" state={{ category: '레슨' }}>
           <img
-            src="/images/category/lesson.png"
+            src="/images/thump/lesson.png"
             className={styles.lesson}
             alt="lesson"
           />
         </Link>
       </div>
       <div>
-        <img
-          src="/images/category/home.png"
-          className={styles.home}
-          alt="home"
-        />
+        <img src="/images/thump/home.png" className={styles.home} alt="home" />
       </div>
       <div>
         <img
-          src="/images/category/event.png"
+          src="/images/thump/event.png"
           className={styles.event}
           alt="event"
         />
       </div>
       <div>
         <img
-          src="/images/category/business.png"
+          src="/images/thump/business.png"
           className={styles.business}
           alt="business"
         />
       </div>
       <div>
-        <Link to="/design_develop" state={{ category: 'design_develop' }}>
+        <Link to="/design_develop" state={{ category: '디자인/개발' }}>
           <img
-            src="/images/category/design.png"
+            src="/images/thump/design.png"
             className={styles.design}
             alt="design"
           />
@@ -45,20 +41,20 @@ function ThemaCategory() {
       </div>
       <div>
         <img
-          src="/images/category/health.png"
+          src="/images/thump/health.png"
           className={styles.health}
           alt="health"
         />
       </div>
       <div>
         <img
-          src="/images/category/part_time.png"
+          src="/images/thump/part_time.png"
           className={styles.partTime}
           alt="part_time"
         />
       </div>
       <div>
-        <img src="/images/category/etc.png" className={styles.etc} alt="etc" />
+        <img src="/images/thump/etc.png" className={styles.etc} alt="etc" />
       </div>
     </div>
   );
