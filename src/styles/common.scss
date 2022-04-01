@@ -1,7 +1,11 @@
-$sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩니다.
+$sign-color: #03c7ae;
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  padding-top: 90px;
 }
 
 html,
