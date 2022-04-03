@@ -1,22 +1,23 @@
-@media (max-width: 691px) {
-  .MasterList {
+@media (max-width: 760px) {
+  .masterList {
     width: 460px;
   }
 }
 
-@media (min-width: 691px) and (max-width: 890px) {
-  .MasterList {
+@media (min-width: 761px) and (max-width: 990px) {
+  .masterList {
     width: 600px;
   }
 }
 
-@media (min-width: 891px) {
-  .MasterList {
+@media (min-width: 991px) {
+  .masterList {
     width: 840px;
   }
 }
 
-.MasterList {
+.masterList {
   height: 100vh;
-  margin: auto;
+  padding-top: 90px;
+  margin: 0 auto;
 }
