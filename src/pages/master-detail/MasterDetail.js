@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './MasterDetail.module.scss';
 import MasterRequest from 'src/components/master-detail/MasterRequest';
@@ -8,10 +8,15 @@ import MasterInfo from 'src/components/master-detail/MasterInfo';
 import MasterCategory from 'src/components/master-detail/MasterCategory';
 import MasterImage from 'src/components/master-detail/MasterImage';
 import MasterReview from 'src/components/master-detail/MasterReview';
+import Header from 'src/components/header/Header';
 
 function MasterDetail() {
   const params = useParams();
   const [master, setMaster] = useState({});
+  const masterInfo = useRef('a');
+  const masterMedia = useRef('');
+  const masterReview = useRef('');
+
   //get master profile fetch
   useEffect(() => {
     //fetch(`http://localhost:8000/profile/users/${params}`, { method: 'GET' })
@@ -20,45 +25,49 @@ function MasterDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setMaster(data);
       });
   }, []);
   return (
     <div className={styles.container}>
-      {/* <Header/> */}
+      <Header />
       <div className={styles.detailContainer}>
         <div className={styles.masterProfile}>
           <MasterProfile master={master} />
         </div>
         <div className={styles.pageNav}>
-          <MasterDetailNav master={master} />
+          <MasterDetailNav
+            master={master}
+            masterInfo={masterInfo}
+            masterReview={masterReview}
+            masterMedia={masterMedia}
+          />
         </div>
-        <div className={styles.masterIntro}>
+        <div ref={masterInfo} className={styles.masterIntro}>
           <h2>한줄소개</h2>
           <div>{master.intro}</div>
         </div>
         <div className={styles.masterInfoContainer}>
-          <MasterInfo master={master} />
+          <MasterInfo master={master} masterInfo={masterInfo} />
         </div>
         <div className={styles.lessonCategory}>
           <div>
             <MasterCategory master={master} />
           </div>
         </div>
-        <div className={styles.masterImages}>
+        <div ref={masterMedia} className={styles.masterImages}>
           <div>
             <MasterImage master={master} />
           </div>
         </div>
-        <div className={styles.masterReview}>
+        <div ref={masterReview} className={styles.masterReview}>
           <div>
             <MasterReview master={master} />
           </div>
         </div>
       </div>
       <div className={styles.requestContainer}>
-        <MasterRequest />
+        <MasterRequest master={master} />
       </div>
       {/* <Footer/> */}
     </div>

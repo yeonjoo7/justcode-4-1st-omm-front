@@ -6,7 +6,7 @@
 }
 
 .masterImage {
-  border: 1px solid #e1e1e1e1;
+  border: 1px solid #e1e1e1;
   border-radius: 0.75rem;
   overflow: hidden;
   margin-right: 1.5625rem;
@@ -27,6 +27,7 @@
     margin-bottom: 0.125rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #000;
     white-space: nowrap;
   }
 }
@@ -40,7 +41,6 @@
   color: #737373;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .masterReview {
