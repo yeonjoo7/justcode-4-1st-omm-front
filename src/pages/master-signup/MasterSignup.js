@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MasterSignUp.module.scss';
 import MasterCategory from '../../components/master-signup/MasterCategory';
-// import Header from '../../components/header/Header';
-// import CategoryNav from '../../components';
+import Header from '../../components/header/Header';
 
 function MasterSignUp() {
   // infoStage에서 글자 줄바꿈으로 인해 생기는 이미지 높낮이 차이 해결할 것
@@ -24,7 +23,7 @@ function MasterSignUp() {
 
   return (
     <section className={styles.section}>
-      {/* <Header />/ */}
+      <Header />/
       <div className={styles.imageHeader}>
         <h2 className={styles.imageHeaderH2}>
           고수로 등록하고,
