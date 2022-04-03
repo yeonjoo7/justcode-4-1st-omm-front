@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
   const navigate = useNavigate();
   const [profileClick, setProfileClick] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isNewQuotation, setIsNewQuotation] = useState(true);
   const [chatNumber, setChatNumber] = useState(26);
 
@@ -112,7 +112,7 @@ function Header() {
               <li onClick={() => handleNavigate('')}>로그인</li>
               <li onClick={() => handleNavigate('')}>회원가입</li>
               <li
-                onClick={() => handleNavigate('')}
+                onClick={() => handleNavigate('/pro/welcome')}
                 className={styles.masterSignup}
               >
                 고수가입
