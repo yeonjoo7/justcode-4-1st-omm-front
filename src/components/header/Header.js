@@ -3,9 +3,10 @@ import styles from './Header.module.scss';
 import { FaRegBell, FaBars } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
   const [profileClick, setProfileClick] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isNewQuotation, setIsNewQuotation] = useState(true);
@@ -44,7 +45,7 @@ function Header() {
               width="120px"
               alt="soongo-logo"
             />
-            <Link to="/" />
+            navigate("/")
           </span>
           <div className={`${styles.headerSearchBox} ${styles.hidden}`}>
             <input
@@ -63,12 +64,9 @@ function Header() {
           <FiSearch />
         </span>
         <ul className={styles.headerBtn}>
+          <li>navigate("master/list"); 고수찾기</li>
           <li>
-            <Link to="master/list">고수찾기</Link>
-          </li>
-          <li>
-            <Link to="#" />
-            마켓
+            navigate("master/market"); 마켓
             <span className={styles.marketNew}>N</span>
           </li>
 
@@ -76,8 +74,7 @@ function Header() {
             <>
               <li>
                 <div className={styles.flexRow}>
-                  <Link to="#" />
-                  받은 견적
+                  navigate("/receive-quotation") 받은 견적
                   {isNewQuotation ? (
                     <div className={`${styles.redDot}`} />
                   ) : null}
@@ -85,8 +82,7 @@ function Header() {
               </li>
               <li>
                 <div className={styles.flexRow}>
-                  <Link to="#" />
-                  채팅
+                  navigate("/chat") 채팅
                   <div className={`${styles.chatNum}`}>{chatNumber}</div>
                 </div>
               </li>
@@ -110,17 +106,10 @@ function Header() {
             </>
           ) : (
             <>
-              <li>
-                <Link to="#" />
-                로그인
-              </li>
-              <li>
-                <Link to="#" />
-                회원가입
-              </li>
+              <li>navigate("/login") 로그인</li>
+              <li>navigate("/signup") 회원가입</li>
               <li className={styles.masterSignup}>
-                <Link to="#" />
-                고수가입
+                navigate("/master-signup") 고수가입
               </li>
             </>
           )}
