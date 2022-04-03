@@ -25,16 +25,49 @@ const MasterListHeader = props => {
 
   useEffect(() => {
     const adress = new Promise((resolve, reject) => {
-      fetch('../data/seonghoson/adress.json')
-        .then(response => response.json())
+      fetch('/users/adress')
+        .then(response => {
+          return response.json();
+        })
         .then(data => {
-          resolve(data);
+          const { adress } = data;
+          let result = [];
+          for (let i = 0; i < adress.length; i++) {
+            let obj = {};
+            let arr = [];
+            obj.id = adress[i].id;
+            obj.name = adress[i].name;
+            for (let j = 0; j < adress[i].detailId.length; j++) {
+              arr.push({
+                id: adress[i].detailId[j],
+                name: adress[i].detailName[j],
+              });
+            }
+            result.push({ ...obj, details: arr });
+          }
+          resolve(result);
         });
     });
     const categories = new Promise((resolve, reject) => {
-      fetch('../data/seonghoson/categories.json')
+      fetch('/category')
         .then(response => response.json())
         .then(data => {
+          const { categories } = data;
+          let result = [];
+          for (let i = 0; i < categories.length; i++) {
+            let obj = {};
+            let arr = [];
+            obj.id = categories[i].id;
+            obj.name = categories[i].name;
+            for (let j = 0; j < categories[i].lessonId.length; j++) {
+              arr.push({
+                id: categories[i].lessonId[j],
+                name: categories[i].lessonName[j],
+              });
+            }
+            result.push({ ...obj, lessons: arr });
+          }
+          resolve(result);
           resolve(data);
         });
     });
@@ -101,14 +134,16 @@ const MasterListHeader = props => {
           </div>
         </div>
       </header>
-      <FilteringModal
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
-        datas={isModalVisible.type === 'adress' ? adress : categories}
-        setUseFilter={
-          isModalVisible.type === 'adress' ? setUseAdress : setUseCategory
-        }
-      />
+      {isModalVisible.visible && (
+        <FilteringModal
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+          datas={isModalVisible.type === 'adress' ? adress : categories}
+          setUseFilter={
+            isModalVisible.type === 'adress' ? setUseAdress : setUseCategory
+          }
+        />
+      )}
     </>
   );
 };

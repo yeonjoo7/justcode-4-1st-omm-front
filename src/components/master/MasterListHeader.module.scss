@@ -8,10 +8,11 @@ $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩�
 }
 
 .masterListHeader {
-  line-height: normal;
+  line-height: 1.6;
   .headerNav {
     margin: 20px 0px;
     h2 {
+      font-weight: 500;
       margin-bottom: 0px;
     }
     span {
@@ -48,8 +49,10 @@ $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩�
     align-items: center;
     margin: 20px 0px;
     .masterCounterWapper {
+      font-size: 13px;
       span:nth-child(1) {
-        font-weight: bolder;
+        margin-left: 5px;
+        font-weight: 500;
       }
       span:nth-child(2) {
         color: #656565;

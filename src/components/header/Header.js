@@ -3,9 +3,10 @@ import styles from './Header.module.scss';
 import { FaRegBell, FaBars } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
   const [profileClick, setProfileClick] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isNewQuotation, setIsNewQuotation] = useState(true);
@@ -34,17 +35,21 @@ function Header() {
     }
   };
 
+  function handleNavigate(path) {
+    navigate(path);
+  }
+
   return (
     <div className={styles.headerBox}>
       <nav className={styles.header}>
         <span className={styles.headerTitle}>
           <span className={styles.headerLogo}>
             <img
+              onClick={() => handleNavigate('/')}
               src="http://localhost:3000/images/logo/Soongo-logo.png"
-              width="120px"
+              width="100px"
               alt="soongo-logo"
             />
-            <Link to="/" />
           </span>
           <div className={`${styles.headerSearchBox} ${styles.hidden}`}>
             <input
@@ -63,29 +68,23 @@ function Header() {
           <FiSearch />
         </span>
         <ul className={styles.headerBtn}>
-          <li>
-            <Link to="master/list">고수찾기</Link>
-          </li>
-          <li>
-            <Link to="#" />
+          <li onClick={() => handleNavigate('/master/list')}>고수찾기</li>
+          <li onClick={() => handleNavigate('')}>
             마켓
             <span className={styles.marketNew}>N</span>
           </li>
-
           {isLogin ? (
             <>
-              <li>
+              <li onClick={() => handleNavigate('')}>
                 <div className={styles.flexRow}>
-                  <Link to="#" />
                   받은 견적
                   {isNewQuotation ? (
                     <div className={`${styles.redDot}`} />
                   ) : null}
                 </div>
               </li>
-              <li>
+              <li onClick={() => handleNavigate('')}>
                 <div className={styles.flexRow}>
-                  <Link to="#" />
                   채팅
                   <div className={`${styles.chatNum}`}>{chatNumber}</div>
                 </div>
@@ -110,16 +109,12 @@ function Header() {
             </>
           ) : (
             <>
-              <li>
-                <Link to="#" />
-                로그인
-              </li>
-              <li>
-                <Link to="#" />
-                회원가입
-              </li>
-              <li className={styles.masterSignup}>
-                <Link to="#" />
+              <li onClick={() => handleNavigate('')}>로그인</li>
+              <li onClick={() => handleNavigate('')}>회원가입</li>
+              <li
+                onClick={() => handleNavigate('')}
+                className={styles.masterSignup}
+              >
                 고수가입
               </li>
             </>
