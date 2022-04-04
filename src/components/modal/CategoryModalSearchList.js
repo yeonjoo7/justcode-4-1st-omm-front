@@ -4,7 +4,6 @@ import styles from './CategoryModalSearchList.module.scss';
 
 const CategoryModalSearchList = props => {
   const { datas, useInputText, handleClickLesson } = props;
-
   let lessons = [];
   datas.forEach(category => {
     category.lessons.forEach(lesson => {

@@ -25,17 +25,21 @@ const MasterListHeader = props => {
 
   useEffect(() => {
     const adress = new Promise((resolve, reject) => {
-      fetch('../data/seonghoson/adress.json')
-        .then(response => response.json())
+      fetch('/users/adress')
+        .then(response => {
+          return response.json();
+        })
         .then(data => {
-          resolve(data);
+          const { adress } = data;
+          resolve(adress);
         });
     });
     const categories = new Promise((resolve, reject) => {
-      fetch('../data/seonghoson/categories.json')
+      fetch('/category')
         .then(response => response.json())
         .then(data => {
-          resolve(data);
+          const { categories } = data;
+          resolve(categories);
         });
     });
 
@@ -101,14 +105,16 @@ const MasterListHeader = props => {
           </div>
         </div>
       </header>
-      <FilteringModal
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
-        datas={isModalVisible.type === 'adress' ? adress : categories}
-        setUseFilter={
-          isModalVisible.type === 'adress' ? setUseAdress : setUseCategory
-        }
-      />
+      {isModalVisible.visible && (
+        <FilteringModal
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+          datas={isModalVisible.type === 'adress' ? adress : categories}
+          setUseFilter={
+            isModalVisible.type === 'adress' ? setUseAdress : setUseCategory
+          }
+        />
+      )}
     </>
   );
 };
