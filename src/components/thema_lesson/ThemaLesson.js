@@ -1,6 +1,5 @@
 import styles from './ThemaLesson.module.scss';
 import { Link } from 'react-router-dom';
-
 function ThemaLesson(lesson) {
   // eslint-disable-next-line react/destructuring-assignment
   const lecture = lesson.lesson;

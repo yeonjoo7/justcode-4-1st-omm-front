@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './MainCategoryReport.module.scss';
 import { AiFillStar } from 'react-icons/ai';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 function MainCategoryReportComplete() {
   const location = useLocation();
@@ -94,28 +96,36 @@ function MainCategoryReportComplete() {
   }, []);
 
   return (
-    <div className={styles.goso_container}>
-      {gosoList.map((goso, index) => (
-        <div className={styles.goso_wrap} key={index}>
-          <img
-            className={styles.img_box}
-            src={goso.image}
-            alt="profile_photo"
-          />
-          <div className={styles.text_box}>
-            <h4>{goso.goso_name}</h4>
-            <div className={styles.goso_line}>
-              <AiFillStar color="#FFCE21" size="1.1em" />
-              <p>{goso.star}</p>({goso.review_sum})&nbsp;&nbsp;
-              <div className={styles.recruit_box}>{goso.recruit}회 고용</div>
-            </div>
-            <p className={styles.price}>
-              총 {goso.price.toLocaleString('ko-KR')}원 부터 ~
-            </p>
-          </div>
+    <>
+      <Header />
+      <div className={styles.goso_container}>
+        <div className={styles.text_line}>
+          조건에 맞는 고수님들이 요청을 검토하고 있어요. 먼저 도착한 견적을
+          확인해보세요.
         </div>
-      ))}
-    </div>
+        {gosoList.map((goso, index) => (
+          <div className={styles.goso_wrap} key={index}>
+            <img
+              className={styles.img_box}
+              src={goso.image}
+              alt="profile_photo"
+            />
+            <div className={styles.text_box}>
+              <h4>{goso.goso_name}</h4>
+              <div className={styles.goso_line}>
+                <AiFillStar color="#FFCE21" size="1.1em" />
+                <p>{goso.star}</p>({goso.review_sum})&nbsp;&nbsp;
+                <div className={styles.recruit_box}>{goso.recruit}회 고용</div>
+              </div>
+              <p className={styles.price}>
+                총 {goso.price.toLocaleString('ko-KR')}원 부터 ~
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <Footer />
+    </>
   );
 }
 
