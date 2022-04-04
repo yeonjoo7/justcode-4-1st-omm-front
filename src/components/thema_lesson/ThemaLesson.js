@@ -5,7 +5,10 @@ function ThemaLesson(lesson) {
   const lecture = lesson.lesson;
   return (
     <div className={styles.wrap}>
-      <Link to={lecture.lessonName} state={{ category: lecture.lessonName }}>
+      <Link
+        to={lecture.lessonName}
+        state={{ category: lecture.lessonName, image: lecture.lessonImage }}
+      >
         <img
           src={lecture.lessonImage}
           alt="thema_img"

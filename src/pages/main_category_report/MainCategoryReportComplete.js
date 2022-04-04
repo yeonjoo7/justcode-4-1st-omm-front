@@ -7,14 +7,15 @@ import Footer from '../../components/footer/Footer';
 
 function MainCategoryReportComplete() {
   const location = useLocation();
-  const { quest, category } = location.state;
+  const { quest, category, image } = location.state;
   const [gosoList, setGosoList] = useState([]);
 
   let _result = {};
   let result = [];
   let category_num = 0;
+  let bannerUrl = '/' + image;
 
-  switch (category.category) {
+  switch (category) {
     case '방송댄스 레슨':
       category_num = 1;
       break;
@@ -69,7 +70,6 @@ function MainCategoryReportComplete() {
     result = result.concat(_result);
     _result = {};
   }
-  console.log('1 :', result);
 
   useEffect(() => {
     fetch('/LessonDetail', {
@@ -94,10 +94,10 @@ function MainCategoryReportComplete() {
         setGosoList(data);
       });
   }, []);
-
   return (
     <>
       <Header />
+      <img src={bannerUrl} alt="banner" className={styles.img_banner} />
       <div className={styles.goso_container}>
         <div className={styles.text_line}>
           조건에 맞는 고수님들이 요청을 검토하고 있어요. 먼저 도착한 견적을
