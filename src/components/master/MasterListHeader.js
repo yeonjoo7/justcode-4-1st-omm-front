@@ -31,21 +31,7 @@ const MasterListHeader = props => {
         })
         .then(data => {
           const { adress } = data;
-          let result = [];
-          for (let i = 0; i < adress.length; i++) {
-            let obj = {};
-            let arr = [];
-            obj.id = adress[i].id;
-            obj.name = adress[i].name;
-            for (let j = 0; j < adress[i].detailId.length; j++) {
-              arr.push({
-                id: adress[i].detailId[j],
-                name: adress[i].detailName[j],
-              });
-            }
-            result.push({ ...obj, details: arr });
-          }
-          resolve(result);
+          resolve(adress);
         });
     });
     const categories = new Promise((resolve, reject) => {
@@ -53,22 +39,7 @@ const MasterListHeader = props => {
         .then(response => response.json())
         .then(data => {
           const { categories } = data;
-          let result = [];
-          for (let i = 0; i < categories.length; i++) {
-            let obj = {};
-            let arr = [];
-            obj.id = categories[i].id;
-            obj.name = categories[i].name;
-            for (let j = 0; j < categories[i].lessonId.length; j++) {
-              arr.push({
-                id: categories[i].lessonId[j],
-                name: categories[i].lessonName[j],
-              });
-            }
-            result.push({ ...obj, lessons: arr });
-          }
-          resolve(result);
-          resolve(data);
+          resolve(categories);
         });
     });
 
