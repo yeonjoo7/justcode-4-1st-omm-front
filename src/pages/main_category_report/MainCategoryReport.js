@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './MainCategoryReport.module.scss';
 import ReportForm from '../../components/step/ThemaCategoryForm';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 function MainCategoryReport() {
   const location = useLocation();
@@ -19,11 +21,22 @@ function MainCategoryReport() {
       });
   }, []);
 
+  let imgUrl = '/' + image;
   return (
-    <div className={styles.root_container}>
-      {category}
-      <ReportForm category={category} image={image} question={question} />
-    </div>
+    <>
+      <Header />/
+      <div className={styles.root_container}>
+        <img src={imgUrl} alt="banner" className={styles.banner} />
+        <div className={styles.container}>
+          <h2>{category}</h2>
+          <div className={styles.wrap}>
+            <ReportForm category={category} image={image} question={question} />
+            <div className={styles.text_wrap}></div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
