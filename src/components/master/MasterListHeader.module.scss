@@ -2,7 +2,7 @@ $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩�
 
 @media (max-width: 990px) {
   .categoryBtn,
-  .adressBtn {
+  .addressBtn {
     width: 100% !important;
   }
 }
@@ -38,7 +38,7 @@ $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩�
         margin-right: 6px;
       }
     }
-    .adressBtn {
+    .addressBtn {
       margin-right: 12px;
     }
   }
