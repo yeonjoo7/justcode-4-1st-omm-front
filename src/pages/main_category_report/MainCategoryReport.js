@@ -56,8 +56,8 @@ function MainCategoryReport() {
           </div>
           <div className={styles.wrap}>
             <ReportForm category={category} image={image} question={question} />
-            <div className={styles.text_wrap}>
-              <p>
+            <div className={styles.text_container}>
+              <p className={styles.text_wrap}>
                 <div className={styles.strong_div}>
                   <strong>숨고는 어떤 곳인가요?</strong>
                 </div>
