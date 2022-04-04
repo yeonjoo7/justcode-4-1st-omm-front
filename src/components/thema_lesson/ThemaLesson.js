@@ -1,15 +1,18 @@
 import styles from './ThemaLesson.module.scss';
+import { Link } from 'react-router-dom';
 
 function ThemaLesson(lesson) {
   // eslint-disable-next-line react/destructuring-assignment
   const lecture = lesson.lesson;
   return (
     <div className={styles.wrap}>
-      <img
-        src={lecture.lessonImage}
-        alt="thema_img"
-        className={`${styles.cropping} ${styles.category_img}`}
-      />
+      <Link to={lecture.lessonName} state={{ category: lecture.lessonName }}>
+        <img
+          src={lecture.lessonImage}
+          alt="thema_img"
+          className={`${styles.cropping} ${styles.category_img}`}
+        />
+      </Link>
       <h4 className={styles.category_text}>{lecture.lessonName}</h4>
     </div>
   );

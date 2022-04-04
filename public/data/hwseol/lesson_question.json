@@ -1,0 +1,42 @@
+{
+  "message": "SUCCESS",
+  "questions": [
+    {
+      "id": 1,
+      "description": "레슨을 받는 목적이 무엇인가요?",
+      "questionNumber": 1,
+      "choiceQuestionId": [1, 2, 3, 4],
+      "choiceDescription": [
+        "취미/다이어트",
+        "오디션 준비",
+        "공연/장기자랑 준비",
+        "입시 준비"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "어떤 레슨 형태를 원하시나요?",
+      "questionNumber": 2,
+      "choiceQuestionId": [5, 6, 7, 8, 9],
+      "choiceDescription": [
+        "개인 레슨",
+        "그룹 레슨",
+        "학원",
+        "온라인/화상 레슨",
+        "무관"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "어떻게 진행하기 원하시나요?",
+      "questionNumber": 3,
+      "choiceQuestionId": [10, 11, 12, 13],
+      "choiceDescription": [
+        "고수가 있는 곳으로 갈게요.",
+        "제가 있는 곳으로 와주세요",
+        "온라인/화상 수업 원해요",
+        "어떤 방식이든 상관없어요"
+      ]
+    }
+  ]
+}
