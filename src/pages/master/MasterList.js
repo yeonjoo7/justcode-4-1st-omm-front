@@ -3,6 +3,7 @@ import MasterListHeader from '../../components/master/MasterListHeader';
 import MasterListContents from '../../components/master/MasterListContents';
 import styles from './MasterList.module.scss';
 import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 const MasterList = () => {
   const [masters, setMasters] = useState([]);
@@ -33,6 +34,7 @@ const MasterList = () => {
         />
         <MasterListContents masters={masters} />
       </main>
+      <Footer />
     </>
   );
 };
