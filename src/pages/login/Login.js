@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
@@ -7,7 +7,12 @@ function Login() {
   let [id, setId] = useState('');
   let [pw, setPw] = useState('');
 
-  useEffect(() => {
+  const navigate = useNavigate();
+  const gotomain = () => {
+    navigate('/');
+  };
+  const dataFetch = () => {
+    // try {
     fetch('로그인api', {
       method: 'POST',
       headers: {
@@ -18,20 +23,27 @@ function Login() {
         password: pw,
       }),
     })
-      .then(res => res.json())
+      .then(res => {
+        // if (res.status >= 400) {
+        //   throw new Error('Server responds with error');
+        // }
+        // return
+        res.json();
+      })
       .then(res => {
         localStorage.setItem('access-token', res.access_token);
       });
-  }, []);
-
-  const navigate = useNavigate();
-  const gotomain = () => {
-    navigate('/');
+    gotomain();
+    // } catch (err) {
+    //   return err.statusCode({ message: err.message });
+    // }
   };
-  let abledButton = id.includes('@') && pw.length > 7;
+
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
+
+  let abledButton = emailReg.test(id) && pwReg.test(pw);
 
   return (
     <div className={styles.page}>
@@ -105,7 +117,7 @@ function Login() {
             <button
               className={styles.loginBtn}
               disabled={!abledButton}
-              onClick={gotomain}
+              onClick={dataFetch}
             >
               이메일 로그인
             </button>
