@@ -3,6 +3,8 @@ import Main from './pages/main/Main';
 import Login from './pages/login/Login';
 import MasterList from './pages/master/MasterList';
 import ThemaCategoryList from './pages/category/ThemaCategoryList';
+import MainCategoryReport from './pages/main_category_report/MainCategoryReport';
+import MainCategoryReportComplete from './pages/main_category_report/MainCategoryReportComplete';
 import UserSignUp from './pages/user-signup/UserSignup';
 // import MasterSignup from './pages/master-signup/MasterSignup';
 
@@ -15,8 +17,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/:lesson_name" element={<ThemaCategoryList />} />
+        <Route path="/:lesson_category" element={<ThemaCategoryList />} />
         <Route path="/master/list" element={<MasterList />} />
+        <Route
+          path="/:lesson_category/:lesson_name"
+          element={<MainCategoryReport />}
+        />
+        <Route
+          path="/:lesson_category/:lesson_name/complete"
+          element={<MainCategoryReportComplete />}
+        />
         <Route path="/sign-up" element={<UserSignUp />} />
         {/* <Route path="/pro/welcome" element={<MasterSignup />} /> */}
       </Routes>
