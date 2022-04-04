@@ -61,7 +61,7 @@ const MasterListHeader = props => {
     <>
       <header className={styles.masterListHeader}>
         <div className={styles.headerNav}>
-          <h2>고수찾기</h2>
+          <h1>고수찾기</h1>
           <span>
             숭고 <IoIosArrowForward size="10px" />{' '}
             {!useAdress ? '지역' : useAdress.name}
