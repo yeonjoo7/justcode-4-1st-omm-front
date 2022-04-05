@@ -3,6 +3,8 @@ import styles from './ThemaCategoryList.module.scss';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ThemaLessons from '../../components/thema_lesson/ThemaLesson';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 function ThemaCategoryList() {
   const location = useLocation();
@@ -39,27 +41,31 @@ function ThemaCategoryList() {
     lesson = lessons.categories.filter(value => value.name === category);
   }
   return (
-    <div className={styles.container}>
-      <div className={styles.imgWrap}>
-        <img
-          src={imgAddr}
-          alt="category_main"
-          className={styles.categoryMain}
-        />
-        <h2 className={styles.category_title}>{category}</h2>
-        <p className={styles.description}>지금 숨고와 함께 시작해 보세요</p>
-        <div className={styles.search_wrap}>
-          <input
-            type="text"
-            placeholder="어떤 분야의 전문가를 찾으시나요?"
-            className={styles.searchBar}
+    <>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.imgWrap}>
+          <img
+            src={imgAddr}
+            alt="category_main"
+            className={styles.categoryMain}
           />
-          <button className={styles.searchBtn}>고수찾기</button>
+          <h2 className={styles.category_title}>{category}</h2>
+          <p className={styles.description}>지금 숨고와 함께 시작해 보세요</p>
+          <div className={styles.search_wrap}>
+            <input
+              type="text"
+              placeholder="어떤 분야의 전문가를 찾으시나요?"
+              className={styles.searchBar}
+            />
+            <button className={styles.searchBtn}>고수찾기</button>
+          </div>
         </div>
+        <ThemaCategory />
+        <ThemaLessons lesson={lesson} />
       </div>
-      <ThemaCategory />
-      <ThemaLessons lesson={lesson} />
-    </div>
+      <Footer />
+    </>
   );
 }
 
