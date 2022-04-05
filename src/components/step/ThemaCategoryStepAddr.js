@@ -26,6 +26,7 @@ const StepAddr = ({ onChange, questNum }) => {
   const onChangeOption2 = e => {
     setSecondOption(e.target.value);
   };
+
   return (
     <div className={styles.step1_container}>
       <div className={styles.small_headline}>레슨 희망지역을 선택해 주세요</div>
@@ -38,7 +39,7 @@ const StepAddr = ({ onChange, questNum }) => {
         >
           <option value={0}>시/도</option>
           {addrData.length !== 0
-            ? addrData.map((addr, index) => (
+            ? addrData.adress.map((addr, index) => (
                 <option value={addr.id} key={index}>
                   {addr.name}
                 </option>
@@ -53,7 +54,7 @@ const StepAddr = ({ onChange, questNum }) => {
         >
           <option value={0}>시/군/구</option>
           {addrData.length !== 0 && Number(firstOption) !== 0
-            ? addrData[firstOption - 1].DetailAddress.map((addr, index) => (
+            ? addrData.adress[firstOption - 1].details.map((addr, index) => (
                 <option value={addr.id} key={index}>
                   {addr.name}
                 </option>
