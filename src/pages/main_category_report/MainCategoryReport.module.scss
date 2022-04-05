@@ -27,6 +27,18 @@
 }
 .calc_num {
   display: flex;
+  table {
+    color: white;
+    margin-bottom: 20px;
+  }
+  td {
+    padding: 5px 15px 5px 15px;
+    text-align: left;
+    border-right: 1px solid white;
+  }
+  .table_end {
+    border-right: 0px;
+  }
 }
 .star_list {
   text-align: left;

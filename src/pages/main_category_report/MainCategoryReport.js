@@ -37,21 +37,18 @@ function MainCategoryReport() {
             <AiFillStar color="#FFCE21" size="1.1em" />
           </div>
           <div className={styles.calc_num}>
-            <h4>
-              19,181
-              <br />
-              활동고수
-            </h4>
-            <h4>
-              24,865
-              <br />
-              누적 요청서
-            </h4>
-            <h4>
-              12,333
-              <br />
-              리뷰 수
-            </h4>
+            <table>
+              <tr>
+                <td>19,181</td>
+                <td>24,865</td>
+                <td className={styles.table_end}>12,333</td>
+              </tr>
+              <tr>
+                <td>활동고수</td>
+                <td>누적 요청서</td>
+                <td className={styles.table_end}>리뷰 수</td>
+              </tr>
+            </table>
           </div>
           <div className={styles.wrap}>
             <ReportForm category={category} image={image} question={question} />
