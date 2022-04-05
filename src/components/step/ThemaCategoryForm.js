@@ -4,7 +4,7 @@ import styles from './ThemaCategoryForm.module.scss';
 import Step from '../../components/step/ThemaCategoryStep';
 import StepAddr from '../../components/step/ThemaCategoryStepAddr';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+
 let currentStep = 1;
 
 const ProgressBar = ({ progress }) => {
