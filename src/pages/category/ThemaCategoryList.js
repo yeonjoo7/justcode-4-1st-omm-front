@@ -40,6 +40,7 @@ function ThemaCategoryList() {
   if (lessons.length !== 0) {
     lesson = lessons.categories.filter(value => value.name === category);
   }
+
   return (
     <>
       <Header />

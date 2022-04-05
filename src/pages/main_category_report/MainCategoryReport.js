@@ -22,6 +22,7 @@ function MainCategoryReport() {
       });
   }, []);
   let imgUrl = '/' + image;
+
   return (
     <>
       <Header />/
