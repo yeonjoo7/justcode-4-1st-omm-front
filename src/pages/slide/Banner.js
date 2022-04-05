@@ -3,10 +3,14 @@ import styles from './Banner.module.scss';
 
 const slideWidth = 62;
 
+const sleep = (ms = 0) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
 const createItem = (position, idx, activeIdx, _items) => {
   const item = {
     styles: {
       transform: `translateX(${position * slideWidth}rem)`,
+      transitionDuration: '1000ms',
     },
     banner: _items[idx].banner,
   };
@@ -79,7 +83,7 @@ function Banner() {
   };
 
   useEffect(() => {
-    if (isTicking) setIsTicking(false);
+    if (isTicking) sleep(300).then(() => setIsTicking(false));
   }, [isTicking]);
 
   useEffect(() => {
