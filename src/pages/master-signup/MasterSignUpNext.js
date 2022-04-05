@@ -72,7 +72,6 @@ function MasterSignUpNext() {
 
   const params = useParams();
   // 하단의 "data1"을 "params로 교체"
-  // const [questions, setQuestions] = useState({ `${params}`: [] });
   const [questions, setQuestions] = useState({ data1: [] });
   const lessonCategory = useRef([]);
   const masterInfo = useRef({
@@ -89,7 +88,7 @@ function MasterSignUpNext() {
 
   // 하단 부분을 params로 교체
   useEffect(() => {
-    // fetch(`http://localhost:8000/lesson_categories/${params}.json`, {
+    // fetch(`http://localhost:8000/category/${params}`, {
     //   method: 'GET',
     // })
     fetch('http://localhost:3000/data/tekwoolee/master-signup/question.json', {

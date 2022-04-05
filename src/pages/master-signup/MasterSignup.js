@@ -23,7 +23,7 @@ function MasterSignUp() {
 
   return (
     <section className={styles.section}>
-      <Header />/
+      <Header />
       <div className={styles.imageHeader}>
         <h2 className={styles.imageHeaderH2}>
           고수로 등록하고,
@@ -72,7 +72,7 @@ function MasterSignUp() {
           <li className={styles.infoCaption}>
             <img
               className={styles.infoImg}
-              src="/images/master-signup/1-logo.png"
+              src="/images/thump/1-logo.png"
               alt="first-step"
             />
             <h4 className={styles.infoStageH4}>고객의 요청을 받아보세요.</h4>
@@ -84,8 +84,8 @@ function MasterSignUp() {
           <li className={styles.infoCaption}>
             <img
               className={styles.infoImg}
-              src="/images/master-signup/2-logo.png"
-              alt="first-step"
+              src="/images/thump/2-logo.png"
+              alt="second-step"
             />
             <h4 className={styles.infoStageH4}>맞춤 견적을 보내세요</h4>
             <p>
@@ -96,8 +96,8 @@ function MasterSignUp() {
           <li className={styles.infoCaption}>
             <img
               className={styles.infoImg}
-              src="/images/master-signup/3-logo.png"
-              alt="first-step"
+              src="/images/thump/3-logo.png"
+              alt="third-step"
             />
             <h4 className={styles.infoStageH4}>상담 후 거래하세요</h4>
             <p>
