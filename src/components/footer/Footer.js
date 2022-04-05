@@ -47,37 +47,43 @@ function Footer() {
           </ul>
           <div className={styles.hiddenLine} />
           <ul>
-            <li className={styles.footerTitle}>고객 안내</li>
-            <li>이용안내</li>
-            <li>안전정책</li>
-            <li>예상금액</li>
+            <li className={`${styles.footerTitle} ${styles.disabled}`}>
+              고객 안내
+            </li>
+            <li className={styles.disabled}>이용안내</li>
+            <li className={styles.disabled}>안전정책</li>
+            <li className={styles.disabled}>예상금액</li>
             <li
               className={styles.clickable}
               onClick={() => handleNavigate('/master/list')}
             >
               고수찾기
             </li>
-            <li>숭고보증</li>
-            <li>고수에게묻다</li>
+            <li className={styles.disabled}>숭고보증</li>
+            <li className={styles.disabled}>고수에게묻다</li>
           </ul>
           <div className={styles.hiddenLine} />
           <ul>
-            <li className={styles.footerTitle}>고수안내</li>
-            <li>이용안내</li>
-            <li>고수가이드</li>
+            <li className={`${styles.footerTitle} ${styles.disabled}`}>
+              고수안내
+            </li>
+            <li className={styles.disabled}>이용안내</li>
+            <li className={styles.disabled}>고수가이드</li>
             <li
               className={styles.clickable}
               onClick={() => handleNavigate('/pro/welcome')}
             >
               고수가입
             </li>
-            <li>고수센터</li>
+            <li className={styles.disabled}>고수센터</li>
           </ul>
           <div className={styles.hiddenLine} />
           <ul>
-            <li className={styles.footerTitle}>고객센터</li>
-            <li>공지사항</li>
-            <li>자주묻는질문</li>
+            <li className={`${styles.footerTitle} ${styles.disabled}`}>
+              고객센터
+            </li>
+            <li className={styles.disabled}>공지사항</li>
+            <li className={styles.disabled}>자주묻는질문</li>
           </ul>
           <div className={styles.hiddenLine} />
         </div>
@@ -114,9 +120,9 @@ function Footer() {
           >
             <VscGithub className={styles.icon} />
           </a>
-          <FaSlack className={styles.icon} />
-          <FaFacebook className={styles.icon} />
-          <GrInstagram className={styles.icon} />
+          <FaSlack className={`${styles.icon} ${styles.disabled}`} />
+          <FaFacebook className={`${styles.icon} ${styles.disabled}`} />
+          <GrInstagram className={`${styles.icon} ${styles.disabled}`} />
         </div>
       </div>
     </footer>
