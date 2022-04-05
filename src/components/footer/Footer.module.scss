@@ -111,6 +111,10 @@
   display: hidden;
 }
 
+.disabled {
+  opacity: 50%;
+}
+
 @media screen and (max-width: 761px) {
   .footer {
     width: 100vw;
