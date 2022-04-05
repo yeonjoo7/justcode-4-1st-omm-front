@@ -17,11 +17,9 @@ const createItem = (position, idx, activeIdx, _items) => {
   const length = 2;
 
   switch (position) {
-    case length - 2:
     case length - 1:
     case length:
     case length + 1:
-    case length + 2:
       break;
     default:
       item.styles = { ...item.styles, opacity: 0 };
