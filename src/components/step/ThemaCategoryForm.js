@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import styles from './ThemaCategoryForm.module.scss';
 import Step from '../../components/step/ThemaCategoryStep';
@@ -26,7 +26,6 @@ function ReportForm({ category, image, question }) {
     setQuestNum({ ...questNum, [name]: value });
     setFlag(0);
   };
-
   const _next = () => {
     return (() => {
       setFlag(0);

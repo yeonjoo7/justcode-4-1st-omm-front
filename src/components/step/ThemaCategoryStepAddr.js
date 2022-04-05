@@ -28,7 +28,7 @@ const StepAddr = ({ onChange, questNum }) => {
   };
   return (
     <div className={styles.step1_container}>
-      <h4 className={styles.small_headline}>레슨 희망지역을 선택해 주세요</h4>
+      <div className={styles.small_headline}>레슨 희망지역을 선택해 주세요</div>
       <div className={styles.select_div} onChange={onChange}>
         <select
           name="address1"
