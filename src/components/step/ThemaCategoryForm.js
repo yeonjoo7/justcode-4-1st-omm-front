@@ -61,7 +61,7 @@ function ReportForm({ category, image, question }) {
     } else {
       return (
         <Link
-          to="complete"
+          to="/complete"
           state={{ quest: questNum, category: category, image: image }}
         >
           <button

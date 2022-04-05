@@ -72,6 +72,16 @@ function MainCategoryReportComplete() {
   }
 
   useEffect(() => {
+    fetch('http://localhost:3000/data/hwseol/goso_list.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setGosoList(data);
+      });
+  }, []);
+
+  useEffect(() => {
     fetch('/LessonDetail', {
       method: 'POST',
       headers: {
@@ -85,20 +95,18 @@ function MainCategoryReportComplete() {
       });
   }, []);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/data/hwseol/goso_list.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setGosoList(data);
-      });
-  }, []);
   return (
     <>
       <Header />
       <img src={bannerUrl} alt="banner" className={styles.img_banner} />
       <div className={styles.goso_container}>
+        <div className={styles.headline}>
+          {category}
+          <div className={styles.button_list}>
+            <button className={styles.green_btn}>내 요청서 보기</button>
+            <button className={styles.white_btn}>요청 마감하기</button>
+          </div>
+        </div>
         <div className={styles.text_line}>
           조건에 맞는 고수님들이 요청을 검토하고 있어요. 먼저 도착한 견적을
           확인해보세요.
