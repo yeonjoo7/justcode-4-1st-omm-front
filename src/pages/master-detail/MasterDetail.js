@@ -13,13 +13,13 @@ import Header from 'src/components/header/Header';
 function MasterDetail() {
   const params = useParams();
   const [master, setMaster] = useState({});
-  const masterInfo = useRef('a');
+  const masterInfo = useRef('');
   const masterMedia = useRef('');
   const masterReview = useRef('');
 
   //get master profile fetch
   useEffect(() => {
-    //fetch(`http://localhost:8000/profile/users/${params}`, { method: 'GET' })
+    //fetch(`http://localhost:8000/pro/users/${params}`, { method: 'GET' })
     fetch(`http://localhost:3000/data/tekwoolee/${params.id}.json`, {
       method: 'GET',
     })

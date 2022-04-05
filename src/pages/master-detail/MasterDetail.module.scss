@@ -13,7 +13,7 @@
 .pageNav {
   display: block;
   position: sticky;
-  top: 5.5rem;
+  top: 4rem;
   background-color: #fff;
   z-index: 2;
   margin: 0;
@@ -74,12 +74,12 @@
       padding: 0 1rem;
     }
     .pageNav {
-      top: 3.5rem;
+      top: 5.5rem;
     }
   }
   @media (min-width: 761px) and (max-width: 990px) {
     .pageNav {
-      top: 3.5rem;
+      top: 4rem;
     }
   }
 }
