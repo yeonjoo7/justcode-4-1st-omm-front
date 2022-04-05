@@ -21,7 +21,6 @@ function MainCategoryReport() {
         setQuestion(data.questions);
       });
   }, []);
-
   let imgUrl = '/' + image;
   return (
     <>

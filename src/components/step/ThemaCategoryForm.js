@@ -46,6 +46,10 @@ function ReportForm({ category, image, question }) {
     } else if (questNum.address1 === '0' || questNum.address2 === '0') {
       e.preventDefault();
       setFlag(1);
+    } else {
+      setStep(1);
+      setQuestNum({});
+      currentStep = 1;
     }
   };
   const NextButton = () => {
