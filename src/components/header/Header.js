@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
   const navigate = useNavigate();
   const [profileClick, setProfileClick] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [isNewQuotation, setIsNewQuotation] = useState(true);
   const [chatNumber, setChatNumber] = useState(26);
 
@@ -75,7 +75,7 @@ function Header() {
           </li>
           {isLogin ? (
             <>
-              <li onClick={() => handleNavigate('')}>
+              <li onClick={() => handleNavigate('/received_report')}>
                 <div className={styles.flexRow}>
                   받은 견적
                   {isNewQuotation ? (

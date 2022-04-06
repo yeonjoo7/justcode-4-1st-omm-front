@@ -7,7 +7,7 @@ import Footer from '../../components/footer/Footer';
 
 function MainCategoryReportComplete() {
   const location = useLocation();
-  const { quest, category, image } = location.state;
+  const { quest, category, image, flag } = location.state;
   const [gosoList, setGosoList] = useState([]);
 
   let _result = {};
@@ -58,8 +58,7 @@ function MainCategoryReportComplete() {
 
   const keys = Object.keys(quest);
   for (let i = 0; i < keys.length; i++) {
-    _result.user_id = 1;
-    _result.id = i;
+    _result.user_id = 1; //수정해야 함
     _result.lesson_category_id = category_num;
     if (keys[i] === 'address1' || keys[i] === 'address2') {
       _result.question_id = i + 1;
@@ -72,20 +71,6 @@ function MainCategoryReportComplete() {
   }
 
   useEffect(() => {
-    fetch('/LessonDetail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(result),
-    })
-      .then(res => res.json())
-      .then(result => {
-        alert(result.message);
-      });
-  }, []);
-
-  useEffect(() => {
     fetch('http://localhost:3000/data/hwseol/goso_list.json', {
       method: 'GET',
     })
@@ -94,11 +79,24 @@ function MainCategoryReportComplete() {
         setGosoList(data);
       });
   }, []);
+
+  if (flag === 1) {
+    console.log('hello');
+    PostRequestForm(result);
+  }
+
   return (
     <>
       <Header />
       <img src={bannerUrl} alt="banner" className={styles.img_banner} />
       <div className={styles.goso_container}>
+        <div className={styles.headline}>
+          {category}
+          <div className={styles.button_list}>
+            <button className={styles.green_btn}>내 요청서 보기</button>
+            <button className={styles.white_btn}>요청 마감하기</button>
+          </div>
+        </div>
         <div className={styles.text_line}>
           조건에 맞는 고수님들이 요청을 검토하고 있어요. 먼저 도착한 견적을
           확인해보세요.
@@ -127,6 +125,22 @@ function MainCategoryReportComplete() {
       <Footer />
     </>
   );
+}
+
+function PostRequestForm(result) {
+  useEffect(() => {
+    fetch('/form/questions/complete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(result),
+    })
+      .then(res => res.json())
+      .then(result => {
+        alert(result.message);
+      });
+  }, []);
 }
 
 export default MainCategoryReportComplete;

@@ -20,6 +20,7 @@ const StepAddr = ({ onChange, questNum }) => {
       setFirstOption(Number(questNum.address1));
     }
   }, [questNum.address1, questNum.address2]);
+
   const onChangeOption = e => {
     setFirstOption(e.target.value);
   };
