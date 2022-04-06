@@ -6,9 +6,8 @@ import Header from 'src/components/header/Header';
 function UserSignUp() {
   // api로 보내기
 
-  // 로그인 api 완성 이후 에러 핸들링 고칠 것
   const sendUserSignUp = () => {
-    fetch('일반 고객 가입 api url', {
+    fetch('http://localhost:8000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -17,16 +16,15 @@ function UserSignUp() {
         email: emailValue,
         name: nameValue,
         password: pwValue,
-        // termAgreed: true, // 개인정보 동의 - 칼럼명에 따라 변경 필요
-        // ageAgreed: true, // 나이 동의 - 칼럼명에 따라 변경 필요
       }),
     })
       .then(response => {
-        response.json();
+        return response.json();
       })
       .then(res => {
         alert('회원가입 성공');
       })
+      .then(() => navigate('/'))
       // 에러핸들링 수정 필요
       .catch(err => {
         alert(err.message);
@@ -201,7 +199,6 @@ function UserSignUp() {
                 ageCheck
               ) {
                 sendUserSignUp();
-                navigate('/');
               }
               if (nameValue.length < 2) {
                 invalidNameTag.current.className = `${styles.invalidInput}`;
