@@ -79,9 +79,6 @@ function MasterSignUpNext() {
     name: '',
     email: '',
     phone_number: '',
-    gender: '',
-    termAgree: false,
-    ageAgree: false,
   });
   let questionKey = 0;
   let formComponentKey = 0;

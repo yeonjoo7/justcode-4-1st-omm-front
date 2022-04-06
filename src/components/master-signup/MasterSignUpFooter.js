@@ -21,7 +21,7 @@ function MasterSignUpFooter({
 
   // 모든 데이터를 취합하여 보내는 footer
   const sendMasterInfo = data => {
-    fetch('http://localhost:데이터보낼url', {
+    fetch('http://localhost:8000/master/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/JSON' },
       body: JSON.stringify(data),
@@ -32,7 +32,6 @@ function MasterSignUpFooter({
   // 에러 핸들링 추가 필요
 
   // 구조분해 할당이 왜 안될까? 구조부해 할당 시 아예 값이 없는 것으로 나옴.
-  // const { email, name, phone_number, password, ageAgree, termAgree } = allData;
   const navigate = useNavigate();
   return (
     <div className={styles.FooterContainer}>
