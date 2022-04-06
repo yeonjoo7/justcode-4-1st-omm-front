@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './FormInfo.module.scss';
 
 function FormInfo({
@@ -17,24 +17,28 @@ function FormInfo({
   const [phoneValue, setPhoneValue] = useState('');
   const [visiblePW, setPwVisible] = useState('password');
   const [gender, setGender] = useState('');
-  // const [agreeCheck, setAgreeCheck] = useState(false);
-  // const [ageCheck, setAgeCheck] = useState(false);
+  const [address, setAddress] = useState([{}]);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
-  const phoneReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+  const phoneReg = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+  // 핸드폰 번호 '-' 추가하여 db에 전송
 
   masterInfo.name = nameValue;
   masterInfo.email = emailValue;
   masterInfo.password = pwValue;
-  masterInfo.phone_number = phoneValue;
-  masterInfo.termAgree = agreeCheck;
-  masterInfo.ageAgree = ageCheck;
+  masterInfo.phoneNumber = phoneValue;
 
   // 성별 정보는 테이블에 없어서 전달 x
   // 테이블 수정 시 추가
   //masterInfo.gender = gender; 성별 정보는 전달할 필요 없어서 포함시키지 않음
+  useEffect(() => {
+    fetch('http://localhost:8000/address', { method: 'GET' })
+      .then(res => res.json())
+      .then(res => setAddress(res.address))
+      .then(res => console.log('address : ', address, 'res : ', res));
+  }, []);
 
   return (
     <>
@@ -105,26 +109,24 @@ function FormInfo({
         </p>
       </div>
       {/* 주소 선택창 구현 나중에 */}
-      {/* <div className={styles.inputBox}>
+      <div className={styles.inputBox}>
         <p className={styles.inputName}>주소</p>
         <div className={styles.gender}>
           <div className={styles.genderBtnWrapper}>
-            <select className={styles.genderRadio} />{' '}
-            <label htmlFor="male">남자</label>
+            <label for></label>
+            <select className={styles.options}>
+              <option>시/도 선택</option>
+              {address.map(address => {
+                return <option>{address.name}</option>;
+              })}
+            </select>
           </div>
           <div className={styles.genderBtnWrapper}>
-            <input
-              className={styles.genderRadio}
-              id="female"
-              type="radio"
-              value="female"
-              name="female"
-              checked={gender === 'female'}
-              onChange={() => {
-                setGender('female');
-              }}
-            />
-            <label htmlFor="female">여자</label>
+            <select className={styles.options}>
+              {/* {address.map(detail => {
+                return <option>{detail.details}</option>;
+              })} */}
+            </select>
           </div>
         </div>
         <p
@@ -134,9 +136,9 @@ function FormInfo({
               : `${styles.invalidInput}`
           }
         >
-          성별을 선택해주세요.
+          주소를 선택해주세요.
         </p>
-      </div> */}
+      </div>
       <div className={styles.inputBox}>
         <p className={styles.inputName}>이메일</p>
         <input
@@ -214,7 +216,7 @@ function FormInfo({
           }
           type="text"
           value={phoneValue}
-          placeholder="핸드폰 번호를 입력해주세요"
+          placeholder="핸드폰 번호를 입력해주세요 (- 없이)"
           onChange={e => {
             setPhoneValue(e.target.value);
           }}

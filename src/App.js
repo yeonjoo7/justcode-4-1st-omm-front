@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/:lesson_name" element={<ThemaCategoryList />} />
+        {/* <Route path="/:lesson_name" element={<ThemaCategoryList />} /> */}
         <Route path="/master/list" element={<MasterList />} />
         <Route path="/pro" element={<MasterSignUp />} />
         <Route path="/pro/:id" element={<MasterSignUpNext />} />

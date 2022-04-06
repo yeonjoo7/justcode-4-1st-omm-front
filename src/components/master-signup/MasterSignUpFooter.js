@@ -8,11 +8,9 @@ function MasterSignUpFooter({
   pageNumber,
   allData,
   checkLesson,
-  ageCheck,
-  setAgeCheckLast,
-  agreeCheck,
-  setAgreeCheckLast,
 }) {
+  const navigate = useNavigate();
+
   // 입력 정보 유효성 검사
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -26,13 +24,25 @@ function MasterSignUpFooter({
       headers: { 'Content-Type': 'application/JSON' },
       body: JSON.stringify(data),
     })
+      .then(response => {
+        if (!response.ok) {
+          throw response;
+        }
+        return response;
+      })
       .then(res => res.json())
-      .catch(err => alert(err));
+      .then(() => {
+        alert('회원가입 성공');
+        navigate('/');
+      })
+      .catch(err => err.json())
+      .then(err => {
+        alert(`Error : ${err.message}`);
+      });
   };
   // 에러 핸들링 추가 필요
 
-  // 구조분해 할당이 왜 안될까? 구조부해 할당 시 아예 값이 없는 것으로 나옴.
-  const navigate = useNavigate();
+  const { email, password, phoneNumber, name } = allData;
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.btnWrapper}>
@@ -56,12 +66,10 @@ function MasterSignUpFooter({
             setFormRender(prev => (prev === renderLength ? prev : prev + 1));
             if (
               e.target.innerText === '가입하기' &&
-              pwReg.test(allData.password) &&
-              emailReg.test(allData.email) &&
-              phoneReg.test(allData.phone_number) &&
-              2 <= allData.name.length &&
-              allData.termAgree &&
-              allData.ageAgree
+              pwReg.test(password) &&
+              emailReg.test(email) &&
+              phoneReg.test(phoneNumber) &&
+              2 <= name.length
             ) {
               // fetch 보내기
               sendMasterInfo(allData);
