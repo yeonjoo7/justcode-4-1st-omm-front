@@ -20,7 +20,7 @@ function MainCategoryReport() {
       .then(data => {
         setQuestion(data.questions);
       });
-  }, []);
+  }, [lecture_id]);
   let imgUrl = '/' + image;
 
   return (

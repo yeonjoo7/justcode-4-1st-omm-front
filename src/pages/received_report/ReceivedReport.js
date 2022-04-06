@@ -36,6 +36,7 @@ function ReceviedBox({ _data, index }) {
           quest: _data.choice_question,
           category: _data.category,
           image: _data.image,
+          flag: 0,
         }}
       >
         <button className={styles.btn}>자세히 보기</button>

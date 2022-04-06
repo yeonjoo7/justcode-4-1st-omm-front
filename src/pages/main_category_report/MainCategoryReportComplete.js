@@ -7,7 +7,7 @@ import Footer from '../../components/footer/Footer';
 
 function MainCategoryReportComplete() {
   const location = useLocation();
-  const { quest, category, image } = location.state;
+  const { quest, category, image, flag } = location.state;
   const [gosoList, setGosoList] = useState([]);
 
   let _result = {};
@@ -58,8 +58,7 @@ function MainCategoryReportComplete() {
 
   const keys = Object.keys(quest);
   for (let i = 0; i < keys.length; i++) {
-    _result.user_id = 1;
-    _result.id = i;
+    _result.user_id = 1; //수정해야 함
     _result.lesson_category_id = category_num;
     if (keys[i] === 'address1' || keys[i] === 'address2') {
       _result.question_id = i + 1;
@@ -81,19 +80,10 @@ function MainCategoryReportComplete() {
       });
   }, []);
 
-  useEffect(() => {
-    fetch('/LessonDetail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(result),
-    })
-      .then(res => res.json())
-      .then(result => {
-        alert(result.message);
-      });
-  }, []);
+  if (flag === 1) {
+    console.log('hello');
+    PostRequestForm(result);
+  }
 
   return (
     <>
@@ -135,6 +125,22 @@ function MainCategoryReportComplete() {
       <Footer />
     </>
   );
+}
+
+function PostRequestForm(result) {
+  useEffect(() => {
+    fetch('/form/questions/complete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(result),
+    })
+      .then(res => res.json())
+      .then(result => {
+        alert(result.message);
+      });
+  }, []);
 }
 
 export default MainCategoryReportComplete;

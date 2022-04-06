@@ -27,6 +27,9 @@ function ReportForm({ category, image, question }) {
     setQuestNum({ ...questNum, [name]: value });
     setFlag(0);
   };
+  useEffect(() => {
+    question.pop();
+  }, [question]);
 
   const _next = () => {
     return (() => {
@@ -64,7 +67,7 @@ function ReportForm({ category, image, question }) {
       return (
         <Link
           to="/complete"
-          state={{ quest: questNum, category: category, image: image }}
+          state={{ quest: questNum, category: category, image: image, flag: 1 }}
         >
           <button
             className={styles.btn_right}
