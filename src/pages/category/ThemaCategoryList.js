@@ -29,7 +29,8 @@ function ThemaCategoryList() {
 
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
-    fetch('data/hwseol/thema_category_list.json')
+    //fetch('data/hwseol/thema_category_list.json')
+    fetch('/category')
       .then(res => res.json())
       .then(data => {
         setLessons(data);

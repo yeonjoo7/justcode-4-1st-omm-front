@@ -27,6 +27,7 @@ function ReportForm({ category, image, question }) {
     setQuestNum({ ...questNum, [name]: value });
     setFlag(0);
   };
+
   const _next = () => {
     return (() => {
       setFlag(0);
