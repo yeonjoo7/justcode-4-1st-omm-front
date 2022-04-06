@@ -26,10 +26,6 @@ function Login() {
       }),
     })
       .then(res => {
-        // if (res.status >= 400) {
-        //   throw new Error('Server responds with error');
-        // }
-        // return
         res.json();
       })
       .then(res => {
