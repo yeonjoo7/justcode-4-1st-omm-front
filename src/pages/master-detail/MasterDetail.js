@@ -9,6 +9,7 @@ import MasterCategory from 'src/components/master-detail/MasterCategory';
 import MasterImage from 'src/components/master-detail/MasterImage';
 import MasterReview from 'src/components/master-detail/MasterReview';
 import Header from 'src/components/header/Header';
+import Footer from 'src/components/footer/Footer';
 
 function MasterDetail() {
   const params = useParams();
@@ -19,10 +20,12 @@ function MasterDetail() {
 
   //get master profile fetch
   useEffect(() => {
-    //fetch(`http://localhost:8000/pro/users/${params}`, { method: 'GET' })
-    fetch(`http://localhost:3000/data/tekwoolee/${params.id}.json`, {
+    fetch(`http://localhost:8000/master/users/${params.id}`, {
       method: 'GET',
     })
+      // fetch(`http://localhost:3000/data/tekwoolee/${params.id}.json`, {
+      //   method: 'GET',
+      // })
       .then(res => res.json())
       .then(data => {
         setMaster(data);
@@ -69,7 +72,7 @@ function MasterDetail() {
       <div className={styles.requestContainer}>
         <MasterRequest master={master} />
       </div>
-      {/* <Footer/> */}
+      <Footer />
     </div>
   );
 }

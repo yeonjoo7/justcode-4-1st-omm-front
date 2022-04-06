@@ -26,18 +26,19 @@ function MasterInfo(props) {
           </div>
           <div>
             <FaTrophy />
-            <span>{!review ? null : review.number} 회 고용됨</span>
+            <span>{!review ? 0 : review.number} 회 고용됨</span>
           </div>
           <div>
             <FaLocationArrow />
             <span>
-              {master.address} {master.address_detail}
+              {master.address} {master.detail_address}
             </span>
           </div>
           <div>
             <FaClock />
             <span>
-              {master.start_time} - {master.end_time}
+              {master.start_time === null ? '00:00' : master.start_time} -{' '}
+              {master.end_time === null ? '00:00' : master.end_time}
             </span>
           </div>
           <div>
@@ -46,16 +47,33 @@ function MasterInfo(props) {
           </div>
         </div>
       </div>
-      <div className={styles.infoBox}>
+      <div
+        className={
+          master.work_experience === null && master.employee_number === null
+            ? styles.Off
+            : styles.infoBox
+        }
+      >
         <h2>추가정보</h2>
         <div>
           <div>
             <FaBriefcase />
-            <span>경력 {master.work_experience}</span>
+            <span>
+              경력{' '}
+              {master.work_experience < 1
+                ? ' 1년 미만'
+                : `${master.work_experience}년`}
+            </span>
           </div>
           <div>
             <FaUsers />
-            <span>직원 수 {master.employee_number} </span>
+            <span>
+              직원 수
+              {master.employee_number === null
+                ? ' 1명 '
+                : ` ${master.employee_number} `}{' '}
+              (본인 포함)
+            </span>
           </div>
           <div>
             <FaRegFileAlt />
