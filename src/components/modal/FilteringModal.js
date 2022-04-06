@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FilteringModal.module.scss';
 import { BsXLg, BsList, BsSearch, BsArrowReturnRight } from 'react-icons/bs';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -7,9 +7,27 @@ import { GoLocation } from 'react-icons/go';
 import CategoryModalSearchList from './CategoryModalSearchList';
 
 const FilteringModal = props => {
-  const { datas, isModalVisible, setIsModalVisible, setUseFilter } = props;
+  const { isModalVisible, setIsModalVisible, setUseFilter } = props;
+  const [datas, setDatas] = useState([]);
   const [useInputText, setUseInputText] = useState('');
-  const isAdressType = isModalVisible.type === 'adress';
+  const isAddressType = isModalVisible.type === 'address';
+
+  useEffect(() => {
+    const urlName = isAddressType ? '/users/address' : '/category';
+    fetch(urlName)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        if (isAddressType) {
+          const { address } = data;
+          setDatas(address);
+        } else {
+          const { categories } = data;
+          setDatas(categories);
+        }
+      });
+  }, [isAddressType]);
 
   function handleCancleModal() {
     setIsModalVisible(false);
@@ -29,8 +47,8 @@ const FilteringModal = props => {
     setUseInputText(e.target.value);
   }
 
-  function handleCilckAdress(adress) {
-    setUseFilter(adress);
+  function handleCilckAddress(address) {
+    setUseFilter(address);
     setIsModalVisible(false);
     handleCloseDetails();
   }
@@ -58,7 +76,7 @@ const FilteringModal = props => {
           />
         </div>
         <div className={styles.modalHeader}>
-          {isAdressType ? (
+          {isAddressType ? (
             <>
               <GoLocation size="24px" />
               <h4>지역 선택</h4>
@@ -71,7 +89,7 @@ const FilteringModal = props => {
           )}
         </div>
         <div className={styles.modalContent}>
-          {!isAdressType && (
+          {!isAddressType && (
             <div className={styles.modalSearch}>
               <BsSearch />
               <input
@@ -82,29 +100,29 @@ const FilteringModal = props => {
               />
             </div>
           )}
-          {isAdressType ? (
+          {isAddressType ? (
             <div className={styles.modalList}>
               <ul>
-                <li onClick={() => handleCilckAdress(null)}>
+                <li onClick={() => handleCilckAddress(null)}>
                   <details>
                     <summary>
                       <span>전국</span>
                     </summary>
                   </details>
                 </li>
-                {datas.map(adress => {
+                {datas.map(address => {
                   return (
-                    <li key={adress.id}>
+                    <li key={address.id}>
                       <details>
                         <summary>
-                          <span>{adress.name}</span>
+                          <span>{address.name}</span>
                           <IoIosArrowDown size="24px" color="#bfbfbf" />
                         </summary>
-                        {adress.details.map(detail => {
+                        {address.details.map(detail => {
                           return (
                             <div
                               key={detail.id}
-                              onClick={() => handleCilckAdress(detail)}
+                              onClick={() => handleCilckAddress(detail)}
                             >
                               <BsArrowReturnRight color="#bfbfbf" />
                               <span>{detail.name}</span>

@@ -7,6 +7,7 @@ import MainCategoryReport from './pages/main_category_report/MainCategoryReport'
 import MainCategoryReportComplete from './pages/main_category_report/MainCategoryReportComplete';
 import UserSignUp from './pages/user-signup/UserSignup';
 // import MasterSignup from './pages/master-signup/MasterSignup';
+import MasterProfile from './pages/master_profile/MasterProfile';
 
 import './styles/reset.scss';
 import './styles/common.scss';
@@ -29,6 +30,7 @@ function App() {
         />
         <Route path="/sign-up" element={<UserSignUp />} />
         {/* <Route path="/pro/welcome" element={<MasterSignup />} /> */}
+        <Route path="/master/profile" element={<MasterProfile />} />
       </Routes>
     </BrowserRouter>
   );

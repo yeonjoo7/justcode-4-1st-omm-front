@@ -1,0 +1,170 @@
+$sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩니다.
+@media (max-width: 760px) {
+  .masterProfile {
+    width: 460px;
+
+    .myProfile {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media (min-width: 761px) and (max-width: 990px) {
+  .masterProfile {
+    width: 600px;
+  }
+}
+
+@media (min-width: 991px) {
+  .masterProfile {
+    width: 840px;
+  }
+}
+
+.masterProfile {
+  padding-top: 100px;
+  margin: 0 auto;
+
+  .myProfile {
+    display: flex;
+    .profileImageWrapper {
+      overflow: hidden;
+      border-radius: 15px;
+      cursor: pointer;
+      margin-right: 10px;
+      img {
+        width: 100px;
+      }
+    }
+    .profileSomeCounts {
+      display: flex;
+      div {
+        display: flex;
+        flex-direction: column;
+        margin: 0px 30px;
+        align-items: center;
+        font-weight: 500;
+        span {
+          margin-bottom: 10px;
+        }
+        span:nth-child(1) {
+          font-size: 26px;
+        }
+        span:nth-child(2) {
+          font-size: 13px;
+          color: #a8a8a8b0;
+        }
+      }
+    }
+  }
+
+  .myInfo {
+    padding: 30px 0px;
+    border-bottom: 1px solid #bfbfbf2b;
+
+    .myInfoTitle {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      span:nth-child(1) {
+        font-weight: 600;
+      }
+      span:nth-child(2) {
+        font-weight: 500;
+        font-size: 13px;
+        color: $sign-color;
+        cursor: pointer;
+      }
+    }
+    .myInfoValue,
+    .myInfoNameInput input,
+    .myInfoMainCategoryWrap button,
+    .myInfoIntroInput textarea,
+    .myInfoAddressSelector button {
+      font-size: 15px;
+    }
+    .myInfoNameInput input,
+    .myInfoMainCategoryWrap button,
+    .myInfoIntroInput textarea,
+    .myInfoAddressSelector button {
+      border: 0.5px solid #cecece9c;
+    }
+    .myInfoValue {
+      color: #666;
+    }
+    .myInfoNameInput {
+      text-align: right;
+      input {
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+      }
+      input:focus {
+        outline-color: $sign-color;
+      }
+    }
+    .myInfoMainCategoryWrap {
+      display: flex;
+      .mainCategoryColor {
+        button {
+          background-color: $sign-color;
+          color: #ffff;
+          &:hover {
+            color: #ffff;
+            background-color: #03c7ad94;
+          }
+        }
+      }
+      button {
+        padding: 10px 15px;
+        margin-right: 10px;
+        border-radius: 15px;
+        background-color: #ffff;
+        font-weight: 500;
+        cursor: pointer;
+        color: #666;
+        &:hover {
+          color: #b0b0b0;
+        }
+      }
+    }
+    .myInfoIntroInput {
+      text-align: right;
+
+      textarea {
+        resize: vertical;
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+      }
+      textarea:focus {
+        outline-color: $sign-color;
+      }
+    }
+    .myInfoAddressSelector {
+      button {
+        padding: 10px 15px;
+        border-radius: 15px;
+        background-color: $sign-color;
+        font-weight: 500;
+        cursor: pointer;
+        color: #ffff;
+        &:hover {
+          background-color: #03c7ad94;
+        }
+      }
+    }
+  }
+}
+.textCounter {
+  margin-top: 10px;
+  font-size: 12px;
+
+  span:nth-child(1) {
+    color: $sign-color;
+  }
+  span:nth-child(2) {
+    color: #b0b0b0;
+  }
+}
