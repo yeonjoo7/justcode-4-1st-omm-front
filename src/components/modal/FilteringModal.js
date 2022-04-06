@@ -4,7 +4,7 @@ import { BsXLg, BsList, BsSearch, BsArrowReturnRight } from 'react-icons/bs';
 import { IoIosArrowDown } from 'react-icons/io';
 import { GoLocation } from 'react-icons/go';
 
-import CategoryModalSearchList from './CategoryModalSearchList';
+import FilteringModalSearch from './FilteringModalSearch';
 
 const FilteringModal = props => {
   const { isModalVisible, setIsModalVisible, setUseFilter } = props;
@@ -13,7 +13,7 @@ const FilteringModal = props => {
   const isAddressType = isModalVisible.type === 'address';
 
   useEffect(() => {
-    const urlName = isAddressType ? '/users/address' : '/category';
+    const urlName = isAddressType ? '/address' : '/category';
     fetch(urlName)
       .then(response => {
         return response.json();
@@ -171,7 +171,7 @@ const FilteringModal = props => {
                   })}
                 </ul>
               ) : (
-                <CategoryModalSearchList
+                <FilteringModalSearch
                   useInputText={useInputText}
                   setUseInputText={setUseInputText}
                   datas={datas}

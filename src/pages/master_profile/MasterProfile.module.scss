@@ -1,161 +1,302 @@
 $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩니다.
-@media (max-width: 760px) {
-  .masterProfile {
-    width: 460px;
 
-    .myProfile {
-      flex-direction: column;
-      align-items: center;
+@media (max-width: 690px) {
+  .myProfile {
+    flex-direction: column;
+    align-items: center;
+    .profileSomeWrapper {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #03c7ae;
+      color: #ffff;
+      .profileSomeCounts {
+        padding: 10px 0px;
+      }
+      div {
+        flex: 1;
+        span:nth-child(2) {
+          color: #ffff !important;
+        }
+      }
+    }
+  }
+  .myInfo {
+    padding: 30px 25px !important;
+  }
+  .profileServiceWrapper {
+    justify-content: space-between;
+    div {
+      text-align: center;
+      border: 1px solid;
+      padding: 20px;
     }
   }
 }
 
-@media (min-width: 761px) and (max-width: 990px) {
-  .masterProfile {
-    width: 600px;
+@media (min-width: 691px) and (max-width: 890px) {
+  .myProfile {
+    flex-direction: column;
+    align-items: center;
+    .profileSomeWrapper {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #03c7ae;
+      color: #ffff;
+      .profileSomeCounts {
+        padding: 10px 0px;
+      }
+      div {
+        flex: 1;
+        span:nth-child(2) {
+          color: #ffff !important;
+        }
+      }
+    }
+  }
+  .myInfo {
+    padding: 30px 25px !important;
+  }
+  .profileServiceWrapper {
+    justify-content: space-between;
+    div {
+      text-align: center;
+      border: 1px solid;
+      padding: 20px;
+    }
   }
 }
 
-@media (min-width: 991px) {
-  .masterProfile {
+@media (min-width: 891px) {
+  .masterProfileHeader {
     width: 840px;
+    margin: 0 auto;
+    .profileSomeWrapper {
+      margin-left: 20px;
+    }
+  }
+  .masterProfileContents {
+    width: 840px;
+    margin: 0 auto;
+  }
+  .profileServiceWrapper {
+    .profileActiveAssay,
+    .profilePreview {
+      padding: 10px 40px;
+      margin: 0px 10px;
+      border-radius: 4px;
+    }
+    .profileActiveAssay {
+      color: #ffff;
+      background-color: $sign-color;
+      &:hover {
+        background-color: #03c7ad94;
+      }
+    }
+    .profilePreview {
+      border: 1px solid $sign-color;
+      color: $sign-color;
+      &:hover {
+        border: 1px solid #03c7ad00;
+        background-color: #03c7ad94;
+        color: #ffff;
+      }
+    }
   }
 }
 
 .masterProfile {
-  padding-top: 100px;
-  margin: 0 auto;
+  padding-top: 110px;
 
-  .myProfile {
-    display: flex;
-    .profileImageWrapper {
-      overflow: hidden;
-      border-radius: 15px;
-      cursor: pointer;
-      margin-right: 10px;
-      img {
-        width: 100px;
-      }
-    }
-    .profileSomeCounts {
+  .masterProfileHeader {
+    .myProfile {
       display: flex;
-      div {
+      .profileImageWrapper {
+        overflow: hidden;
+        border-radius: 15px;
+        cursor: pointer;
+        img {
+          width: 120px;
+        }
+      }
+      .profileSomeWrapper {
         display: flex;
         flex-direction: column;
-        margin: 0px 30px;
-        align-items: center;
-        font-weight: 500;
-        span {
-          margin-bottom: 10px;
+        justify-content: space-between;
+        .profileSomeCounts {
+          display: flex;
+          div {
+            display: flex;
+            flex-direction: column;
+            margin: 0px 30px;
+            align-items: center;
+            font-weight: 500;
+            span {
+              margin-bottom: 10px;
+            }
+            span:nth-child(1) {
+              font-size: 26px;
+            }
+            span:nth-child(2) {
+              font-size: 13px;
+              color: #a8a8a8b0;
+            }
+          }
         }
-        span:nth-child(1) {
-          font-size: 26px;
-        }
-        span:nth-child(2) {
-          font-size: 13px;
-          color: #a8a8a8b0;
+        .profileServiceWrapper {
+          display: flex;
+          font-size: 15px;
+          font-weight: 500;
+          cursor: pointer;
         }
       }
     }
   }
+  .masterProfileContents {
+    .myInfo {
+      padding: 30px 0px;
+      border-bottom: 1px solid #bfbfbf2b;
 
-  .myInfo {
-    padding: 30px 0px;
-    border-bottom: 1px solid #bfbfbf2b;
-
-    .myInfoTitle {
-      display: flex;
-      justify-content: space-between;
-      padding-bottom: 15px;
-      span:nth-child(1) {
-        font-weight: 600;
+      .myInfoTitle {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 15px;
+        span:nth-child(1) {
+          font-weight: 600;
+        }
+        span:nth-child(2) {
+          font-weight: 500;
+          font-size: 13px;
+          color: $sign-color;
+          cursor: pointer;
+        }
       }
-      span:nth-child(2) {
-        font-weight: 500;
-        font-size: 13px;
-        color: $sign-color;
-        cursor: pointer;
+      .myInfoValue,
+      .myInfoNameInput input,
+      .myInfoMainCategoryWrap button,
+      .myInfoIntroInput textarea,
+      .myInfoAddressSelector button {
+        font-size: 15px;
       }
-    }
-    .myInfoValue,
-    .myInfoNameInput input,
-    .myInfoMainCategoryWrap button,
-    .myInfoIntroInput textarea,
-    .myInfoAddressSelector button {
-      font-size: 15px;
-    }
-    .myInfoNameInput input,
-    .myInfoMainCategoryWrap button,
-    .myInfoIntroInput textarea,
-    .myInfoAddressSelector button {
-      border: 0.5px solid #cecece9c;
-    }
-    .myInfoValue {
-      color: #666;
-    }
-    .myInfoNameInput {
-      text-align: right;
-      input {
-        width: 100%;
-        padding: 15px 10px;
-        border-radius: 5px;
+      .myInfoNameInput input,
+      .myInfoMainCategoryWrap button,
+      .myInfoIntroInput textarea,
+      .myInfoAddressSelector button {
+        border: 0.5px solid #cecece9c;
       }
-      input:focus {
-        outline-color: $sign-color;
+      .myInfoValue,
+      .timeSplit {
+        color: #666;
       }
-    }
-    .myInfoMainCategoryWrap {
-      display: flex;
-      .mainCategoryColor {
+      .myInfoNameInput {
+        text-align: right;
+        input {
+          width: 100%;
+          padding: 15px 10px;
+          border-radius: 5px;
+        }
+        input:focus {
+          outline-color: $sign-color;
+        }
+      }
+      .myInfoMainCategoryWrap {
+        display: flex;
+        .mainCategoryColor {
+          button {
+            background-color: $sign-color;
+            color: #ffff;
+            &:hover {
+              color: #ffff;
+              background-color: #03c7ad94;
+            }
+          }
+        }
         button {
+          padding: 10px 15px;
+          margin-right: 10px;
+          border-radius: 15px;
+          background-color: #ffff;
+          font-weight: 500;
+          cursor: pointer;
+          color: #666;
+          &:hover {
+            color: #b0b0b0;
+          }
+        }
+      }
+      .myInfoIntroInput {
+        text-align: right;
+
+        textarea {
+          resize: vertical;
+          width: 100%;
+          padding: 15px 10px;
+          border-radius: 5px;
+        }
+        textarea:focus {
+          outline-color: $sign-color;
+        }
+      }
+      .myInfoAddressSelector {
+        button {
+          padding: 10px 15px;
+          border-radius: 15px;
           background-color: $sign-color;
+          font-weight: 500;
+          cursor: pointer;
           color: #ffff;
           &:hover {
-            color: #ffff;
             background-color: #03c7ad94;
           }
         }
       }
-      button {
-        padding: 10px 15px;
-        margin-right: 10px;
-        border-radius: 15px;
-        background-color: #ffff;
-        font-weight: 500;
-        cursor: pointer;
-        color: #666;
-        &:hover {
-          color: #b0b0b0;
+      .myServiceWrap {
+        display: flex;
+        flex-wrap: wrap;
+        .addServiceBtn {
+          display: flex;
+          align-items: center;
+          padding: 10px 15px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          border: 0.5px solid #cecece9c;
+          border-radius: 15px;
+          background-color: $sign-color;
+          font-size: 15px;
+          font-weight: 500;
+          color: #ffff;
+          cursor: pointer;
+          span {
+            margin-left: 3px;
+          }
+          &:hover {
+            background-color: #03c7ad94;
+          }
         }
-      }
-    }
-    .myInfoIntroInput {
-      text-align: right;
-
-      textarea {
-        resize: vertical;
-        width: 100%;
-        padding: 15px 10px;
-        border-radius: 5px;
-      }
-      textarea:focus {
-        outline-color: $sign-color;
-      }
-    }
-    .myInfoAddressSelector {
-      button {
-        padding: 10px 15px;
-        border-radius: 15px;
-        background-color: $sign-color;
-        font-weight: 500;
-        cursor: pointer;
-        color: #ffff;
-        &:hover {
-          background-color: #03c7ad94;
+        .myServiceList {
+          padding: 10px 15px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          border: 0.5px solid #cecece9c;
+          border-radius: 15px;
+          background-color: #ffff;
+          font-size: 15px;
+          font-weight: 500;
+          color: #666;
+          cursor: pointer;
+          svg {
+            margin-left: 4px;
+          }
+          &:hover {
+            color: #b0b0b0;
+          }
         }
       }
     }
   }
+}
+.timeSplit {
+  margin-right: 20px;
+  font-size: 13px;
 }
 .textCounter {
   margin-top: 10px;
