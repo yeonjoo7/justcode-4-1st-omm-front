@@ -28,7 +28,6 @@ const MasterListHeader = props => {
   function handleOpenModal(type) {
     setIsModalVisible({ type, visible: true });
   }
-
   return (
     <>
       <header className={styles.masterListHeader}>
@@ -36,9 +35,13 @@ const MasterListHeader = props => {
           <h1>고수찾기</h1>
           <span>
             숭고 <IoIosArrowForward size="10px" />{' '}
-            {!useAddress ? '지역' : useAddress.name}
+            {!useAddress
+              ? '지역'
+              : useAddress.name + ' ' + useAddress.details.name}
             {', '}
-            {!useCategory ? '카테고리' : useCategory.name}
+            {!useCategory
+              ? '카테고리'
+              : useCategory.name + ' - ' + useCategory.lessons.name}
           </span>
         </div>
         <div className={styles.headerCategory}>
@@ -47,14 +50,18 @@ const MasterListHeader = props => {
             onClick={() => handleOpenModal('address')}
           >
             <GoLocation className={styles.icon} size="12px" />
-            {!useAddress ? '전국' : useAddress.name}
+            {!useAddress
+              ? '전국'
+              : useAddress.name + ' ' + useAddress.details.name}
           </button>
           <button
             className={styles.categoryBtn}
             onClick={() => handleOpenModal('category')}
           >
             <BsGrid className={styles.icon} size="12px" />
-            {!useCategory ? '서비스 전체' : useCategory.name}
+            {!useCategory
+              ? '서비스 전체'
+              : useCategory.name + ' - ' + useCategory.lessons.name}
           </button>
         </div>
         <div className={styles.headerSort}>
