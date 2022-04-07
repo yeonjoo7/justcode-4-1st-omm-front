@@ -76,10 +76,8 @@ function MasterSignUp() {
               alt="first-step"
             />
             <h4 className={styles.infoStageH4}>고객의 요청을 받아보세요.</h4>
-            <p>
-              고객이 필요한 서비스의 요청서를 작성하면 숨고가 검토 후 고수님께
-              무료로 보내드려요.
-            </p>
+            고객이 필요한 서비스의 요청서를 작성하면 숨고가 검토 후 고수님께
+            무료로 보내드려요.
           </li>
           <li className={styles.infoCaption}>
             <img
@@ -88,10 +86,8 @@ function MasterSignUp() {
               alt="second-step"
             />
             <h4 className={styles.infoStageH4}>맞춤 견적을 보내세요</h4>
-            <p>
-              요청서 확인 후 간단히 견적금액만 입력하면 프로필과 함께 고객에게
-              메시지로 전송돼요.
-            </p>
+            요청서 확인 후 간단히 견적금액만 입력하면 프로필과 함께 고객에게
+            메시지로 전송돼요.
           </li>
           <li className={styles.infoCaption}>
             <img
@@ -100,10 +96,8 @@ function MasterSignUp() {
               alt="third-step"
             />
             <h4 className={styles.infoStageH4}>상담 후 거래하세요</h4>
-            <p>
-              원하는 고객과 채팅 및 전화(안심번호)로 자세한 사항을 협의하고
-              거래하세요.
-            </p>
+            원하는 고객과 채팅 및 전화(안심번호)로 자세한 사항을 협의하고
+            거래하세요.
           </li>
         </ul>
       </div>
