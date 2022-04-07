@@ -44,7 +44,7 @@ function FormInfo({
       .then(res => {
         setAddress(res.address);
       });
-  }, [address]);
+  }, []);
   return (
     <>
       <h3 className={styles.formTitle}>마지막으로 필수 정보를 입력해주세요.</h3>
