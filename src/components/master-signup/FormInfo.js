@@ -38,10 +38,14 @@ function FormInfo({
   // 성별 정보는 테이블에 없어서 전달 x
   // 테이블 수정 시 추가
   useEffect(() => {
-    fetch('http://localhost:8000/address', { method: 'GET' })
+    fetch('/address', { method: 'GET' })
       .then(res => res.json())
-      .then(res => setAddress(res.address));
+      .then(res => {
+        console.log(res);
+        setAddress(res.address);
+      });
   }, []);
+  console.log(address);
 
   return (
     <>
@@ -121,13 +125,15 @@ function FormInfo({
               }}
             >
               <option value={0}>선택</option>
-              {address.map(address => {
-                return (
-                  <option value={address.name} key={address.id}>
-                    {address.name}
-                  </option>
-                );
-              })}
+              {address === undefined
+                ? null
+                : address.map(address => {
+                    return (
+                      <option value={address.name} key={address.id}>
+                        {address.name}
+                      </option>
+                    );
+                  })}
             </select>
           </div>
           <div className={styles.gap} />
@@ -143,9 +149,9 @@ function FormInfo({
               }}
             >
               <option value={0}>선택</option>
-              {selectAddress.details === undefined
+              {selectAddress.detailAddress === undefined
                 ? null
-                : selectAddress.details.map(detail => {
+                : selectAddress.detailAddress.map(detail => {
                     return (
                       <option value={detail.name} key={detail.id}>
                         {detail.name}
