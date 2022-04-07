@@ -22,7 +22,6 @@ function MainCategoryReport() {
       });
   }, [lecture_id]);
   let imgUrl = '/' + image;
-
   return (
     <>
       <Header />/

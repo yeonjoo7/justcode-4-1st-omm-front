@@ -109,7 +109,8 @@ function ReportForm({ category, image, question }) {
     setQuestNum({});
     currentStep = 1;
   };
-
+  console.log('ccc :', question);
+  if (question === undefined) return true;
   return (
     <div>
       <div className={styles.box}>

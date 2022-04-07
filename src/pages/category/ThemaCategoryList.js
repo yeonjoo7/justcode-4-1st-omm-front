@@ -37,7 +37,7 @@ function ThemaCategoryList() {
       });
   }, []);
   let lesson = [];
-
+  console.log('aaa :', lessons);
   if (lessons.length !== 0) {
     lesson = lessons.categories.filter(value => value.name === category);
   }

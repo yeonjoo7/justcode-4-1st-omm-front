@@ -45,7 +45,7 @@ function ThemaLessons(lessons) {
     <div className={styles.container}>
       <div className={styles.box}>
         {lectures.length !== 0 && lectures.length !== undefined ? (
-          lectures[0].lessons.map((lesson, index) => (
+          lectures[0].lessonCategories.map((lesson, index) => (
             <ThemaLesson lesson={lesson} key={index} />
           ))
         ) : (
