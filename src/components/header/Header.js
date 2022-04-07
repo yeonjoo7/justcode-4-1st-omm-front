@@ -18,7 +18,7 @@ function Header() {
     } else {
       setIsLogin(true);
     }
-  }, [isLogin]);
+  }, []);
 
   const logoutBtn = () => {
     localStorage.removeItem('access_token');
@@ -99,13 +99,13 @@ function Header() {
               <li>
                 <div className={styles.flexRow}>
                   <img
-                    src="http://localhost:3000/images\thump\carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
+                    src="http://localhost:3000/images/thump/carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
                     className={styles.profileImg}
                     alt="profile_image"
                     ref={profile}
                     onClick={profileOutline}
                   />
-                  <div className={`${styles.grayColor} ${styles.hidden}`}>
+                  <div className={`${styles.grayColor} ${styles.disabled}`}>
                     {profileClick ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </div>
                 </div>
