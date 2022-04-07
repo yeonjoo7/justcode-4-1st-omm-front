@@ -14,7 +14,6 @@ function Login() {
     navigate('/');
   };
   const dataFetch = () => {
-    // try {
     fetch('users/login', {
       method: 'POST',
       headers: {
@@ -32,10 +31,6 @@ function Login() {
         localStorage.setItem('access_token', res.access_token);
       })
       .then(() => gotomain());
-
-    // } catch (err) {
-    //   return err.statusCode({ message: err.message });
-    // }
   };
 
   const emailReg =
