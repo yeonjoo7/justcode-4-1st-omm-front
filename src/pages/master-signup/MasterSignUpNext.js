@@ -77,8 +77,8 @@ function MasterSignUpNext() {
     name: '',
     email: '',
     phoneNumber: '',
-    detailAddress: '강남구',
-    address: '서울',
+    detailAddress: '',
+    address: '',
     lessonCatID: lessonCategory.current,
   });
   let questionKey = 0;
@@ -90,6 +90,7 @@ function MasterSignUpNext() {
       method: 'GET',
     })
       .then(res => {
+        console.log(res);
         return res.json();
       })
       .then(data => {
@@ -112,11 +113,11 @@ function MasterSignUpNext() {
     <FormBox
       questions={questions}
       questionKey={questionKey}
-      key={formComponentKey}
+      key={formComponentKey++}
       lessonCategory={lessonCategory.current}
     />,
     <FormInfo
-      key={formComponentKey}
+      key={formComponentKey++}
       masterInfo={masterInfo.current}
       ageCheck={ageCheck}
       agreeCheck={agreeCheck}

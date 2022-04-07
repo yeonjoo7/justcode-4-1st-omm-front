@@ -19,15 +19,18 @@ function MasterSignUpFooter({
 
   // 모든 데이터를 취합하여 보내는 footer
   const sendMasterInfo = data => {
+    console.log('before 함수 내부 fetch 실행 전 :', data);
     fetch('http://localhost:8000/master/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/JSON' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
       .then(response => {
         if (!response.ok) {
+          console.log('error 1 : ', response);
           throw response;
         }
+        console.log('return 1 : ', response);
         return response;
       })
       .then(res => res.json())
@@ -35,8 +38,9 @@ function MasterSignUpFooter({
         alert('회원가입 성공');
         navigate('/');
       })
-      .catch(err => err.json())
+      .catch(error => error.json())
       .then(err => {
+        console.log('catch -> then error : ', err);
         alert(`Error : ${err.message}`);
       });
   };
@@ -72,6 +76,7 @@ function MasterSignUpFooter({
               2 <= name.length
             ) {
               // fetch 보내기
+              console.log('fetch 실행 함수 이전 allData 검증', allData);
               sendMasterInfo(allData);
             } else {
               return;

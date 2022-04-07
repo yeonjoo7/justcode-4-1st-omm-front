@@ -20,8 +20,6 @@
 .gender {
   display: flex;
   justify-content: space-between;
-  //margin: 0.5rem 0;
-  //padding: 0.75rem 0 0.75rem 0.5rem;
 }
 
 .genderRadio {
@@ -31,13 +29,34 @@
 .genderBtnWrapper {
   width: 100%;
   text-align: center;
-  //padding: 0.3125rem;
-  //flex-basis: 50%;
+}
+
+.gap {
+  margin: 0.5rem;
+}
+
+.addressLabel {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.options {
+  all: unset;
+  padding: 1rem 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #c6c6c6;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.options:hover {
+  border: 1px solid #03c7ae;
 }
 
 .genderRadio + label {
   display: block;
-  width: 99%;
+  width: 100%;
   padding: 1rem;
   border: 0.0625rem solid #e1e1e1;
   border-radius: 0.25rem;
@@ -46,8 +65,12 @@
   cursor: pointer;
 }
 
+.genderRadio:first-child + label {
+  margin-right: 100px;
+}
+
 .genderRadio:checked + label {
-  background: $sign-color;
+  background: #03c7ae;
   color: #fff;
 }
 
@@ -63,7 +86,7 @@
 }
 
 .inputValue:focus {
-  box-shadow: 0 0 0.2rem 0.1rem $sign-color;
+  box-shadow: 0 0 0.2rem 0.1rem #03c7ae;
 }
 
 .invalid {
@@ -91,7 +114,7 @@
   right: 0;
   padding: 1rem;
   font-size: 0.7rem;
-  color: $sign-color;
+  color: #03c7ae;
   cursor: pointer;
 }
 
@@ -130,7 +153,7 @@
 }
 
 .checkBox input:checked + label {
-  background: $sign-color;
+  background: #03c7ae;
 }
 
 .checkInner {

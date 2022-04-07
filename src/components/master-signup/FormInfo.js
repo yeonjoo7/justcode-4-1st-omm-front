@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './FormInfo.module.scss';
 
 function FormInfo({
@@ -18,6 +18,9 @@ function FormInfo({
   const [visiblePW, setPwVisible] = useState('password');
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState([{}]);
+  const [selectAddress, setSelectAddress] = useState(0);
+  const [selectDetailAddress, setSelectDetailAddress] = useState(0);
+  const addressInvalid = useRef(null);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -29,15 +32,15 @@ function FormInfo({
   masterInfo.email = emailValue;
   masterInfo.password = pwValue;
   masterInfo.phoneNumber = phoneValue;
+  masterInfo.address = selectAddress.name;
+  masterInfo.detailAddress = selectDetailAddress;
 
   // 성별 정보는 테이블에 없어서 전달 x
   // 테이블 수정 시 추가
-  //masterInfo.gender = gender; 성별 정보는 전달할 필요 없어서 포함시키지 않음
   useEffect(() => {
     fetch('http://localhost:8000/address', { method: 'GET' })
       .then(res => res.json())
-      .then(res => setAddress(res.address))
-      .then(res => console.log('address : ', address, 'res : ', res));
+      .then(res => setAddress(res.address));
   }, []);
 
   return (
@@ -83,6 +86,7 @@ function FormInfo({
             />{' '}
             <label htmlFor="male">남자</label>
           </div>
+          <div className={styles.gap}></div>
           <div className={styles.genderBtnWrapper}>
             <input
               className={styles.genderRadio}
@@ -98,44 +102,60 @@ function FormInfo({
             <label htmlFor="female">여자</label>
           </div>
         </div>
-        <p
-          className={
-            gender
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
-          성별을 선택해주세요.
-        </p>
+        <p className={styles.Off}>성별을 선택해주세요.</p>
       </div>
-      {/* 주소 선택창 구현 나중에 */}
       <div className={styles.inputBox}>
         <p className={styles.inputName}>주소</p>
         <div className={styles.gender}>
           <div className={styles.genderBtnWrapper}>
-            <label for></label>
-            <select className={styles.options}>
-              <option>시/도 선택</option>
+            <label htmlFor="address" className={styles.addressLabel}>
+              시 / 도
+            </label>
+            <select
+              className={styles.options}
+              id="address"
+              onChange={e => {
+                setSelectAddress(
+                  address.find(name => name.name === e.target.value)
+                );
+              }}
+            >
+              <option value={0}>선택</option>
               {address.map(address => {
-                return <option>{address.name}</option>;
+                return (
+                  <option value={address.name} key={address.id}>
+                    {address.name}
+                  </option>
+                );
               })}
             </select>
           </div>
+          <div className={styles.gap} />
           <div className={styles.genderBtnWrapper}>
-            <select className={styles.options}>
-              {/* {address.map(detail => {
-                return <option>{detail.details}</option>;
-              })} */}
+            <label htmlFor="detailAddress" className={styles.addressLabel}>
+              상세 지역
+            </label>
+            <select
+              className={styles.options}
+              id="detailAddress"
+              onChange={e => {
+                setSelectDetailAddress(e.target.value);
+              }}
+            >
+              <option value={0}>선택</option>
+              {selectAddress.details === undefined
+                ? null
+                : selectAddress.details.map(detail => {
+                    return (
+                      <option value={detail.name} key={detail.id}>
+                        {detail.name}
+                      </option>
+                    );
+                  })}
             </select>
           </div>
         </div>
-        <p
-          className={
-            gender
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
+        <p ref={addressInvalid} className={styles.Off}>
           주소를 선택해주세요.
         </p>
       </div>
