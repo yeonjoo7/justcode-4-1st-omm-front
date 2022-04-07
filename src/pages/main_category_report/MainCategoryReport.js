@@ -23,6 +23,7 @@ function MainCategoryReport() {
   }, [lecture_id]);
   let imgUrl = '/' + image;
 
+  console.log('token :', localStorage);
   return (
     <>
       <Header />/

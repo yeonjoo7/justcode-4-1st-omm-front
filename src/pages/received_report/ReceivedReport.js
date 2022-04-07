@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 function ReceviedBox({ _data, index }) {
   let img_datas = _data.goso_images.slice(0, 6);
+  //let img_datas = '/images/thump/human1.jpg';
   let requestStyle = _data.isRequest ? styles.trueReq : styles.falseReq;
   let figure = _data.isRequest ? styles.triangle : styles.square;
   return (
@@ -23,7 +24,8 @@ function ReceviedBox({ _data, index }) {
       <div className={styles.img_box} key={index}>
         {img_datas.map((imgData, index) => (
           <img
-            src={imgData.goso_image}
+            //src={imgData.goso_image}
+            src="/images/thump/human1.jpg"
             alt="goso_img"
             className={styles.img}
             key={index}
@@ -48,14 +50,17 @@ function ReceviedBox({ _data, index }) {
 function ReceivedReport() {
   const [data, setData] = useState();
   useEffect(() => {
-    fetch('http://localhost:3000/data/hwseol/received_report.json', {
+    //fetch('http://localhost:3000/data/hwseol/received_report.json', {
+    fetch(`/receive/estimate`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setData(data);
+        setData(data.questions);
+        //setData(data);
       });
   }, []);
+
   if (data === undefined) return true;
   return (
     <>
