@@ -4,25 +4,27 @@ import { FaRegBell, FaBars } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import HeaderProfileDropDown from './HeaderProfileDropDown';
 
 function Header() {
   const navigate = useNavigate();
   const [profileClick, setProfileClick] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isNewQuotation, setIsNewQuotation] = useState(true);
   const [chatNumber, setChatNumber] = useState(26);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/login')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data.token) {
-  //         setIsLogin(true);
-  //         setIsNewQuotation(true);
-  //         setChatNumber(data.chatNum);
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    if (!localStorage.getItem('access_token')) {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+  }, []);
+
+  const logoutBtn = () => {
+    localStorage.removeItem('access_token');
+    setIsLogin(false);
+  };
 
   const profile = useRef();
   const profileOutline = () => {
@@ -69,7 +71,7 @@ function Header() {
         </span>
         <ul className={styles.headerBtn}>
           <li onClick={() => handleNavigate('/master/list')}>고수찾기</li>
-          <li onClick={() => handleNavigate('')}>
+          <li onClick={() => handleNavigate('')} className={styles.disabled}>
             마켓
             <span className={styles.marketNew}>N</span>
           </li>
@@ -84,10 +86,13 @@ function Header() {
                 </div>
               </li>
               <li onClick={() => handleNavigate('')}>
-                <div className={styles.flexRow}>
+                <div className={`${styles.flexRow} ${styles.disabled}`}>
                   채팅
                   <div className={`${styles.chatNum}`}>{chatNumber}</div>
                 </div>
+              </li>
+              <li onClick={logoutBtn}>
+                <div className={styles.flexRow}>로그아웃</div>
               </li>
               <li>
                 <FaRegBell size="1.3em" className={styles.bell} />
@@ -95,15 +100,16 @@ function Header() {
               <li>
                 <div className={styles.flexRow}>
                   <img
-                    src="http://localhost:3000/images\thump\carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
+                    src="http://localhost:3000/images/thump/carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
                     className={styles.profileImg}
                     alt="profile_image"
                     ref={profile}
                     onClick={profileOutline}
                   />
-                  <div className={`${styles.grayColor} ${styles.hidden}`}>
+                  <div className={`${styles.grayColor} ${styles.disabled}`}>
                     {profileClick ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </div>
+                  {profileClick && <HeaderProfileDropDown />}
                 </div>
               </li>
             </>

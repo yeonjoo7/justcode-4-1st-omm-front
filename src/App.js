@@ -7,7 +7,7 @@ import MainCategoryReport from './pages/main_category_report/MainCategoryReport'
 import MainCategoryReportComplete from './pages/main_category_report/MainCategoryReportComplete';
 import UserSignUp from './pages/user-signup/UserSignup';
 import ReceivedReport from './pages/received_report/ReceivedReport';
-// import MasterSignup from './pages/master-signup/MasterSignup';
+import MasterSignup from './pages/master-signup/MasterSignup';
 import MasterProfile from './pages/master_profile/MasterProfile';
 
 import './styles/reset.scss';
@@ -28,7 +28,7 @@ function App() {
         <Route path="/complete" element={<MainCategoryReportComplete />} />
         <Route path="/sign-up" element={<UserSignUp />} />
         <Route path="/received_report" element={<ReceivedReport />} />
-        {/* <Route path="/pro/welcome" element={<MasterSignup />} /> */}
+        <Route path="/pro/welcome" element={<MasterSignup />} />
         <Route path="/master/profile" element={<MasterProfile />} />
       </Routes>
     </BrowserRouter>
