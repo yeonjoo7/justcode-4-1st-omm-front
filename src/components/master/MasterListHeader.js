@@ -20,34 +20,6 @@ const MasterListHeader = props => {
     type: '',
     visible: false,
   });
-  const [categories, setCategories] = useState([]);
-  const [address, setAddress] = useState([]);
-
-  useEffect(() => {
-    const address = new Promise((resolve, reject) => {
-      fetch('/users/address')
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          const { address } = data;
-          resolve(address);
-        });
-    });
-    const categories = new Promise((resolve, reject) => {
-      fetch('/category')
-        .then(response => response.json())
-        .then(data => {
-          const { categories } = data;
-          resolve(categories);
-        });
-    });
-
-    Promise.all([address, categories]).then(value => {
-      setAddress(value[0]);
-      setCategories(value[1]);
-    });
-  }, []);
 
   function handleChangeSort(text) {
     setUseSort(text);
@@ -109,7 +81,6 @@ const MasterListHeader = props => {
         <FilteringModal
           isModalVisible={isModalVisible}
           setIsModalVisible={setIsModalVisible}
-          datas={isModalVisible.type === 'address' ? address : categories}
           setUseFilter={
             isModalVisible.type === 'address' ? setUseAddress : setUseCategory
           }

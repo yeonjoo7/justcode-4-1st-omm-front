@@ -6,7 +6,7 @@ const FilteringModalSearch = props => {
   const { datas, useInputText, handleClickLesson } = props;
   let lessons = [];
   datas.forEach(category => {
-    category.lessons.forEach(lesson => {
+    category.lessonCategories.forEach(lesson => {
       if (lesson.name.includes(useInputText)) {
         lessons.push({ id: lesson.id, name: lesson.name });
       }
