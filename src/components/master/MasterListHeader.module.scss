@@ -1,6 +1,18 @@
 $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩니다.
 
-@media (max-width: 890px) {
+@media (max-width: 690px) {
+  .masterListHeader {
+    padding: 0px 20px;
+  }
+}
+
+@media (min-width: 691px) and (max-width: 890px) {
+  .masterListHeader {
+    padding: 0px 20px;
+  }
+}
+
+@media (max-width: 891px) {
   .categoryBtn,
   .addressBtn {
     width: 100% !important;
