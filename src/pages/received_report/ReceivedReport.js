@@ -5,8 +5,6 @@ import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';
 
 function ReceviedBox({ _data, index }) {
-  console.log('cccc :', _data.goso_images);
-  console.log('aaa :', _data);
   let img_datas = _data.goso_images.slice(0, 6);
   //let img_datas = '/images/thump/human1.jpg';
   let requestStyle = _data.isRequest ? styles.trueReq : styles.falseReq;
@@ -62,7 +60,6 @@ function ReceivedReport() {
         //setData(data);
       });
   }, []);
-  console.log('data :', data);
 
   if (data === undefined) return true;
   return (
