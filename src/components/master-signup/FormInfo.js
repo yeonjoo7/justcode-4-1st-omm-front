@@ -21,6 +21,7 @@ function FormInfo({
   const [selectAddress, setSelectAddress] = useState(0);
   const [selectDetailAddress, setSelectDetailAddress] = useState(0);
   const addressInvalid = useRef(null);
+  const ageInvalid = useRef(null);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -43,8 +44,7 @@ function FormInfo({
       .then(res => {
         setAddress(res.address);
       });
-  }, []);
-
+  }, [address]);
   return (
     <>
       <h3 className={styles.formTitle}>마지막으로 필수 정보를 입력해주세요.</h3>
@@ -117,13 +117,17 @@ function FormInfo({
               className={styles.options}
               id="address"
               onChange={e => {
-                setSelectAddress(
-                  address.find(name => name.name === e.target.value)
-                );
+                if (e.target.value !== '0') {
+                  setSelectAddress(
+                    address.find(name => name.name === e.target.value)
+                  );
+                } else {
+                  setSelectAddress(0);
+                }
               }}
             >
               <option value={0}>선택</option>
-              {address === undefined
+              {address[0].name === undefined
                 ? null
                 : address.map(address => {
                     return (
@@ -289,7 +293,7 @@ function FormInfo({
           <span className={styles.checkInner}>✔</span>
         </label>
         만 14세 이상 (필수)
-        <p className={`${styles.invalidInput} ${styles.Off}`}>
+        <p ref={ageInvalid} className={`${styles.invalidInput} ${styles.Off}`}>
           만 14세 이상 가입에 동의해주세요.
         </p>
       </div>

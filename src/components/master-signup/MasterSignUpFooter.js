@@ -73,10 +73,11 @@ function MasterSignUpFooter({
               pwReg.test(password) &&
               emailReg.test(email) &&
               phoneReg.test(phoneNumber) &&
-              2 <= name.length
+              2 <= name.length &&
+              allData.address !== undefined &&
+              allData.detailAddress !== undefined
             ) {
               // fetch 보내기
-              console.log('fetch 실행 함수 이전 allData 검증', allData);
               sendMasterInfo(allData);
             } else {
               return;
