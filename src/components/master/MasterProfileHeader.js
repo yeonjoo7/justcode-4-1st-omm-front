@@ -1,8 +1,8 @@
 import styles from './MasterProfileHeader.module.scss';
+const PORT = process.env.REACT_APP_SERVER_PORT;
 
 const MasterProfileHeader = props => {
   const { myInfo } = props;
-  const PORT = process.env.REACT_APP_SERVER_PORT;
   const masterImage = myInfo.master_image
     ? PORT + myInfo.master_image
     : PORT + '/images/profile/profileNotFound.svg';

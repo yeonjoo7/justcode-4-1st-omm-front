@@ -10,14 +10,17 @@ const MasterList = () => {
   const [useCategory, setUseCategory] = useState(null);
   const [useAddress, setUseAddress] = useState(null);
   const [useSort, setUseSort] = useState('리뷰순');
-
   useEffect(() => {
-    fetch('../data/seonghoson/masters.json')
+    fetch(
+      `/master/list?addressId=${
+        useAddress ? useAddress.details.id : null
+      }&lessonId=${useCategory ? useCategory.lessons.id : null}`
+    )
       .then(response => response.json())
       .then(data => {
         setMasters(data);
       });
-  }, []);
+  }, [useAddress, useCategory]);
 
   return (
     <>
