@@ -13,12 +13,19 @@ import MasterProfileWorkEx from '../../components/master/MasterProfileWorkEx';
 import MasterProfileEmployeeNum from '../../components/master/MasterProfileEmployeeNum';
 
 import styles from './MasterProfile.module.scss';
+const token = localStorage.getItem('access_token');
 
 const MasterProfileDelay = props => {
   const [myInfo, setMyInfo] = useState(null);
 
   useEffect(() => {
-    fetch('/master/profile/2')
+    fetch('/master/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        token: token,
+      },
+    })
       .then(response => response.json())
       .then(data => {
         const { master } = data;
@@ -40,7 +47,6 @@ const MasterProfileDelay = props => {
       });
   }, []);
 
-  console.log('myInfo >> ', myInfo);
   return (
     myInfo && (
       <>
@@ -56,7 +62,6 @@ const MasterProfile = props => {
   const { myInfo } = props;
 
   function handleClickUpdate(title, value) {
-    console.log(title, value);
     // let obj = {};
     // switch (title) {
     // case '이름':

@@ -4,23 +4,39 @@ import styles from './FilteringModalSearch.module.scss';
 
 const FilteringModalSearch = props => {
   const { datas, useInputText, handleClickLesson } = props;
-  let lessons = [];
+  let categories = [];
   datas.forEach(category => {
     category.lessonCategories.forEach(lesson => {
       if (lesson.name.includes(useInputText)) {
-        lessons.push({ id: lesson.id, name: lesson.name });
+        categories.push({
+          id: category.id,
+          name: category.name,
+          lessons: { id: lesson.id, name: lesson.name },
+        });
       }
     });
   });
 
   return (
     <>
-      {lessons.length > 0 ? (
+      {categories.length > 0 ? (
         <ul className={styles.modalSearchCategories}>
-          {lessons.map(lesson => {
+          {categories.map(category => {
             return (
-              <li key={lesson.id} onClick={() => handleClickLesson(lesson)}>
-                <span>{lesson.name}</span>
+              <li
+                key={category.lessons.id}
+                onClick={() =>
+                  handleClickLesson({
+                    id: category.id,
+                    name: category.name,
+                    lessons: {
+                      id: category.lessons.id,
+                      name: category.lessons.name,
+                    },
+                  })
+                }
+              >
+                <span>{category.lessons.name}</span>
               </li>
             );
           })}

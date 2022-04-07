@@ -81,7 +81,6 @@ function MainCategoryReportComplete() {
   }, []);
 
   if (flag === 1) {
-    console.log('hello');
     PostRequestForm(result);
   }
 

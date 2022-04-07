@@ -20,7 +20,6 @@ const MasterListHeader = props => {
     type: '',
     visible: false,
   });
-
   function handleChangeSort(text) {
     setUseSort(text);
   }
