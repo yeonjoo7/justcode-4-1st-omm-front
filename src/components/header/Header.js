@@ -4,6 +4,7 @@ import { FaRegBell, FaBars } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import HeaderProfileDropDown from './HeaderProfileDropDown';
 
 function Header() {
   const navigate = useNavigate();
@@ -108,6 +109,7 @@ function Header() {
                   <div className={`${styles.grayColor} ${styles.disabled}`}>
                     {profileClick ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </div>
+                  {profileClick && <HeaderProfileDropDown />}
                 </div>
               </li>
             </>
