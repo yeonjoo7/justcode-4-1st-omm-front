@@ -13,10 +13,17 @@ function Header() {
   const [chatNumber, setChatNumber] = useState(26);
 
   useEffect(() => {
-    if (localStorage.getItem('access_token')) {
+    if (!localStorage.getItem('access_token')) {
+      setIsLogin(false);
+    } else {
       setIsLogin(true);
     }
-  });
+  }, [isLogin]);
+
+  const logoutBtn = () => {
+    localStorage.removeItem('access_token');
+    setIsLogin(false);
+  };
 
   const profile = useRef();
   const profileOutline = () => {
@@ -63,14 +70,14 @@ function Header() {
         </span>
         <ul className={styles.headerBtn}>
           <li onClick={() => handleNavigate('/master/list')}>고수찾기</li>
-          <li onClick={() => handleNavigate('')}>
+          <li onClick={() => handleNavigate('')} className={styles.disabled}>
             마켓
             <span className={styles.marketNew}>N</span>
           </li>
           {isLogin ? (
             <>
               <li onClick={() => handleNavigate('/received_report')}>
-                <div className={styles.flexRow}>
+                <div className={`${styles.flexRow} ${styles.disabled}`}>
                   받은 견적
                   {isNewQuotation ? (
                     <div className={`${styles.redDot}`} />
@@ -78,10 +85,13 @@ function Header() {
                 </div>
               </li>
               <li onClick={() => handleNavigate('')}>
-                <div className={styles.flexRow}>
+                <div className={`${styles.flexRow} ${styles.disabled}`}>
                   채팅
                   <div className={`${styles.chatNum}`}>{chatNumber}</div>
                 </div>
+              </li>
+              <li onClick={logoutBtn}>
+                <div className={styles.flexRow}>로그아웃</div>
               </li>
               <li>
                 <FaRegBell size="1.3em" className={styles.bell} />
