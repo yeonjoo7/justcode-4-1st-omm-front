@@ -1,10 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './UserSignUp.module.scss';
-<<<<<<< HEAD
-=======
 //import Header from 'src/components/header/Header';
->>>>>>> faf31c17ad5f3e921df1a134bbcbd173a7464c43
 import Header from '../../components/header/Header';
 
 function UserSignUp() {
