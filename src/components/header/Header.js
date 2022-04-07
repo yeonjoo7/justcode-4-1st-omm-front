@@ -12,17 +12,11 @@ function Header() {
   const [isNewQuotation, setIsNewQuotation] = useState(true);
   const [chatNumber, setChatNumber] = useState(26);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/login')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data.token) {
-  //         setIsLogin(true);
-  //         setIsNewQuotation(true);
-  //         setChatNumber(data.chatNum);
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem('access_token')) {
+      setIsLogin(true);
+    }
+  });
 
   const profile = useRef();
   const profileOutline = () => {
@@ -35,17 +29,21 @@ function Header() {
     }
   };
 
+  function handleNavigate(path) {
+    navigate(path);
+  }
+
   return (
     <div className={styles.headerBox}>
       <nav className={styles.header}>
         <span className={styles.headerTitle}>
           <span className={styles.headerLogo}>
             <img
+              onClick={() => handleNavigate('/')}
               src="http://localhost:3000/images/logo/Soongo-logo.png"
-              width="120px"
+              width="100px"
               alt="soongo-logo"
             />
-            navigate("/")
           </span>
           <div className={`${styles.headerSearchBox} ${styles.hidden}`}>
             <input
@@ -64,25 +62,24 @@ function Header() {
           <FiSearch />
         </span>
         <ul className={styles.headerBtn}>
-          <li>navigate("master/list"); 고수찾기</li>
-          <li>
-            navigate("master/market"); 마켓
+          <li onClick={() => handleNavigate('/master/list')}>고수찾기</li>
+          <li onClick={() => handleNavigate('')}>
+            마켓
             <span className={styles.marketNew}>N</span>
           </li>
-
           {isLogin ? (
             <>
-              <li>
+              <li onClick={() => handleNavigate('/received_report')}>
                 <div className={styles.flexRow}>
-                  navigate("/receive-quotation") 받은 견적
+                  받은 견적
                   {isNewQuotation ? (
                     <div className={`${styles.redDot}`} />
                   ) : null}
                 </div>
               </li>
-              <li>
+              <li onClick={() => handleNavigate('')}>
                 <div className={styles.flexRow}>
-                  navigate("/chat") 채팅
+                  채팅
                   <div className={`${styles.chatNum}`}>{chatNumber}</div>
                 </div>
               </li>
@@ -106,10 +103,13 @@ function Header() {
             </>
           ) : (
             <>
-              <li>navigate("/login") 로그인</li>
-              <li>navigate("/signup") 회원가입</li>
-              <li className={styles.masterSignup}>
-                navigate("/master-signup") 고수가입
+              <li onClick={() => handleNavigate('/login')}>로그인</li>
+              <li onClick={() => handleNavigate('/sign-up')}>회원가입</li>
+              <li
+                onClick={() => handleNavigate('/pro/welcome')}
+                className={styles.masterSignup}
+              >
+                고수가입
               </li>
             </>
           )}

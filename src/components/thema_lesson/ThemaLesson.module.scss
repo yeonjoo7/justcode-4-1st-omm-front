@@ -26,6 +26,13 @@
   object-fit: cover;
   position: relative;
 }
+.category_img2 {
+  border-radius: 2%;
+  width: 100%; /* width of container */
+  object-fit: cover;
+  position: relative;
+  opacity: 0.5;
+}
 
 .category_text {
   background-color: white;

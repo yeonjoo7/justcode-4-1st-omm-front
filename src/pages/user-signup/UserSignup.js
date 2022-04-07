@@ -1,24 +1,35 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './UserSignUp.module.scss';
+import Header from 'src/components/header/Header';
 
 function UserSignUp() {
   // api로 보내기
-  useEffect(() => {
-    fetch('일반 고객 가입 api url', {
+
+  const sendUserSignUp = () => {
+    fetch('users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: emailValue,
-        username: nameValue,
+        name: nameValue,
         password: pwValue,
       }),
     })
-      .then()
-      .then();
-  }, []);
+      .then(response => {
+        return response.json();
+      })
+      .then(res => {
+        alert('회원가입 성공');
+      })
+      .then(() => navigate('/'))
+      // 에러핸들링 수정 필요
+      .catch(err => {
+        alert(err.message);
+      });
+  };
 
   const navigate = useNavigate();
   const [nameValue, setNameValue] = useState('');
@@ -27,6 +38,11 @@ function UserSignUp() {
   const [visiblePW, setPwVisible] = useState('password');
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
+  const invalidNameTag = useRef('');
+  const invalidIdTag = useRef('');
+  const invalidPwTag = useRef('');
+  const invalidAgreeTag = useRef('');
+  const invalidAgeTag = useRef('');
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -34,6 +50,7 @@ function UserSignUp() {
 
   return (
     <section className={styles.section}>
+      <Header />
       <h3 className={styles.title}>숭고에 오신 것을 환영합니다</h3>
       <div className={styles.card}>
         <form className={styles.form}>
@@ -51,6 +68,7 @@ function UserSignUp() {
               onChange={e => setNameValue(e.target.value)}
             />
             <div
+              ref={invalidNameTag}
               className={
                 2 <= nameValue.length || !nameValue
                   ? `${styles.invalidInput} ${styles.Off}`
@@ -74,6 +92,7 @@ function UserSignUp() {
               onChange={e => setEmailValue(e.target.value)}
             />
             <div
+              ref={invalidIdTag}
               className={
                 emailReg.test(emailValue) || !emailValue
                   ? `${styles.invalidInput} ${styles.Off}`
@@ -101,7 +120,7 @@ function UserSignUp() {
                 className={`${styles.pwType}`}
                 value="표시"
                 onClick={e => {
-                  //e.preventDefault();
+                  e.preventDefault();
                   if (e.target.childNodes[0].data === '표시') {
                     setPwVisible('text');
                     e.target.childNodes[0].data = '숨김';
@@ -115,6 +134,7 @@ function UserSignUp() {
               </button>
             </div>
             <div
+              ref={invalidPwTag}
               className={
                 pwReg.test(pwValue) || !pwValue
                   ? `${styles.invalidInput} ${styles.Off}`
@@ -139,11 +159,8 @@ function UserSignUp() {
             </label>
             이용약관, 개인정보 수집 및 이용 동의 (필수)
             <p
-              className={
-                agreeCheck
-                  ? `${styles.invalidInput} ${styles.Off}`
-                  : `${styles.invalidInput}`
-              }
+              ref={invalidAgreeTag}
+              className={`${styles.invalidInput} ${styles.Off}`}
             >
               이용약관에 동의해주세요.
             </p>
@@ -163,11 +180,8 @@ function UserSignUp() {
             </label>
             만 14세 이상 (필수)
             <p
-              className={
-                ageCheck
-                  ? `${styles.invalidInput} ${styles.Off}`
-                  : `${styles.invalidInput}`
-              }
+              ref={invalidAgeTag}
+              className={`${styles.invalidInput} ${styles.Off}`}
             >
               만 14세 이상 가입에 동의해주세요.
             </p>
@@ -175,16 +189,34 @@ function UserSignUp() {
 
           <button
             className={styles.signUpBtn}
-            disabled={
-              emailReg.test(emailValue) &&
-              pwReg.test(pwValue) &&
-              2 <= nameValue.length &&
-              agreeCheck &&
-              ageCheck
-                ? false
-                : true
-            }
-            onClick={() => navigate('/')}
+            onClick={e => {
+              e.preventDefault();
+              if (
+                emailReg.test(emailValue) &&
+                pwReg.test(pwValue) &&
+                2 <= nameValue.length &&
+                agreeCheck &&
+                ageCheck
+              ) {
+                sendUserSignUp();
+              }
+              if (nameValue.length < 2) {
+                invalidNameTag.current.className = `${styles.invalidInput}`;
+              }
+
+              if (!emailReg.test(emailValue)) {
+                invalidIdTag.current.style.display = 'block';
+              }
+              if (!pwReg.test(pwValue)) {
+                invalidPwTag.current.style.display = 'block';
+              }
+              if (!agreeCheck) {
+                invalidAgreeTag.current.className = `${styles.invalidInput}`;
+              }
+              if (!ageCheck) {
+                invalidAgeTag.current.className = `${styles.invalidInput}`;
+              }
+            }}
           >
             회원가입
           </button>

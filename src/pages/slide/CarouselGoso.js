@@ -4,10 +4,15 @@ import { AiFillStar } from 'react-icons/ai';
 
 const slideWidth = 10;
 
+const sleep = (ms = 0) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
+
 const createItem = (position, idx, activeIdx, _items) => {
   const item = {
     styles: {
       transform: `translateX(${position * slideWidth}rem)`,
+      transitionDuration: '1000ms',
     },
     goso: _items[idx],
   };
@@ -95,7 +100,7 @@ function CarouselGoso() {
   };
 
   useEffect(() => {
-    if (isTicking) setIsTicking(false);
+    if (isTicking) sleep(300).then(() => setIsTicking(false));
   }, [isTicking]);
 
   useEffect(() => {
