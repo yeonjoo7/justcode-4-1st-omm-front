@@ -71,19 +71,19 @@ function MainCategoryReportComplete() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/hwseol/goso_list.json', {
+    //fetch('http://localhost:3000/data/hwseol/goso_list.json', {
+    fetch(`/master/main_list/${category_num}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setGosoList(data);
+        setGosoList(data['getMasters']);
       });
   }, []);
 
   if (flag === 1) {
     PostRequestForm(result);
   }
-
   return (
     <>
       <Header />
@@ -112,11 +112,11 @@ function MainCategoryReportComplete() {
               <div className={styles.goso_line}>
                 <AiFillStar color="#FFCE21" size="1.1em" />
                 <p>{goso.star}</p>({goso.review_sum})&nbsp;&nbsp;
-                <div className={styles.recruit_box}>{goso.recruit}회 고용</div>
+                <div className={styles.recruit_box}>{goso.recurit}회 고용</div>
               </div>
-              <p className={styles.price}>
+              {/* <p className={styles.price}>
                 총 {goso.price.toLocaleString('ko-KR')}원 부터 ~
-              </p>
+              </p> */}
             </div>
           </div>
         ))}
@@ -132,6 +132,7 @@ function PostRequestForm(result) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        token: localStorage.getItem('access_token'),
       },
       body: JSON.stringify(result),
     })

@@ -55,7 +55,6 @@ function ReceivedReport() {
   if (localStorage.length === 0) {
     navigate('/login');
   }
-
   useEffect(() => {
     //fetch('http://localhost:3000/data/hwseol/received_report.json', {
     fetch(`/receive/estimate`, {
@@ -66,7 +65,6 @@ function ReceivedReport() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.message !== 'SUCCESS') {
           alert(data.message);
           navigate('/login');
