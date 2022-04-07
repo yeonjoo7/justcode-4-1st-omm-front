@@ -109,7 +109,7 @@ function ReportForm({ category, image, question }) {
     setQuestNum({});
     currentStep = 1;
   };
-
+  if (question === undefined) return true;
   return (
     <div>
       <div className={styles.box}>

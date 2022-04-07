@@ -7,7 +7,7 @@ const Step = ({ question, onChange, questNum }) => {
   return (
     <div className={styles.step1_container}>
       <div className={styles.small_headline}>{quest.description}</div>
-      {quest.choices.map((choice, index) => {
+      {quest.choiceQuestions.map((choice, index) => {
         return (
           <div
             className={styles.radio_div}
