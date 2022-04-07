@@ -41,11 +41,9 @@ function FormInfo({
     fetch('/address', { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         setAddress(res.address);
       });
   }, []);
-  console.log(address);
 
   return (
     <>
@@ -273,13 +271,7 @@ function FormInfo({
           <span className={styles.checkInner}>✔</span>
         </label>
         이용약관, 개인정보 수집 및 이용 동의 (필수)
-        <p
-          className={
-            agreeCheck
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
           이용약관에 동의해주세요.
         </p>
       </div>
@@ -297,13 +289,7 @@ function FormInfo({
           <span className={styles.checkInner}>✔</span>
         </label>
         만 14세 이상 (필수)
-        <p
-          className={
-            ageCheck
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
           만 14세 이상 가입에 동의해주세요.
         </p>
       </div>
