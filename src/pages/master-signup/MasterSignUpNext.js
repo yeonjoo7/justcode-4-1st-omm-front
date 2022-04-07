@@ -13,9 +13,7 @@ function FormBox({ questions, questionKey, lessonCategory }) {
       <h2 className={styles.formTitle}>
         구체적으로 어떤 서비스를 진행 할 수 있나요?
       </h2>
-      {/* {props로 내려준다.} */}
-      {questions.data1.map(data => {
-        // data1도 변수처리 해주어야함. {params.id} = theme_category 가져오기
+      {questions.map(data => {
         return (
           <QuestionForm
             name={data}
@@ -33,18 +31,18 @@ function FormBox({ questions, questionKey, lessonCategory }) {
 function QuestionForm({ value, lessonCategory }) {
   const [check, setCheck] = useState(false);
   useEffect(() => {
-    if (lessonCategory.includes(value)) {
+    if (lessonCategory.includes(value.id.toString())) {
       setCheck(true);
     }
-  }, [lessonCategory, value]);
+  }, [lessonCategory, value.id]);
   return (
     <div className={styles.questionBox}>
       <input
-        id={value}
+        id={value.id}
         className={styles.question}
         type="checkbox"
-        name={value}
-        value={value}
+        name={value.name}
+        value={value.id}
         checked={check}
         onChange={e => {
           if (e.target.checked && !lessonCategory.includes(e.target.value)) {
@@ -57,10 +55,10 @@ function QuestionForm({ value, lessonCategory }) {
           setCheck(prev => !prev);
         }}
       />
-      <label htmlFor={value}>
+      <label htmlFor={value.id}>
         <span className={styles.checkInner}>✔</span>
       </label>
-      {value}
+      {value.name}
     </div>
   );
 }
@@ -71,28 +69,31 @@ function MasterSignUpNext() {
   // 고수 가입 상세 기입은 2페이지로 구성. 하위 카테고리 -> 고수 개인 정보
 
   const params = useParams();
-  // 하단의 "data1"을 "params로 교체"
-  // const [questions, setQuestions] = useState({ `${params}`: [] });
-  const [questions, setQuestions] = useState({ data1: [] });
+  const [questions, setQuestions] = useState([]);
   const lessonCategory = useRef([]);
+  const address = useRef('');
+  const detail_address = useRef('');
+  const nameInvalid = useRef('');
+  const emailInvalid = useRef('');
+  const pwInvalid = useRef('');
+  const ageInvalid = useRef('');
+  const phoneInvalid = useRef('');
+  const agreeInvalid = useRef('');
+  const addressInvalid = useRef('');
   const masterInfo = useRef({
-    lesson_categories: lessonCategory.current,
     name: '',
     email: '',
-    phone_number: '',
-    gender: '',
-    termAgree: false,
-    ageAgree: false,
+    phoneNumber: '',
+    detailAddress: '',
+    address: '',
+    lessonCatID: lessonCategory.current,
   });
   let questionKey = 0;
   let formComponentKey = 0;
 
   // 하단 부분을 params로 교체
   useEffect(() => {
-    // fetch(`http://localhost:8000/lesson_categories/${params}.json`, {
-    //   method: 'GET',
-    // })
-    fetch('http://localhost:3000/data/tekwoolee/master-signup/question.json', {
+    fetch(`http://localhost:8000/category/${params.id}`, {
       method: 'GET',
     })
       .then(res => {
@@ -111,18 +112,16 @@ function MasterSignUpNext() {
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
 
-  const visibleInvalid = useRef('');
-
   const [formPage, setFormRender] = useState(0);
   const formRender = [
     <FormBox
       questions={questions}
       questionKey={questionKey}
-      key={formComponentKey}
+      key={formComponentKey++}
       lessonCategory={lessonCategory.current}
     />,
     <FormInfo
-      key={formComponentKey}
+      key={formComponentKey++}
       masterInfo={masterInfo.current}
       ageCheck={ageCheck}
       agreeCheck={agreeCheck}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpFooter.module.scss';
 
@@ -8,11 +8,11 @@ function MasterSignUpFooter({
   pageNumber,
   allData,
   checkLesson,
-  ageCheck,
-  setAgeCheckLast,
-  agreeCheck,
-  setAgreeCheckLast,
 }) {
+  const navigate = useNavigate();
+
+  //80 ~ 81 refactoring
+
   // 입력 정보 유효성 검사
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -21,19 +21,30 @@ function MasterSignUpFooter({
 
   // 모든 데이터를 취합하여 보내는 footer
   const sendMasterInfo = data => {
-    fetch('http://localhost:데이터보낼url', {
+    fetch('http://localhost:8000/master/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/JSON' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
+      .then(response => {
+        if (!response.ok) {
+          throw response;
+        }
+        return response;
+      })
       .then(res => res.json())
-      .catch(err => alert(err));
+      .then(() => {
+        alert('회원가입 성공');
+        navigate('/');
+      })
+      .catch(error => error.json())
+      .then(err => {
+        alert(`Error : ${err.message}`);
+      });
   };
   // 에러 핸들링 추가 필요
 
-  // 구조분해 할당이 왜 안될까? 구조부해 할당 시 아예 값이 없는 것으로 나옴.
-  // const { email, name, phone_number, password, ageAgree, termAgree } = allData;
-  const navigate = useNavigate();
+  const { email, password, phoneNumber, name } = allData;
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.btnWrapper}>
@@ -54,21 +65,24 @@ function MasterSignUpFooter({
             if (checkLesson.length === 0) {
               return;
             }
+
             setFormRender(prev => (prev === renderLength ? prev : prev + 1));
-            if (
-              e.target.innerText === '가입하기' &&
-              pwReg.test(allData.password) &&
-              emailReg.test(allData.email) &&
-              phoneReg.test(allData.phone_number) &&
-              2 <= allData.name.length &&
-              allData.termAgree &&
-              allData.ageAgree
-            ) {
-              // fetch 보내기
-              sendMasterInfo(allData);
-            } else {
-              return;
+            if (e.target.innerText === '가입하기') {
+              if (
+                pwReg.test(password) &&
+                emailReg.test(email) &&
+                phoneReg.test(phoneNumber) &&
+                2 <= name.length &&
+                allData.address != '0' &&
+                allData.detailAddress != '0'
+              ) {
+                // fetch 보내기
+                sendMasterInfo(allData);
+              } else {
+                alert('모든 정보를 올바르게 입력해주세요');
+              }
             }
+            return;
           }}
         >
           {pageNumber === renderLength ? '가입하기' : '다음'}

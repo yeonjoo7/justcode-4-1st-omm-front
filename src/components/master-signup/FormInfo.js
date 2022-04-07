@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './FormInfo.module.scss';
 
 function FormInfo({
@@ -7,8 +7,6 @@ function FormInfo({
   agreeCheck,
   setAgeCheck,
   setAgreeCheck,
-  agreeCheckLast,
-  ageCheckLast,
 }) {
   //리액트
   const [nameValue, setNameValue] = useState('');
@@ -17,25 +15,32 @@ function FormInfo({
   const [phoneValue, setPhoneValue] = useState('');
   const [visiblePW, setPwVisible] = useState('password');
   const [gender, setGender] = useState('');
-  // const [agreeCheck, setAgreeCheck] = useState(false);
-  // const [ageCheck, setAgeCheck] = useState(false);
+  const [address, setAddress] = useState([{}]);
+  const [selectAddress, setSelectAddress] = useState(0);
+  const [selectDetailAddress, setSelectDetailAddress] = useState(0);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
-  const phoneReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+  const phoneReg = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+  // 핸드폰 번호 '-' 추가하여 db에 전송
 
   masterInfo.name = nameValue;
   masterInfo.email = emailValue;
   masterInfo.password = pwValue;
-  masterInfo.phone_number = phoneValue;
-  masterInfo.termAgree = agreeCheck;
-  masterInfo.ageAgree = ageCheck;
+  masterInfo.phoneNumber = phoneValue;
+  masterInfo.address = selectAddress.name;
+  masterInfo.detailAddress = selectDetailAddress;
 
   // 성별 정보는 테이블에 없어서 전달 x
   // 테이블 수정 시 추가
-  //masterInfo.gender = gender; 성별 정보는 전달할 필요 없어서 포함시키지 않음
-
+  useEffect(() => {
+    fetch('/address', { method: 'GET' })
+      .then(res => res.json())
+      .then(res => {
+        setAddress(res.address);
+      });
+  }, []);
   return (
     <>
       <h3 className={styles.formTitle}>마지막으로 필수 정보를 입력해주세요.</h3>
@@ -79,6 +84,7 @@ function FormInfo({
             />{' '}
             <label htmlFor="male">남자</label>
           </div>
+          <div className={styles.gap}></div>
           <div className={styles.genderBtnWrapper}>
             <input
               className={styles.genderRadio}
@@ -94,49 +100,70 @@ function FormInfo({
             <label htmlFor="female">여자</label>
           </div>
         </div>
-        <p
-          className={
-            gender
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
-          성별을 선택해주세요.
-        </p>
+        <p className={styles.Off}>성별을 선택해주세요.</p>
       </div>
-      {/* 주소 선택창 구현 나중에 */}
-      {/* <div className={styles.inputBox}>
+      <div className={styles.inputBox}>
         <p className={styles.inputName}>주소</p>
         <div className={styles.gender}>
           <div className={styles.genderBtnWrapper}>
-            <select className={styles.genderRadio} />{' '}
-            <label htmlFor="male">남자</label>
-          </div>
-          <div className={styles.genderBtnWrapper}>
-            <input
-              className={styles.genderRadio}
-              id="female"
-              type="radio"
-              value="female"
-              name="female"
-              checked={gender === 'female'}
-              onChange={() => {
-                setGender('female');
+            <label htmlFor="address" className={styles.addressLabel}>
+              시 / 도
+            </label>
+            <select
+              className={styles.options}
+              id="address"
+              onChange={e => {
+                if (e.target.value !== '0') {
+                  setSelectAddress(
+                    address.find(name => name.name === e.target.value)
+                  );
+                } else {
+                  setSelectDetailAddress(0);
+                  setSelectAddress(0);
+                }
               }}
-            />
-            <label htmlFor="female">여자</label>
+            >
+              <option value={0}>선택</option>
+              {address[0].name === undefined
+                ? null
+                : address.map(address => {
+                    return (
+                      <option value={address.name} key={address.id}>
+                        {address.name}
+                      </option>
+                    );
+                  })}
+            </select>
+          </div>
+          <div className={styles.gap} />
+          <div className={styles.genderBtnWrapper}>
+            <label htmlFor="detailAddress" className={styles.addressLabel}>
+              상세 지역
+            </label>
+            <select
+              className={styles.options}
+              id="detailAddress"
+              onChange={e => {
+                setSelectDetailAddress(e.target.value);
+              }}
+            >
+              <option value={0}>선택</option>
+              {selectAddress.detailAddress === undefined
+                ? null
+                : selectAddress.detailAddress.map(detail => {
+                    return (
+                      <option value={detail.name} key={detail.id}>
+                        {detail.name}
+                      </option>
+                    );
+                  })}
+            </select>
           </div>
         </div>
-        <p
-          className={
-            gender
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
-          성별을 선택해주세요.
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
+          주소를 선택해주세요.
         </p>
-      </div> */}
+      </div>
       <div className={styles.inputBox}>
         <p className={styles.inputName}>이메일</p>
         <input
@@ -214,7 +241,7 @@ function FormInfo({
           }
           type="text"
           value={phoneValue}
-          placeholder="핸드폰 번호를 입력해주세요"
+          placeholder="핸드폰 번호를 입력해주세요 (- 없이)"
           onChange={e => {
             setPhoneValue(e.target.value);
           }}
@@ -245,13 +272,7 @@ function FormInfo({
           <span className={styles.checkInner}>✔</span>
         </label>
         이용약관, 개인정보 수집 및 이용 동의 (필수)
-        <p
-          className={
-            agreeCheck
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
           이용약관에 동의해주세요.
         </p>
       </div>
@@ -269,13 +290,7 @@ function FormInfo({
           <span className={styles.checkInner}>✔</span>
         </label>
         만 14세 이상 (필수)
-        <p
-          className={
-            ageCheck
-              ? `${styles.invalidInput} ${styles.Off}`
-              : `${styles.invalidInput}`
-          }
-        >
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
           만 14세 이상 가입에 동의해주세요.
         </p>
       </div>

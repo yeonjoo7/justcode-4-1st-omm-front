@@ -1,5 +1,3 @@
-@import '/src/styles/common.scss';
-
 //Question
 .questionBox {
   width: 100%;
@@ -25,7 +23,7 @@
 }
 
 .question:checked + label {
-  background: #03c7ae;
+  background: #00c7ae;
 }
 
 .checkInner {
