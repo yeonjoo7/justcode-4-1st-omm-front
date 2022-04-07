@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './UserSignUp.module.scss';
-import Header from 'src/components/header/Header';
+import Header from '../../components/header/Header';
 
 function UserSignUp() {
   // api로 보내기
 
   const sendUserSignUp = () => {
-    fetch('http://localhost:8000/users/signup', {
+    fetch('users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

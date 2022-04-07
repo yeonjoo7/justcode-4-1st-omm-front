@@ -1,11 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 function Login() {
-  useEffect(() => {
-    fetch('http://localhost:8000/user/login', {
+  let [id, setId] = useState('');
+  let [pw, setPw] = useState('');
+
+  const navigate = useNavigate();
+  const gotomain = () => {
+    navigate('/');
+  };
+  const dataFetch = () => {
+    // try {
+    fetch('users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,27 +25,29 @@ function Login() {
         password: pw,
       }),
     })
-      .then(res => res.json())
       .then(res => {
-        localStorage.setItem('access-token', res.access_token);
-      });
-  });
+        return res.json();
+      })
+      .then(res => {
+        localStorage.setItem('access_token', res.access_token);
+      })
+      .then(() => gotomain());
 
-  const navigate = useNavigate();
-  const gotomain = () => {
-    navigate('/');
+    // } catch (err) {
+    //   return err.statusCode({ message: err.message });
+    // }
   };
-  let [id, setId] = useState('');
-  let [pw, setPw] = useState('');
 
-  let abledButton = id.includes('@') && pw.length > 7;
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
 
+  let abledButton = emailReg.test(id) && pwReg.test(pw);
+
   return (
-    <div classname={styles.page}>
-      <div>
+    <>
+      <Header />
+      <div className={styles.page}>
         <div className={styles.loginText}>로그인</div>
         <section className={styles.section}>
           <div>
@@ -105,7 +117,7 @@ function Login() {
             <button
               className={styles.loginBtn}
               disabled={!abledButton}
-              onClick={gotomain}
+              onClick={dataFetch}
             >
               이메일 로그인
             </button>
@@ -113,13 +125,14 @@ function Login() {
             <button className={styles.facebookBtn}>
               Facebook으로 시작하기
             </button>
-            <Link to="./signup" className={styles.goToSignUp}>
+            <Link to="../sign-up" className={styles.goToSignUp}>
               계정이 없으신가요?
             </Link>
           </div>
         </section>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 export default Login;
