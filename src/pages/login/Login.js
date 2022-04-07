@@ -31,8 +31,9 @@ function Login() {
       .then(res => {
         localStorage.setItem('access_token', res.access_token);
       })
-      .then(() => gotomain());
-
+      .then(() => {
+        gotomain();
+      });
     // } catch (err) {
     //   return err.statusCode({ message: err.message });
     // }

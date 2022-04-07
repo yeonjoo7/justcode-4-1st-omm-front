@@ -6,24 +6,37 @@ import ReportForm from '../../components/step/ThemaCategoryForm';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { AiFillStar } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 function MainCategoryReport() {
   const location = useLocation();
   const { category, image, lecture_id } = location.state;
   const [question, setQuestion] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     //fetch('http://localhost:3000/data/hwseol/lesson_question.json', {
     fetch(`/form/questions/${lecture_id}`, {
       method: 'GET',
+      headers: {
+        token: localStorage.getItem('access_token'),
+      },
     })
       .then(res => res.json())
       .then(data => {
+        if (data.message === 'LESSON ALEADY EXIST') {
+          alert('이미 요청하신 요청주제 입니다');
+          navigate('/');
+        } else if (data.message !== 'SUCCESS') {
+          alert(data.message);
+          navigate('/login');
+        }
         setQuestion(data.questions);
       });
   }, [lecture_id]);
-  let imgUrl = '/' + image;
 
-  console.log('token :', localStorage);
+  let imgUrl = '/' + image;
+  if (question === undefined) return true;
   return (
     <>
       <Header />/
