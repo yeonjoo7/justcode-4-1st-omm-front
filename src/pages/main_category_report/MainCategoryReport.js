@@ -25,13 +25,17 @@ function MainCategoryReport() {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.message !== 'SUCCESS') {
+        if (data.message === 'LESSON ALEADY EXIST') {
+          alert('이미 요청하신 요청주제 입니다');
+          navigate('/');
+        } else if (data.message !== 'SUCCESS') {
           alert(data.message);
           navigate('/login');
         }
         setQuestion(data.questions);
       });
   }, [lecture_id]);
+
   let imgUrl = '/' + image;
   if (question === undefined) return true;
   return (
