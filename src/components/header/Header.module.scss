@@ -142,6 +142,10 @@
   display: none;
 }
 
+.disabled {
+  opacity: 50%;
+}
+
 @media screen and (max-width: 761px) {
   .header {
     width: 100vw;

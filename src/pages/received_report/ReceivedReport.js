@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ReceviedBox({ _data, index }) {
   let img_datas = _data.goso_images.slice(0, 6);
@@ -49,15 +50,26 @@ function ReceviedBox({ _data, index }) {
 
 function ReceivedReport() {
   const [data, setData] = useState();
+  const navigate = useNavigate();
+
+  if (localStorage.length === 0) {
+    navigate('/login');
+  }
   useEffect(() => {
     //fetch('http://localhost:3000/data/hwseol/received_report.json', {
     fetch(`/receive/estimate`, {
       method: 'GET',
+      headers: {
+        token: localStorage.getItem('access_token'),
+      },
     })
       .then(res => res.json())
       .then(data => {
+        if (data.message !== 'SUCCESS') {
+          alert(data.message);
+          navigate('/login');
+        }
         setData(data.questions);
-        //setData(data);
       });
   }, []);
 

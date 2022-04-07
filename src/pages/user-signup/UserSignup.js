@@ -7,7 +7,7 @@ function UserSignUp() {
   // api로 보내기
 
   const sendUserSignUp = () => {
-    fetch('users/signup', {
+    fetch('http://localhost:8000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

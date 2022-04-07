@@ -31,6 +31,12 @@ function ReportForm({ category, image, question }) {
     question.pop();
   }, [question]);
 
+  useEffect(() => {
+    setStep(1);
+    setQuestNum({});
+    currentStep = 1;
+  }, []);
+
   const _next = () => {
     return (() => {
       setFlag(0);
