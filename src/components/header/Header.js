@@ -77,7 +77,7 @@ function Header() {
           {isLogin ? (
             <>
               <li onClick={() => handleNavigate('/received_report')}>
-                <div className={`${styles.flexRow} ${styles.disabled}`}>
+                <div className={styles.flexRow}>
                   받은 견적
                   {isNewQuotation ? (
                     <div className={`${styles.redDot}`} />
