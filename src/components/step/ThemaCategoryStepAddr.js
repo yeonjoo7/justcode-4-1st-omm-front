@@ -6,6 +6,7 @@ const StepAddr = ({ onChange, questNum }) => {
   const [addrData, setAddrData] = useState([]);
   const [firstOption, setFirstOption] = useState(0);
   const [secondOption, setSecondOption] = useState(0);
+
   useEffect(() => {
     fetch('http://localhost:3000/data/hwseol/address.json', {
       method: 'GET',
@@ -20,6 +21,7 @@ const StepAddr = ({ onChange, questNum }) => {
       setFirstOption(Number(questNum.address1));
     }
   }, [questNum.address1, questNum.address2]);
+
   const onChangeOption = e => {
     setFirstOption(e.target.value);
   };

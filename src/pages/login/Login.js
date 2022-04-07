@@ -15,7 +15,7 @@ function Login() {
   };
   const dataFetch = () => {
     // try {
-    fetch('로그인api', {
+    fetch('users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,16 +26,13 @@ function Login() {
       }),
     })
       .then(res => {
-        // if (res.status >= 400) {
-        //   throw new Error('Server responds with error');
-        // }
-        // return
-        res.json();
+        return res.json();
       })
       .then(res => {
-        localStorage.setItem('access-token', res.access_token);
-      });
-    gotomain();
+        localStorage.setItem('access_token', res.access_token);
+      })
+      .then(() => gotomain());
+
     // } catch (err) {
     //   return err.statusCode({ message: err.message });
     // }

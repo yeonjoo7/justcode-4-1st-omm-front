@@ -9,19 +9,21 @@ import { AiFillStar } from 'react-icons/ai';
 
 function MainCategoryReport() {
   const location = useLocation();
-  const { category, image } = location.state;
+  const { category, image, lecture_id } = location.state;
   const [question, setQuestion] = useState([]);
-
   useEffect(() => {
-    fetch('http://localhost:3000/data/hwseol/lesson_question.json', {
+    //fetch('http://localhost:3000/data/hwseol/lesson_question.json', {
+    fetch(`/form/questions/${lecture_id}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
         setQuestion(data.questions);
       });
-  }, []);
+  }, [lecture_id]);
   let imgUrl = '/' + image;
+
+  console.log('token :', localStorage);
   return (
     <>
       <Header />/
