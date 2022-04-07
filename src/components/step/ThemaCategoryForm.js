@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ThemaCategoryForm.module.scss';
 import Step from '../../components/step/ThemaCategoryStep';
 import StepAddr from '../../components/step/ThemaCategoryStepAddr';
 import { Link } from 'react-router-dom';
+
 let currentStep = 1;
 
 const ProgressBar = ({ progress }) => {
@@ -26,6 +27,10 @@ function ReportForm({ category, image, question }) {
     setQuestNum({ ...questNum, [name]: value });
     setFlag(0);
   };
+  useEffect(() => {
+    question.pop();
+  }, [question]);
+
   const _next = () => {
     return (() => {
       setFlag(0);
@@ -61,8 +66,8 @@ function ReportForm({ category, image, question }) {
     } else {
       return (
         <Link
-          to="complete"
-          state={{ quest: questNum, category: category, image: image }}
+          to="/complete"
+          state={{ quest: questNum, category: category, image: image, flag: 1 }}
         >
           <button
             className={styles.btn_right}
@@ -89,6 +94,20 @@ function ReportForm({ category, image, question }) {
       );
     }
     return null;
+  };
+
+  useEffect(() => {
+    window.addEventListener('popstate', alertUser);
+    return () => {
+      window.removeEventListener('popstate', alertUser);
+    };
+  }, []);
+  const alertUser = e => {
+    e.preventDefault();
+    alert('페이지를 이동하면 작성한 데이터가 모두 사라집니다');
+    setStep(1);
+    setQuestNum({});
+    currentStep = 1;
   };
 
   return (

@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FilteringModal.module.scss';
 import { BsXLg, BsList, BsSearch, BsArrowReturnRight } from 'react-icons/bs';
 import { IoIosArrowDown } from 'react-icons/io';
 import { GoLocation } from 'react-icons/go';
 
-import CategoryModalSearchList from './CategoryModalSearchList';
+import FilteringModalSearch from './FilteringModalSearch';
 
 const FilteringModal = props => {
-  const { datas, isModalVisible, setIsModalVisible, setUseFilter } = props;
+  const { isModalVisible, setIsModalVisible, setUseFilter } = props;
+  const [datas, setDatas] = useState([]);
   const [useInputText, setUseInputText] = useState('');
   const isAddressType = isModalVisible.type === 'address';
+
+  useEffect(() => {
+    const urlName = isAddressType ? '/address' : '/category';
+    fetch(urlName)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        if (isAddressType) {
+          const { address } = data;
+          setDatas(address);
+        } else {
+          const { categories } = data;
+          setDatas(categories);
+        }
+      });
+  }, [isAddressType]);
 
   function handleCancleModal() {
     setIsModalVisible(false);
@@ -153,7 +171,7 @@ const FilteringModal = props => {
                   })}
                 </ul>
               ) : (
-                <CategoryModalSearchList
+                <FilteringModalSearch
                   useInputText={useInputText}
                   setUseInputText={setUseInputText}
                   datas={datas}

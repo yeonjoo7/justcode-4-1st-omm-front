@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './MasterListHeader.module.scss';
 import { BsGrid } from 'react-icons/bs';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
@@ -61,7 +61,7 @@ const MasterListHeader = props => {
     <>
       <header className={styles.masterListHeader}>
         <div className={styles.headerNav}>
-          <h2>고수찾기</h2>
+          <h1>고수찾기</h1>
           <span>
             숭고 <IoIosArrowForward size="10px" />{' '}
             {!useAddress ? '지역' : useAddress.name}

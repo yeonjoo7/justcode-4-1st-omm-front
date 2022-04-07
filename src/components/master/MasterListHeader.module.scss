@@ -1,6 +1,6 @@
 $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩니다.
 
-@media (max-width: 990px) {
+@media (max-width: 890px) {
   .categoryBtn,
   .addressBtn {
     width: 100% !important;
@@ -11,9 +11,11 @@ $sign-color: #03c7ae; //시그니처 컬러 변수지정해서 사용하면 됩�
   line-height: 1.6;
   .headerNav {
     margin: 20px 0px;
-    h2 {
-      font-weight: 500;
+    h1 {
+      font-size: 26px;
+      font-weight: 600;
       margin-bottom: 0px;
+      color: #323232;
     }
     span {
       font-size: 13px;

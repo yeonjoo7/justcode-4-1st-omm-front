@@ -6,7 +6,9 @@ import ThemaCategoryList from './pages/category/ThemaCategoryList';
 import MainCategoryReport from './pages/main_category_report/MainCategoryReport';
 import MainCategoryReportComplete from './pages/main_category_report/MainCategoryReportComplete';
 import UserSignUp from './pages/user-signup/UserSignup';
+import ReceivedReport from './pages/received_report/ReceivedReport';
 // import MasterSignup from './pages/master-signup/MasterSignup';
+import MasterProfile from './pages/master_profile/MasterProfile';
 
 import './styles/reset.scss';
 import './styles/common.scss';
@@ -23,12 +25,11 @@ function App() {
           path="/:lesson_category/:lesson_name"
           element={<MainCategoryReport />}
         />
-        <Route
-          path="/:lesson_category/:lesson_name/complete"
-          element={<MainCategoryReportComplete />}
-        />
+        <Route path="/complete" element={<MainCategoryReportComplete />} />
         <Route path="/sign-up" element={<UserSignUp />} />
+        <Route path="/received_report" element={<ReceivedReport />} />
         {/* <Route path="/pro/welcome" element={<MasterSignup />} /> */}
+        <Route path="/master/profile" element={<MasterProfile />} />
       </Routes>
     </BrowserRouter>
   );
