@@ -33,6 +33,28 @@
       }
     }
   ],
+  "masterPosts": [
+    {
+      "id": 1,
+      "postImage": "/images/thump/develop1.png"
+    },
+    {
+      "id": 1,
+      "postImage": "/images/thump/develop1.png"
+    },
+    {
+      "id": 1,
+      "postImage": "/images/thump/develop1.png"
+    },
+    {
+      "id": 1,
+      "postImage": "/images/thump/develop1.png"
+    },
+    {
+      "id": 1,
+      "postImage": "/images/thump/develop1.png"
+    }
+  ],
   "reviews": [
     {
       "id": 1,

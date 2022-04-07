@@ -7,7 +7,7 @@ import { GoLocation } from 'react-icons/go';
 import FilteringModalSearch from './FilteringModalSearch';
 
 const FilteringModal = props => {
-  const { isModalVisible, setIsModalVisible, setUseFilter } = props;
+  const { isModalVisible, setIsModalVisible, setUseFilter, path } = props;
   const [datas, setDatas] = useState([]);
   const [useInputText, setUseInputText] = useState('');
   const isAddressType = isModalVisible.type === 'address';
@@ -103,13 +103,15 @@ const FilteringModal = props => {
           {isAddressType ? (
             <div className={styles.modalList}>
               <ul>
-                <li onClick={() => handleCilckAddress(null)}>
-                  <details>
-                    <summary>
-                      <span>전국</span>
-                    </summary>
-                  </details>
-                </li>
+                {!path && (
+                  <li onClick={() => handleCilckAddress(null)}>
+                    <details>
+                      <summary>
+                        <span>전국</span>
+                      </summary>
+                    </details>
+                  </li>
+                )}
                 {datas.map(address => {
                   return (
                     <li key={address.id}>
@@ -118,11 +120,17 @@ const FilteringModal = props => {
                           <span>{address.name}</span>
                           <IoIosArrowDown size="24px" color="#bfbfbf" />
                         </summary>
-                        {address.details.map(detail => {
+                        {address.detailAddress.map(detail => {
                           return (
                             <div
                               key={detail.id}
-                              onClick={() => handleCilckAddress(detail)}
+                              onClick={() =>
+                                handleCilckAddress({
+                                  id: address.id,
+                                  name: address.name,
+                                  details: { id: detail.id, name: detail.name },
+                                })
+                              }
                             >
                               <BsArrowReturnRight color="#bfbfbf" />
                               <span>{detail.name}</span>
@@ -154,11 +162,20 @@ const FilteringModal = props => {
                             <span>{category.name}</span>
                             <IoIosArrowDown size="24px" color="#bfbfbf" />
                           </summary>
-                          {category.lessons.map(lesson => {
+                          {category.lessonCategories.map(lesson => {
                             return (
                               <div
                                 key={lesson.id}
-                                onClick={() => handleClickLesson(lesson)}
+                                onClick={() =>
+                                  handleClickLesson({
+                                    id: category.id,
+                                    name: category.name,
+                                    lessons: {
+                                      id: lesson.id,
+                                      name: lesson.name,
+                                    },
+                                  })
+                                }
                               >
                                 <BsArrowReturnRight color="#bfbfbf" />
                                 <span>{lesson.name}</span>

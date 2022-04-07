@@ -11,7 +11,6 @@ const MasterCategoryModal = props => {
   const [useChecked, setUseChecked] = useState(useCategories);
   const [datas, setDatas] = useState([]);
 
-  console.log(useChecked);
   useEffect(() => {
     fetch('/category')
       .then(response => {
@@ -53,7 +52,6 @@ const MasterCategoryModal = props => {
     handleCloseDetails();
   }
 
-  console.log(useChecked);
   return (
     <div
       className={`${styles.modalMain} ${isModalVisible && styles.modalVisible}`}
@@ -82,7 +80,7 @@ const MasterCategoryModal = props => {
                         <span>{category.name}</span>
                         <IoIosArrowDown size="24px" color="#bfbfbf" />
                       </summary>
-                      {category.lessons.map(lesson => {
+                      {category.lessonCategories.map(lesson => {
                         let checkedId = useChecked.map(checked => checked.id);
                         let isChecked = checkedId.includes(lesson.id);
                         return (
