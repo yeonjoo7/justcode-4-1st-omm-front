@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpFooter.module.scss';
 
@@ -11,6 +11,8 @@ function MasterSignUpFooter({
 }) {
   const navigate = useNavigate();
 
+  //80 ~ 81 refactoring
+
   // 입력 정보 유효성 검사
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -19,7 +21,6 @@ function MasterSignUpFooter({
 
   // 모든 데이터를 취합하여 보내는 footer
   const sendMasterInfo = data => {
-    console.log('before 함수 내부 fetch 실행 전 :', data);
     fetch('http://localhost:8000/master/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -27,10 +28,8 @@ function MasterSignUpFooter({
     })
       .then(response => {
         if (!response.ok) {
-          console.log('error 1 : ', response);
           throw response;
         }
-        console.log('return 1 : ', response);
         return response;
       })
       .then(res => res.json())
@@ -40,7 +39,6 @@ function MasterSignUpFooter({
       })
       .catch(error => error.json())
       .then(err => {
-        console.log('catch -> then error : ', err);
         alert(`Error : ${err.message}`);
       });
   };
@@ -67,21 +65,24 @@ function MasterSignUpFooter({
             if (checkLesson.length === 0) {
               return;
             }
+
             setFormRender(prev => (prev === renderLength ? prev : prev + 1));
-            if (
-              e.target.innerText === '가입하기' &&
-              pwReg.test(password) &&
-              emailReg.test(email) &&
-              phoneReg.test(phoneNumber) &&
-              2 <= name.length &&
-              allData.address !== undefined &&
-              allData.detailAddress !== undefined
-            ) {
-              // fetch 보내기
-              sendMasterInfo(allData);
-            } else {
-              return;
+            if (e.target.innerText === '가입하기') {
+              if (
+                pwReg.test(password) &&
+                emailReg.test(email) &&
+                phoneReg.test(phoneNumber) &&
+                2 <= name.length &&
+                allData.address != '0' &&
+                allData.detailAddress != '0'
+              ) {
+                // fetch 보내기
+                sendMasterInfo(allData);
+              } else {
+                alert('모든 정보를 올바르게 입력해주세요');
+              }
             }
+            return;
           }}
         >
           {pageNumber === renderLength ? '가입하기' : '다음'}

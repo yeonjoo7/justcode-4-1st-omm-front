@@ -73,6 +73,13 @@ function MasterSignUpNext() {
   const lessonCategory = useRef([]);
   const address = useRef('');
   const detail_address = useRef('');
+  const nameInvalid = useRef('');
+  const emailInvalid = useRef('');
+  const pwInvalid = useRef('');
+  const ageInvalid = useRef('');
+  const phoneInvalid = useRef('');
+  const agreeInvalid = useRef('');
+  const addressInvalid = useRef('');
   const masterInfo = useRef({
     name: '',
     email: '',
@@ -104,8 +111,6 @@ function MasterSignUpNext() {
   // 나이, 개인정보 공유 동의
   const [agreeCheck, setAgreeCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
-
-  const visibleInvalid = useRef('');
 
   const [formPage, setFormRender] = useState(0);
   const formRender = [

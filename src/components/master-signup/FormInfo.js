@@ -7,8 +7,6 @@ function FormInfo({
   agreeCheck,
   setAgeCheck,
   setAgreeCheck,
-  agreeCheckLast,
-  ageCheckLast,
 }) {
   //리액트
   const [nameValue, setNameValue] = useState('');
@@ -20,8 +18,6 @@ function FormInfo({
   const [address, setAddress] = useState([{}]);
   const [selectAddress, setSelectAddress] = useState(0);
   const [selectDetailAddress, setSelectDetailAddress] = useState(0);
-  const addressInvalid = useRef(null);
-  const ageInvalid = useRef(null);
 
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -122,6 +118,7 @@ function FormInfo({
                     address.find(name => name.name === e.target.value)
                   );
                 } else {
+                  setSelectDetailAddress(0);
                   setSelectAddress(0);
                 }
               }}
@@ -163,7 +160,7 @@ function FormInfo({
             </select>
           </div>
         </div>
-        <p ref={addressInvalid} className={styles.Off}>
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
           주소를 선택해주세요.
         </p>
       </div>
@@ -293,7 +290,7 @@ function FormInfo({
           <span className={styles.checkInner}>✔</span>
         </label>
         만 14세 이상 (필수)
-        <p ref={ageInvalid} className={`${styles.invalidInput} ${styles.Off}`}>
+        <p className={`${styles.invalidInput} ${styles.Off}`}>
           만 14세 이상 가입에 동의해주세요.
         </p>
       </div>
