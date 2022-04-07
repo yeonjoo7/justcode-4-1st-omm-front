@@ -8,7 +8,7 @@ import Footer from '../../components/footer/Footer';
 const MasterList = () => {
   const [masters, setMasters] = useState([]);
   const [useCategory, setUseCategory] = useState(null);
-  const [useAdress, setUseAdress] = useState(null);
+  const [useAddress, setUseAddress] = useState(null);
   const [useSort, setUseSort] = useState('리뷰순');
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const MasterList = () => {
           setUseSort={setUseSort}
           useCategory={useCategory}
           setUseCategory={setUseCategory}
-          useAdress={useAdress}
-          setUseAdress={setUseAdress}
+          useAddress={useAddress}
+          setUseAddress={setUseAddress}
         />
         <MasterListContents masters={masters} />
       </main>

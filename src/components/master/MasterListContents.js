@@ -4,6 +4,7 @@ import MasterItem from './MasterItem';
 
 const MasterListContents = props => {
   const { masters } = props;
+
   return (
     <section>
       {masters.map(master => {
