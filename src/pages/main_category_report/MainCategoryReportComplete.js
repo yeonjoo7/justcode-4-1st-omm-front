@@ -132,6 +132,7 @@ function PostRequestForm(result) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        token: localStorage.getItem('access_token'),
       },
       body: JSON.stringify(result),
     })
