@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
-const PORT = process.env.REACT_APP_SERVER_PORT;
 
 function Login() {
   let [id, setId] = useState('');
@@ -15,8 +14,7 @@ function Login() {
     navigate('/');
   };
   const dataFetch = () => {
-    // try {
-    fetch(PORT + '/users/login', {
+    fetch('http://localhost:8000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,14 +28,20 @@ function Login() {
         return res.json();
       })
       .then(res => {
-        localStorage.setItem('access_token', res.access_token);
+        if (res.access_token) {
+          localStorage.setItem('access_token', res.access_token);
+        } else {
+          const error = new Error('잘못된 이메일이거나 비밀번호입니다.');
+          error.statusCode = 400;
+          throw error;
+        }
       })
       .then(() => {
         gotomain();
+      })
+      .catch(error => {
+        alert(error.message);
       });
-    // } catch (err) {
-    //   return err.statusCode({ message: err.message });
-    // }
   };
 
   const emailReg =
