@@ -58,7 +58,7 @@ function MainCategoryReportComplete() {
 
   const keys = Object.keys(quest);
   for (let i = 0; i < keys.length; i++) {
-    _result.user_id = 1; //수정해야 함
+    _result.user_id = localStorage.getItem('access_token'); //수정해야 함
     _result.lesson_category_id = category_num;
     if (keys[i] === 'address1' || keys[i] === 'address2') {
       _result.question_id = i + 1;
@@ -69,7 +69,6 @@ function MainCategoryReportComplete() {
     result = result.concat(_result);
     _result = {};
   }
-
   useEffect(() => {
     //fetch('http://localhost:3000/data/hwseol/goso_list.json', {
     fetch(`/master/main_list/${category_num}`, {

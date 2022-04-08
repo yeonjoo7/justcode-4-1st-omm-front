@@ -72,7 +72,6 @@ function ReceivedReport() {
         setData(data.questions);
       });
   }, []);
-
   if (data === undefined) return true;
   return (
     <>

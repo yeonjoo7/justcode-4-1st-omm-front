@@ -14,7 +14,8 @@ function Login() {
     navigate('/');
   };
   const dataFetch = () => {
-    fetch('http://localhost:8000/users/login', {
+    // try {
+    fetch('/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
