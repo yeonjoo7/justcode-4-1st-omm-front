@@ -243,10 +243,11 @@
 }
 .goso_line {
   display: flex;
+  justify-content: left;
 }
 .recruit_box {
   padding: 3px;
-  margin: 0px auto;
+  //margin: 0px auto;
   font-size: 0.8em;
   background-color: #f2f2f2;
 }

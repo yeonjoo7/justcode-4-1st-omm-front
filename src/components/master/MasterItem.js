@@ -15,7 +15,6 @@ const MasterItem = props => {
   function handleNavigate() {
     navigate(`/profile/users/${master.id}`);
   }
-
   const isReviewEmpty = master.reviews.length === 0;
 
   let reviewerNameTrans =
