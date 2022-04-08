@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+const PORT = process.env.REACT_APP_SERVER_PORT;
 
 function Login() {
   let [id, setId] = useState('');
@@ -14,7 +15,7 @@ function Login() {
     navigate('/');
   };
   const dataFetch = () => {
-    fetch('users/login', {
+    fetch(PORT + '/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +31,9 @@ function Login() {
       .then(res => {
         localStorage.setItem('access_token', res.access_token);
       })
-      .then(() => gotomain());
+      .then(() => {
+        gotomain();
+      });
   };
 
   const emailReg =
