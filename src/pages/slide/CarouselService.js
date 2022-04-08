@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import styles from './CarouselService.module.scss';
 
 const slideWidth = 15;
@@ -32,8 +33,9 @@ const createItem = (position, idx, activeIdx, _items) => {
 };
 
 const CarouselSlideItem = ({ pos, idx, activeIdx, _items }) => {
-  const item = createItem(pos, idx, activeIdx, _items);
+  // const navigate = useNavigate();
 
+  const item = createItem(pos, idx, activeIdx, _items);
   return (
     <li className={styles.carouselSlideItem} style={item.styles}>
       <div className={styles.carouselSlideItemImgLink}>
@@ -41,6 +43,7 @@ const CarouselSlideItem = ({ pos, idx, activeIdx, _items }) => {
           className={styles.imageDiv}
           src={item.service.image}
           alt={item.service.title}
+          // onClick={() => navigate('/lesson')}
         />
       </div>
       <div className={styles.carouselSlideItemBody}>
