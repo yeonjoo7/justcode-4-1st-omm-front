@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import styles from './MasterReview.module.scss';
 
@@ -6,6 +7,12 @@ function MasterReview(props) {
   const { master } = props;
   const { review } = master;
   //   const { entireReview } = review;
+  const params = useParams();
+  useEffect(() => {
+    fetch(`http://localhost:8000/review/${params.id}`, { method: 'GET' })
+      .then(res => res.json())
+      .then(res => console.log(res));
+  }, []);
 
   const rateStar = number => {
     const star = [];

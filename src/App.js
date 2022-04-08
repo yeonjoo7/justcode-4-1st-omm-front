@@ -10,6 +10,7 @@ import ReceivedReport from './pages/received_report/ReceivedReport';
 import MasterSignup from './pages/master-signup/MasterSignup';
 import MasterProfile from './pages/master_profile/MasterProfile';
 import MasterSignUpNext from './pages/master-signup/MasterSignUpNext';
+import MasterDetail from './pages/master-detail/MasterDetail';
 
 import './styles/reset.scss';
 import './styles/common.scss';
@@ -34,7 +35,7 @@ function App() {
         <Route path="/pro/:id" element={<MasterSignUpNext />} />
         <Route path="/master/profile" element={<MasterProfile />} />
         {/* <Route path="/sign-up" element={<UserSignUp />} /> */}
-        {/* <Route path="/profile/users/:id" element={<MasterDetail />} /> */}
+        <Route path="/profile/users/:id" element={<MasterDetail />} />
         <Route path="/pro" element={<MasterSignup />} />
         <Route path="/pro/:id" element={<MasterSignUpNext />} />
         <Route path="/formtest" element={<MasterRequestForm />} />

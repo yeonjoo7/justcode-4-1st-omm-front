@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './MasterDetail.module.scss';
-import MasterRequest from 'src/components/master-detail/MasterRequest';
-import MasterProfile from 'src/components/master-detail/MasterProfile';
-import MasterDetailNav from 'src/components/master-detail/MasterDetailNav';
-import MasterInfo from 'src/components/master-detail/MasterInfo';
-import MasterCategory from 'src/components/master-detail/MasterCategory';
-import MasterImage from 'src/components/master-detail/MasterImage';
-import MasterReview from 'src/components/master-detail/MasterReview';
-import Header from 'src/components/header/Header';
-import Footer from 'src/components/footer/Footer';
+import MasterRequest from '../../components/master-detail/MasterRequest';
+import MasterProfile from '../../components/master-detail/MasterProfile';
+import MasterDetailNav from '../../components/master-detail/MasterDetailNav';
+import MasterInfo from '../../components/master-detail/MasterInfo';
+import MasterCategory from '../../components/master-detail/MasterCategory';
+import MasterImage from '../../components/master-detail/MasterImage';
+import MasterReview from '../../components/master-detail/MasterReview';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 function MasterDetail() {
   const params = useParams();
@@ -23,9 +23,6 @@ function MasterDetail() {
     fetch(`http://localhost:8000/master/users/${params.id}`, {
       method: 'GET',
     })
-      // fetch(`http://localhost:3000/data/tekwoolee/${params.id}.json`, {
-      //   method: 'GET',
-      // })
       .then(res => res.json())
       .then(data => {
         setMaster(data);
