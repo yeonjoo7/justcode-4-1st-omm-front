@@ -18,11 +18,15 @@ p {
   font-size: 1rem;
 }
 
+// 미디어 쿼리 3단 변화
+// 0 - 고정 크기
+// 1 - 1000px, flex 변화, 중앙 정렬 -> infoCaption 줄바꿈 문제 이 부분에서 해결
+// 2 - 700px 이하 , 1줄 컬럼 적용
+
 .imageHeader {
   padding: 10rem 0;
-  background-image: url('../../../public/images/thump/carol-magalhaes-dSsXm15D9hg-unsplash.jpg');
+  background-image: url('../../../public/images/thump/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg');
   background-size: cover;
-
   .imageHeaderH2,
   .imageHeaderP {
     margin-left: 3rem;
@@ -35,6 +39,15 @@ p {
   }
 }
 
+.categories {
+  height: 9.5rem;
+  background: #fafafa;
+}
+
+.categorytitle {
+  text-align: center;
+}
+
 .statisticContainer {
   background: #f9f9f9;
   padding: 3.125rem 0;
@@ -44,6 +57,7 @@ p {
   .caption {
     font-weight: lighter;
     margin: 1.25rem 0;
+    padding: 0 1.25rem;
   }
 
   .caption {
@@ -58,7 +72,7 @@ p {
 }
 
 .statics {
-  margin-bottom: 1rem;
+  margin: 1.5rem 0;
   font-size: 3.125rem;
   color: #00c7ae;
 }
@@ -82,15 +96,35 @@ p {
   justify-content: space-evenly;
   text-align: center;
 }
+.infoImg {
+  width: 50%;
+  height: 50%;
+}
 
 .infoCaption {
   width: 20rem;
   margin: 1rem;
   padding: 1rem;
   font-size: small;
+  word-break: keep-all;
 }
 
 .infoStageH4 {
   font-size: 1.25rem;
   margin: 1.25rem 0;
+  white-space: nowrap;
 }
+
+.statisticWrapper,
+.infoStage {
+  @media (max-width: 870px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// .infoCaption p {
+//   @media (max-width: 900px) {
+//     width: 10rem;
+//   }
+// }

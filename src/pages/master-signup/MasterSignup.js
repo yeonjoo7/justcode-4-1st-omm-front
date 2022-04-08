@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MasterSignUp.module.scss';
+import MasterCategory from '../../components/master-signup/MasterCategory';
 import Header from '../../components/header/Header';
-// import CategoryNav from '../../components';
 
-function SignUpGoso() {
+function MasterSignUp() {
+  // infoStage에서 글자 줄바꿈으로 인해 생기는 이미지 높낮이 차이 해결할 것
+
   const [statistic, setStatistic] = useState([]);
   // 누적 요청서, 등록된 고수, 평균 리뷰별점을 어떻게 select하여 가져오는 지에 따라 다른 형태 - 3 항목의 갯수만 가져오면됨.
 
@@ -19,23 +21,14 @@ function SignUpGoso() {
       .then(data => setStatistic(data));
   }, []);
 
-  useEffect(() => {
-    fetch('고수의 프로필 사진, child 카테고리, 고수 리뷰 get  API', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => setMaster(data));
-  }, []);
-
-  let masterComponentKey = 0;
   return (
     <section className={styles.section}>
-      <Header />/
+      <Header />
       <div className={styles.imageHeader}>
         <h2 className={styles.imageHeaderH2}>
           고수로 등록하고,
           <br />
-          숨고에서 고객을 만나보세요!
+          숭고에서 고객을 만나보세요!
         </h2>
         <p className={styles.imageHeaderP}>
           숭고는 국내 최대 규모의 생활서비스 플랫폼입니다. <br />
@@ -43,8 +36,7 @@ function SignUpGoso() {
         </p>
       </div>
       <div className={styles.categories}>
-        고수로 가입하실 분야를 선택하세요 / 컴포넌트 받기
-        {/* <CategoryNav /> */}
+        <MasterCategory />
       </div>
       <div className={styles.statisticContainer}>
         <div className={styles.statisticCaption}>
@@ -78,16 +70,31 @@ function SignUpGoso() {
         <h2 className={styles.infoH2}>숭고는 어떻게 운영되나요?</h2>
         <ul className={styles.infoStage}>
           <li className={styles.infoCaption}>
+            <img
+              className={styles.infoImg}
+              src="/images/thump/1-logo.png"
+              alt="first-step"
+            />
             <h4 className={styles.infoStageH4}>고객의 요청을 받아보세요.</h4>
             고객이 필요한 서비스의 요청서를 작성하면 숨고가 검토 후 고수님께
             무료로 보내드려요.
           </li>
           <li className={styles.infoCaption}>
+            <img
+              className={styles.infoImg}
+              src="/images/thump/2-logo.png"
+              alt="second-step"
+            />
             <h4 className={styles.infoStageH4}>맞춤 견적을 보내세요</h4>
             요청서 확인 후 간단히 견적금액만 입력하면 프로필과 함께 고객에게
             메시지로 전송돼요.
           </li>
           <li className={styles.infoCaption}>
+            <img
+              className={styles.infoImg}
+              src="/images/thump/3-logo.png"
+              alt="third-step"
+            />
             <h4 className={styles.infoStageH4}>상담 후 거래하세요</h4>
             원하는 고객과 채팅 및 전화(안심번호)로 자세한 사항을 협의하고
             거래하세요.
@@ -98,4 +105,4 @@ function SignUpGoso() {
   );
 }
 
-export default SignUpGoso;
+export default MasterSignUp;
