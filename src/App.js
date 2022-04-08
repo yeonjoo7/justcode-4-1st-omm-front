@@ -34,7 +34,7 @@ function App() {
         <Route path="/pro" element={<MasterSignup />} />
         <Route path="/pro/:id" element={<MasterSignUpNext />} />
         <Route path="/master/profile" element={<MasterProfile />} />
-        {/* <Route path="/sign-up" element={<UserSignUp />} /> */}
+        <Route path="/sign-up" element={<UserSignUp />} />
         <Route path="/profile/users/:id" element={<MasterDetail />} />
         <Route path="/pro" element={<MasterSignup />} />
         <Route path="/pro/:id" element={<MasterSignUpNext />} />
