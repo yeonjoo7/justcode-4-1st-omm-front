@@ -1,23 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './HeaderProfileDropDown.module.scss';
+const token = localStorage.getItem('access_token');
 
-function HeaderProfileDropDown() {
+function HeaderProfileDropDownFetch(props) {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    if (token) {
+      fetch('/users', {
+        headers: {
+          token,
+        },
+      })
+        .then(res => res.json())
+        .then(data => setUser(data.user));
+    }
+  }, []);
+
+  return user ? <HeaderProfileDropDown user={user} {...props} /> : '';
+}
+
+function HeaderProfileDropDown(props) {
+  const { user, handleNavigate, logoutBtn } = props;
+  const [isMaster, setIsMaster] = useState(false);
+
   return (
     <div className={styles.dropDownMain}>
       <div className={styles.dropDownWrapper}>
         <div className={styles.dropDownHeader}>
-          <span>손성호님</span>
+          <span>{user.name}님</span>
         </div>
         <div className={styles.dropDownContent}>
           <ul>
-            <li>받은 견적</li>
-            <li>고수로 전환</li>
-            <li>로그아웃</li>
-          </ul>
-          <ul>
-            <li>프로필 관리</li>
-            <li>고객으로 전환</li>
-            <li>로그아웃</li>
+            {!isMaster ? (
+              <>
+                <li onClick={() => handleNavigate('/received_report')}>
+                  받은 견적
+                </li>
+                <li onClick={() => setIsMaster(true)}>고수로 전환</li>
+              </>
+            ) : (
+              <>
+                <li onClick={() => handleNavigate('/master/profile')}>
+                  프로필 관리
+                </li>
+                <li onClick={() => setIsMaster(false)}>고객으로 전환</li>
+              </>
+            )}
+            <li onClick={logoutBtn}>로그아웃</li>
           </ul>
         </div>
       </div>
@@ -25,4 +55,4 @@ function HeaderProfileDropDown() {
   );
 }
 
-export default HeaderProfileDropDown;
+export default HeaderProfileDropDownFetch;
