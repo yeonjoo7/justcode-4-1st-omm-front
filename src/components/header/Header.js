@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect } from 'react';
+import { React, useState, useRef, useEffect, useContext } from 'react';
 import styles from './Header.module.scss';
 import { FaRegBell, FaBars } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
@@ -109,7 +109,12 @@ function Header() {
                   <div className={`${styles.grayColor} ${styles.disabled}`}>
                     {profileClick ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </div>
-                  {profileClick && <HeaderProfileDropDown />}
+                  {profileClick && (
+                    <HeaderProfileDropDown
+                      handleNavigate={handleNavigate}
+                      logoutBtn={logoutBtn}
+                    />
+                  )}
                 </div>
               </li>
             </>
