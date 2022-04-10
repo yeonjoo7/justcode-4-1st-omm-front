@@ -14,7 +14,7 @@ import Footer from '../../components/footer/Footer';
 function MasterDetail() {
   const params = useParams();
   const [master, setMaster] = useState({});
-  const [reviews, setReviews] = useState([{}]);
+  const [reviews, setReviews] = useState([{ name: '' }]);
   const masterInfo = useRef('');
   const masterMedia = useRef('');
   const masterReview = useRef('');
@@ -47,7 +47,7 @@ function MasterDetail() {
       <Header />
       <div className={styles.detailContainer}>
         <div className={styles.masterProfile}>
-          <MasterProfile master={master} />
+          <MasterProfile master={master} review={reviews} />
         </div>
         <div className={styles.pageNav}>
           <MasterDetailNav
@@ -62,7 +62,9 @@ function MasterDetail() {
           <h2>한줄소개</h2>
           <div>
             {!master.info
-              ? `아직 ${master.name} 고수님의 소개가 없습니다.`
+              ? `아직 ${
+                  !master.name ? '' : master.name
+                } 고수님의 소개가 없습니다.`
               : master.intro}
           </div>
         </div>

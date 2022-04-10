@@ -1,18 +1,23 @@
 import styles from './MasterProfile.module.scss';
 import { FaStar } from 'react-icons/fa';
 
-function MasterProfile(props) {
-  const { master } = props;
-  const { review } = master;
+function MasterProfile({ master, review }) {
   const { lesson_categories } = master;
+  console.log('master profile compo review props : ', review);
+  const getTotalAVGGrade = reviews => {
+    let total = reviews.map(rev => rev.grade);
+    return parseFloat(Math.round((total / reviews.length) * 100) / 100).toFixed(
+      1
+    );
+  };
   return (
     <div className={styles.container}>
       <div className={styles.masterImage}>
         <img
           src={
-            !master.masterImage
+            !master.master_image
               ? `/images/profile/profileNotFound.svg`
-              : master.userImage
+              : master.master_image
           }
           alt={!master ? null : master.name}
         />
@@ -26,8 +31,8 @@ function MasterProfile(props) {
           <span>
             <FaStar size="16px" color="#ffce21" />
           </span>
-          <span>{!review ? null : master.review.totalGrade}</span>
-          <span>({!review ? 0 : master.review.number})</span>
+          <span>{!review[0].name ? '0.0' : getTotalAVGGrade(review)}</span>
+          <span>({!review[0].name ? 0 : review.length})</span>
         </div>
       </div>
     </div>

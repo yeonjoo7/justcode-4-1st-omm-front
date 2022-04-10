@@ -5,7 +5,6 @@ import styles from './MasterReview.module.scss';
 // 64~ API 수정 이후 빠진 데이터 추가하기
 
 function MasterReview({ reviews }) {
-  console.log(reviews);
   const rateStar = number => {
     const star = [];
     if (5 < number) {

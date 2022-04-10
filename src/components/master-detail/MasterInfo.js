@@ -69,7 +69,7 @@ function MasterInfo({ master, review }) {
               직원 수
               {master.employee_number === null
                 ? ' 1명 '
-                : ` ${master.employee_number} `}{' '}
+                : ` ${master.employee_number} 명`}{' '}
               (본인 포함)
             </span>
           </div>
