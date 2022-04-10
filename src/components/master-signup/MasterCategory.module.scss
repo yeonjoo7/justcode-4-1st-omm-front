@@ -32,10 +32,7 @@
   text-align: center;
   cursor: pointer;
 }
-img {
-  width: 5rem;
-  height: 5rem;
-}
+
 .lesson:hover {
   background-color: #fafafa;
   transform: translateY(-0.1in);
@@ -96,4 +93,16 @@ img {
   background-color: #fafafa;
   transform: translateY(-0.1in);
   transition: all 0.4s;
+}
+
+.lesson,
+.business,
+.etc,
+.event,
+.health,
+.home,
+.partTime,
+.design {
+  width: 5rem;
+  height: 5rem;
 }
