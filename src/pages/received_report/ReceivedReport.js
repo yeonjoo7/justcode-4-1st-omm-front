@@ -10,6 +10,7 @@ function ReceviedBox({ _data, index }) {
   //let img_datas = '/images/thump/human1.jpg';
   let requestStyle = _data.isRequest ? styles.trueReq : styles.falseReq;
   let figure = _data.isRequest ? styles.triangle : styles.square;
+
   return (
     <div key={index} className={styles.box}>
       <div className={styles.line}>
@@ -25,7 +26,6 @@ function ReceviedBox({ _data, index }) {
       <div className={styles.img_box} key={index}>
         {img_datas.map((imgData, index) => (
           <img
-            //src={imgData.goso_image}
             src="/images/thump/human1.jpg"
             alt="goso_img"
             className={styles.img}
@@ -72,7 +72,6 @@ function ReceivedReport() {
         setData(data.questions);
       });
   }, []);
-
   if (data === undefined) return true;
   return (
     <>

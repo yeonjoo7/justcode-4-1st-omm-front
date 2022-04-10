@@ -100,7 +100,7 @@ function Header() {
               <li>
                 <div className={styles.flexRow}>
                   <img
-                    src="http://localhost:3000/images/thump/carol-magalhaes-dSsXm15D9hg-unsplash.jpg"
+                    src="http://localhost:3000/images/profile/profileNotFound.svg"
                     className={styles.profileImg}
                     alt="profile_image"
                     ref={profile}
@@ -123,7 +123,7 @@ function Header() {
               <li onClick={() => handleNavigate('/login')}>로그인</li>
               <li onClick={() => handleNavigate('/sign-up')}>회원가입</li>
               <li
-                onClick={() => handleNavigate('/pro/welcome')}
+                onClick={() => handleNavigate('/pro')}
                 className={styles.masterSignup}
               >
                 고수가입

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './MainCategoryReport.module.scss';
 import { AiFillStar } from 'react-icons/ai';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+const PORT = process.env.REACT_APP_SERVER_PORT;
 
 function MainCategoryReportComplete() {
+  const navigate = useNavigate();
   const location = useLocation();
   const { quest, category, image, flag } = location.state;
   const [gosoList, setGosoList] = useState([]);
@@ -58,7 +60,7 @@ function MainCategoryReportComplete() {
 
   const keys = Object.keys(quest);
   for (let i = 0; i < keys.length; i++) {
-    _result.user_id = 1; //수정해야 함
+    _result.user_id = localStorage.getItem('access_token'); //수정해야 함
     _result.lesson_category_id = category_num;
     if (keys[i] === 'address1' || keys[i] === 'address2') {
       _result.question_id = i + 1;
@@ -69,7 +71,6 @@ function MainCategoryReportComplete() {
     result = result.concat(_result);
     _result = {};
   }
-
   useEffect(() => {
     //fetch('http://localhost:3000/data/hwseol/goso_list.json', {
     fetch(`/master/main_list/${category_num}`, {
@@ -83,6 +84,10 @@ function MainCategoryReportComplete() {
 
   if (flag === 1) {
     PostRequestForm(result);
+  }
+
+  function handleNavigate(gosoId) {
+    navigate(`../profile/users/${gosoId}`);
   }
   return (
     <>
@@ -100,26 +105,37 @@ function MainCategoryReportComplete() {
           조건에 맞는 고수님들이 요청을 검토하고 있어요. 먼저 도착한 견적을
           확인해보세요.
         </div>
-        {gosoList.map((goso, index) => (
-          <div className={styles.goso_wrap} key={index}>
-            <img
-              className={styles.img_box}
-              src={goso.image}
-              alt="profile_photo"
-            />
-            <div className={styles.text_box}>
-              <h4>{goso.goso_name}</h4>
-              <div className={styles.goso_line}>
-                <AiFillStar color="#FFCE21" size="1.1em" />
-                <p>{goso.star}</p>({goso.review_sum})&nbsp;&nbsp;
-                <div className={styles.recruit_box}>{goso.recurit}회 고용</div>
-              </div>
-              {/* <p className={styles.price}>
+        {gosoList.map((goso, index) => {
+          let masterImage = goso.image
+            ? PORT + goso.image
+            : PORT + '/images/profile/profileNotFound.svg';
+          return (
+            <div
+              className={styles.goso_wrap}
+              key={index}
+              onClick={() => handleNavigate(goso.goso_id)}
+            >
+              <img
+                className={styles.img_box}
+                src={masterImage}
+                alt="profile_photo"
+              />
+              <div className={styles.text_box}>
+                <h4>{goso.goso_name}</h4>
+                <div className={styles.goso_line}>
+                  <AiFillStar color="#FFCE21" size="1.1em" />
+                  <p>{goso.star}</p>({goso.review_sum})&nbsp;&nbsp;
+                  <div className={styles.recruit_box}>
+                    {goso.recurit}회 고용
+                  </div>
+                </div>
+                {/* <p className={styles.price}>
                 총 {goso.price.toLocaleString('ko-KR')}원 부터 ~
               </p> */}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <Footer />
     </>
