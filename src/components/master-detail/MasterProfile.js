@@ -5,12 +5,15 @@ function MasterProfile(props) {
   const { master } = props;
   const { review } = master;
   const { lesson_categories } = master;
-
   return (
     <div className={styles.container}>
       <div className={styles.masterImage}>
         <img
-          src={!master ? null : master.userImage}
+          src={
+            !master.masterImage
+              ? `/images/profile/profileNotFound.svg`
+              : master.userImage
+          }
           alt={!master ? null : master.name}
         />
       </div>
