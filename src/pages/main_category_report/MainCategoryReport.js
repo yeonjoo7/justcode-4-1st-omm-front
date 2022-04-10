@@ -36,6 +36,7 @@ function MainCategoryReport() {
   }, [lecture_id]);
 
   let imgUrl = '/' + image;
+
   if (question === undefined) return true;
   return (
     <>
