@@ -71,15 +71,7 @@ function MasterSignUpNext() {
   const params = useParams();
   const [questions, setQuestions] = useState([]);
   const lessonCategory = useRef([]);
-  const address = useRef('');
-  const detail_address = useRef('');
-  const nameInvalid = useRef('');
-  const emailInvalid = useRef('');
-  const pwInvalid = useRef('');
-  const ageInvalid = useRef('');
-  const phoneInvalid = useRef('');
-  const agreeInvalid = useRef('');
-  const addressInvalid = useRef('');
+
   const masterInfo = useRef({
     name: '',
     email: '',

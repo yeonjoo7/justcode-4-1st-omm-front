@@ -3,7 +3,6 @@ import { FaStar } from 'react-icons/fa';
 
 function MasterProfile({ master, review }) {
   const { lesson_categories } = master;
-  console.log('master profile compo review props : ', review);
   const getTotalAVGGrade = reviews => {
     let total = reviews.map(rev => rev.grade);
     return parseFloat(Math.round((total / reviews.length) * 100) / 100).toFixed(
