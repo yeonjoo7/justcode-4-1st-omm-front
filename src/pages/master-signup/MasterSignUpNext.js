@@ -103,7 +103,6 @@ function MasterSignUpNext() {
   const [formPage, setFormPage] = useState(0);
   // useMemo를 이용해서 리렌더링을 막는다. 이 페이지에서
   // + formComponentkey를 쓸 필요가 없다. 함수형 컴포넌트 밖에서 변수를 선언해준다.
-
   return (
     <section className={styles.section}>
       <div className={styles.container}>
