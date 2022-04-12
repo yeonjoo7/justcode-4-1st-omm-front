@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpFooter.module.scss';
 
 function MasterSignUpFooter({
-  setFormRender,
-  renderLength,
+  setFormPage,
   pageNumber,
   allData,
   checkLesson,
+  addressRef,
 }) {
   const navigate = useNavigate();
 
@@ -44,7 +44,15 @@ function MasterSignUpFooter({
   };
   // 에러 핸들링 추가 필요
 
-  const { email, password, phoneNumber, name } = allData;
+  const {
+    email,
+    password,
+    phoneNumber,
+    name,
+    address,
+    detailAddress,
+    lessonCatId,
+  } = allData;
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.btnWrapper}>
@@ -54,7 +62,7 @@ function MasterSignUpFooter({
             if (pageNumber === 0) {
               navigate('/pro');
             }
-            setFormRender(prev => (prev === 0 ? prev : prev - 1));
+            setFormPage(prev => (prev === 0 ? prev : prev - 1));
           }}
         >
           이전
@@ -66,26 +74,41 @@ function MasterSignUpFooter({
               return;
             }
 
-            setFormRender(prev => (prev === renderLength ? prev : prev + 1));
+            setFormPage(prev => (prev === 1 ? prev : prev + 1));
             if (e.target.innerText === '가입하기') {
               if (
                 pwReg.test(password) &&
                 emailReg.test(email) &&
                 phoneReg.test(phoneNumber) &&
                 2 <= name.length &&
-                allData.address != '0' &&
-                allData.detailAddress != '0'
+                address &&
+                detailAddress
               ) {
                 // fetch 보내기
                 sendMasterInfo(allData);
+              } else if (
+                localStorage.getItem('access_token') &&
+                phoneReg.test(phoneNumber) &&
+                address &&
+                detailAddress
+              ) {
+                sendMasterInfo({
+                  [address]: address,
+                  [detailAddress]: detailAddress,
+                  [phoneNumber]: phoneNumber,
+                  [lessonCatId]: lessonCatId,
+                });
               } else {
+                if (!(allData.address || allData.detailAddress)) {
+                  addressRef.current.style.display = 'block';
+                }
                 alert('모든 정보를 올바르게 입력해주세요');
               }
             }
             return;
           }}
         >
-          {pageNumber === renderLength ? '가입하기' : '다음'}
+          {pageNumber === 1 ? '가입하기' : '다음'}
         </button>
       </div>
     </div>
