@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import styles from './MasterReview.module.scss';
 // 64~ API 수정 이후 빠진 데이터 추가하기
