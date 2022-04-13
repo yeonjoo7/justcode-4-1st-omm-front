@@ -11,17 +11,14 @@ function MasterSignUpFooter({
 }) {
   const navigate = useNavigate();
 
-  //80 ~ 81 refactoring
-
   // 입력 정보 유효성 검사
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
   const pwReg = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
   const phoneReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-
   // 모든 데이터를 취합하여 보내는 footer
-  const sendMasterInfo = data => {
-    fetch('http://localhost:8000/master/signup', {
+  const sendMasterInfo = (data, router) => {
+    fetch(`http://localhost:8000/master/${router}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -42,17 +39,6 @@ function MasterSignUpFooter({
         alert(`Error : ${err.message}`);
       });
   };
-  // 에러 핸들링 추가 필요
-
-  const {
-    email,
-    password,
-    phoneNumber,
-    name,
-    address,
-    detailAddress,
-    lessonCatId,
-  } = allData;
   return (
     <div className={styles.FooterContainer}>
       <div className={styles.btnWrapper}>
@@ -77,29 +63,34 @@ function MasterSignUpFooter({
             setFormPage(prev => (prev === 1 ? prev : prev + 1));
             if (e.target.innerText === '가입하기') {
               if (
-                pwReg.test(password) &&
-                emailReg.test(email) &&
-                phoneReg.test(phoneNumber) &&
-                2 <= name.length &&
-                address &&
-                detailAddress
+                pwReg.test(allData.current.password) &&
+                emailReg.test(allData.current.email) &&
+                phoneReg.test(allData.current.phoneNumber) &&
+                2 <= allData.current.name.length &&
+                !!allData.current.address &&
+                !!allData.current.detailAddress
               ) {
                 // fetch 보내기
-                sendMasterInfo(allData);
+                sendMasterInfo(allData.current, 'signup');
               } else if (
-                localStorage.getItem('access_token') &&
-                phoneReg.test(phoneNumber) &&
-                address &&
-                detailAddress
+                !!localStorage.getItem('access_token') &&
+                phoneReg.test(allData.current.phoneNumber) &&
+                !!allData.current.address &&
+                !!allData.current.detailAddress
               ) {
-                sendMasterInfo({
-                  [address]: address,
-                  [detailAddress]: detailAddress,
-                  [phoneNumber]: phoneNumber,
-                  [lessonCatId]: lessonCatId,
-                });
+                sendMasterInfo(
+                  {
+                    ...allData.current,
+                    address: allData.current.address,
+                    detailAddress: allData.current.detailAddress,
+                    phoneNumber: allData.current.phoneNumber,
+                  },
+                  'signupdirect'
+                );
               } else {
-                if (!(allData.address || allData.detailAddress)) {
+                if (
+                  !(allData.current.address || allData.current.detailAddress)
+                ) {
                   addressRef.current.style.display = 'block';
                 }
                 alert('모든 정보를 올바르게 입력해주세요');

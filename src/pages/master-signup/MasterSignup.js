@@ -106,5 +106,4 @@ function MasterSignUp() {
     </section>
   );
 }
-
 export default MasterSignUp;
