@@ -81,9 +81,8 @@ function MasterSignUpNext() {
     lessonCatID: lessonCategory.current,
   });
 
-  const token = localStorage.getItem('access_token');
-
   useEffect(() => {
+    let isMounted = true;
     fetch(`http://localhost:8000/category/${params.id}`, {
       method: 'GET',
     })
@@ -91,14 +90,13 @@ function MasterSignUpNext() {
         return res.json();
       })
       .then(data => {
-        return setQuestions(data);
+        if (isMounted) {
+          setQuestions(data);
+        }
       });
+    return () => (isMounted = false);
   }, []);
   // api로 설문 결과 보내기
-
-  // 나이, 개인정보 공유 동의
-  const [agreeCheck, setAgreeCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
 
   const [formPage, setFormPage] = useState(0);
   // useMemo를 이용해서 리렌더링을 막는다. 이 페이지에서
@@ -132,10 +130,6 @@ function MasterSignUpNext() {
             <FormInfo
               key={formComponentKey++}
               masterInfo={masterInfo}
-              ageCheck={ageCheck}
-              agreeCheck={agreeCheck}
-              setAgeCheck={setAgeCheck}
-              setAgreeCheck={setAgreeCheck}
               addressRef={addressRef}
             />
           )}
@@ -144,12 +138,9 @@ function MasterSignUpNext() {
       <MasterSignUpFooter
         setFormPage={setFormPage}
         pageNumber={formPage}
-        allData={masterInfo.current}
+        allData={masterInfo}
         checkLesson={lessonCategory.current}
-        agreeCheck={agreeCheck}
-        ageCheck={agreeCheck}
         addressRef={addressRef}
-        token={token}
       />
     </section>
   );

@@ -1,19 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './FormInfo.module.scss';
 
-function FormInfo({
-  masterInfo,
-  ageCheck,
-  agreeCheck,
-  setAgeCheck,
-  setAgreeCheck,
-  addressRef,
-}) {
+function FormInfo({ masterInfo, addressRef }) {
   const [visiblePW, setPwVisible] = useState('password');
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState([{}]);
   const [selectAddress, setSelectAddress] = useState(0);
   const [selectDetailAddress, setSelectDetailAddress] = useState(0);
+  const [agreeCheck, setAgreeCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
   const [info, setInfo] = useState({
     name: '',
     email: '',
@@ -23,8 +18,8 @@ function FormInfo({
     detailAddress: '',
   });
 
-  const { lessonCatID } = masterInfo.current;
   const { name, email, password, phoneNumber } = info;
+  const { lessonCatID } = masterInfo.current;
 
   masterInfo.current = { ...info, lessonCatID: lessonCatID };
 
@@ -45,11 +40,13 @@ function FormInfo({
   // 핸드폰 번호 '-' 추가하여 db에 전송
 
   useEffect(() => {
+    let isMounted = true;
     fetch('/address', { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        setAddress(res.address);
+        if (isMounted) setAddress(res.address);
       });
+    return () => (isMounted = false);
   }, []);
 
   useEffect(() => {
