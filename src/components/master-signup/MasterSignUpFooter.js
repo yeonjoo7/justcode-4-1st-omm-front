@@ -20,7 +20,11 @@ function MasterSignUpFooter({
   const sendMasterInfo = (data, router) => {
     fetch(`http://localhost:8000/master/${router}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('access_token'),
+      },
       body: JSON.stringify(data),
     })
       .then(response => {
@@ -71,7 +75,7 @@ function MasterSignUpFooter({
                 !!allData.current.detailAddress
               ) {
                 // fetch 보내기
-                sendMasterInfo(allData.current, 'signup');
+                sendMasterInfo(allData.current, 'signupdirect');
               } else if (
                 !!localStorage.getItem('access_token') &&
                 phoneReg.test(allData.current.phoneNumber) &&
@@ -85,7 +89,7 @@ function MasterSignUpFooter({
                     detailAddress: allData.current.detailAddress,
                     phoneNumber: allData.current.phoneNumber,
                   },
-                  'signupdirect'
+                  'signup'
                 );
               } else {
                 if (
