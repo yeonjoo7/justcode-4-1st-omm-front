@@ -83,7 +83,7 @@ function MasterSignUpNext() {
 
   useEffect(() => {
     let isMounted = true;
-    fetch(`http://localhost:8000/category/${params.id}`, {
+    fetch(`/category/${params.id}`, {
       method: 'GET',
     })
       .then(res => {
