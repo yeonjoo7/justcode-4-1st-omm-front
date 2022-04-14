@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './CarouselService.module.scss';
 
 const slideWidth = 15;
+const PORT = process.env.REACT_APP_SERVER_PORT;
 
 const sleep = (ms = 0) => {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -58,7 +59,7 @@ function CarouselService() {
   const [_items, _setItems] = useState([]);
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/data/hwseol/main_carousel.json', {
+    fetch(PORT + '/data/hwseol/main_carousel.json', {
       method: 'GET',
     })
       .then(res => res.json())
