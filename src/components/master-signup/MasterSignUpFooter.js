@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './MasterSignUpFooter.module.scss';
-const PORT = process.env.REACT_APP_SERVER_PORT;
+import { SERVER_PORT } from '../../config';
 
 function MasterSignUpFooter({
   setFormPage,
@@ -19,7 +19,7 @@ function MasterSignUpFooter({
   const phoneReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
   // 모든 데이터를 취합하여 보내는 footer
   const sendMasterInfo = (data, router) => {
-    fetch(`/master/${router}`, {
+    fetch(`${SERVER_PORT}/master/${router}`, {
       method: 'POST',
 
       headers: {

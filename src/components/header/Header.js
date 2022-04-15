@@ -5,7 +5,9 @@ import { FiSearch } from 'react-icons/fi';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import HeaderProfileDropDown from './HeaderProfileDropDown';
-const PORT = process.env.REACT_APP_SERVER_PORT;
+
+import { FRONT_PORT } from '../../config';
+
 function Header() {
   const navigate = useNavigate();
   const [profileClick, setProfileClick] = useState(false);
@@ -49,7 +51,7 @@ function Header() {
           <span className={styles.headerLogo}>
             <img
               onClick={() => handleNavigate('/')}
-              src={PORT + '/images/logo/Soongo-logo.png'}
+              src={FRONT_PORT + '/images/logo/Soongo-logo.png'}
               width="100px"
               alt="soongo-logo"
             />
@@ -101,7 +103,7 @@ function Header() {
               <li>
                 <div className={styles.flexRow}>
                   <img
-                    src={PORT + '/images/profile/profileNotFound.svg'}
+                    src={FRONT_PORT + '/images/profile/profileNotFound.svg'}
                     className={styles.profileImg}
                     alt="profile_image"
                     ref={profile}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CarouselGoso.module.scss';
 import { AiFillStar } from 'react-icons/ai';
+import { FRONT_PORT } from '../../config';
 
 const slideWidth = 10;
-const PORT = process.env.REACT_APP_SERVER_PORT;
 
 const sleep = (ms = 0) => {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -63,7 +63,7 @@ function CarouselGoso() {
   const [_items, _setItems] = useState([]);
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch(PORT + '/data/hwseol/goso_carousel.json', {
+    fetch(FRONT_PORT + '/data/hwseol/goso_carousel.json', {
       method: 'GET',
     })
       .then(res => res.json())
